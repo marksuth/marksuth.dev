@@ -1,0 +1,33 @@
+{
+    "name": "Mark Sutherland",
+    "short_name": "marksuth.dev",
+    "icons": [
+       {
+         "src": "https://marksuth.dev/icons/icon.svg",
+         "type": "image/svg+xml",
+         "sizes": "512x512",
+         "purpose": "any"
+       },
+       {
+         "src": "https://marksuth.dev/icons/icon-192.png",
+         "type": "image/png",
+         "sizes": "192x192"
+       },
+       {
+         "src": "https://marksuth.dev/icons/icon-512.png",
+         "type": "image/png",
+         "sizes": "512x512",
+         "purpose": "any"
+       },
+       {
+         "src": "https://marksuth.dev/icons/icon.svg",
+         "sizes": "512x512",
+         "type": "image/svg+xml",
+         "purpose": "maskable"
+       }
+   ],
+    "theme_color": "#214154",
+    "background_color": "#214154",
+    "display": "browser",
+    "start_url": "https://marksuth.dev"
+}

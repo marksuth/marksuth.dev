@@ -1,0 +1,65 @@
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.25rem 0.75rem;
+    color: var(--text);
+    text-decoration: none;
+    background-color: var(--dark);
+    border: 0 solid var(--dark);
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-link {
+        transition: none
+    }
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: var(--text);
+    background-color: var(--dark);
+    border-color: var(--dark)
+}
+
+.page-link:focus {
+    z-index: 3;
+    color: var(--text);
+    background-color: var(--primary);
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(33, 65, 84, .25);
+}
+
+.page-link.active, .active > .page-link {
+    z-index: 3;
+    color: var(--text);
+    background-color: var(--primary);
+    border-color: var(--primary)
+}
+
+.page-link.disabled, .disabled > .page-link {
+    color: var(--text-muted);
+    pointer-events: none;
+    background-color: var(--primary);
+    border-color: var(--primary)
+}
+
+.page-item:not(:first-child) .page-link {
+    margin-left: -0
+}
+
+.page-item:first-child .page-link {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}

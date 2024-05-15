@@ -1,0 +1,52 @@
+{
+  "short_name": "marksuth.dev",
+  "name": "Mark Sutherland",
+  "icons": [
+    {
+      "src": "https://marksuth.dev/icons/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "https://marksuth.dev/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://marksuth.dev/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "https://marksuth.dev/icons/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "https://marksuth.dev/backend?source=pwa",
+  "start_url": "https://marksuth.dev/backend?source=pwa",
+  "background_color": "#214154",
+  "display": "standalone",
+  "scope": "https://marksuth.dev/backend",
+  "theme_color": "#214154",
+  "shortcuts": [
+    {
+      "name": "Upload Photo",
+      "short_name": "Photo",
+      "description": "Upload a new photo",
+      "url": "https://marksuth.dev/backend/photos/create?source=pwa",
+      "icons": [{ "src": "/icons/photo-icon.svg", "sizes": "512x512" }]
+    },
+    {
+      "name": "New Post",
+      "short_name": "Post",
+      "description": "Upload a new Post",
+      "url": "https://marksuth.dev/backend/posts/create?source=pwa",
+      "icons": [{ "src": "/icons/post-icon.svg", "sizes": "512x512" }]
+    }
+  ],
+  "description": "Mark Sutherland's Backend"
+}

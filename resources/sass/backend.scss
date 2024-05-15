@@ -1,0 +1,72 @@
+// Variables
+@import "variables";
+@import "fonts";
+// Bootstrap
+
+$navbar-dark-color: #fff;
+$body-bg: #eee;
+@import "~bootstrap/scss/bootstrap";
+
+.navbar-brand {
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.site-main {
+    min-height: calc(90vh - 60px);
+}
+
+.photo-thumb {
+    img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+.tiny-avatar {
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+}
+
+.entry-content {
+    p {
+        line-height: 1.75;
+    }
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+}
+
+.text-gray {
+    color: $gray-alt;
+}
+
+.error-page {
+    padding-top: 15vh;
+
+    & h1 {
+        font-size: 5rem;
+    }
+}
+
+.error-cat {
+    margin-top: -120px;
+    text-align: end;
+}
+
+.site-footer {
+    background: $dark;
+    color: $gray-600;
+    text-align: center;
+}
+
+.nav-link.active {
+    font-weight: 700;
+}
