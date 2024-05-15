@@ -29,14 +29,3 @@ $input-color: $dark;
 
 $btn-close-opacity: 1;
 $btn-close-color: $black;
-
-.btn-dark {
-    background: rgb(19,37,47);
-    background: linear-gradient(0deg, $dark 0%, lighten($dark, 5%) 100%);
-    transition: 0.3s all ease;
-    &:hover {
-        filter: drop-shadow(0 0 0.2rem $white);
-        transition: 0.3s all ease;
-
-    }
-}
