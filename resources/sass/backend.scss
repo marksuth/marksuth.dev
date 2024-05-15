@@ -1,39 +1,43 @@
-// Variables
-@import "variables";
-@import "fonts";
-// Bootstrap
-
-$navbar-dark-color: #fff;
-$body-bg: #eee;
-@import "~bootstrap/scss/bootstrap";
-
-.navbar-brand {
-    font-weight: 800;
-    text-transform: uppercase;
+:root {
+    --primary: #214154;
+    --dark: #13252f;
+    --light: #f4f4f4;
+    --text: #000000;
+    --text-muted: #cccccc;
+    --inverse-text: #ffffff;
+    --gradient: linear-gradient(-45deg, #5cb8ed, #7dcb8a, #4aff00);
 }
 
-.site-main {
-    min-height: calc(90vh - 60px);
+@import "base";
+
+body {
+    background: var(--light);
 }
 
-.photo-thumb {
-    img {
-        height: 100%;
-        object-fit: cover;
-        width: 100%;
+h1 {
+    line-height: 3;
+}
+
+#navbar {
+    background: var(--primary);
+}
+
+.btn {
+    color: var(--inverse-text);
+}
+
+.tile {
+    box-shadow: none;
+}
+
+.editor-split {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .editor-split {
+        grid-template-columns: 1fr;
     }
-}
-
-.tiny-avatar {
-    border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
-}
-
-.text-gray {
-    color: $gray-alt;
-}
-
-.nav-link.active {
-    font-weight: 700;
 }

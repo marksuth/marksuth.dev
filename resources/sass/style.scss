@@ -1,6 +1,8 @@
 :root {
     --primary: #214154;
     --dark: #13252f;
+    --light: #f4f4f4;
+    --background: var(--primary);
     --text: #ffffff;
     --text-muted: #cccccc;
     --inverse-text: #000000;
@@ -34,10 +36,6 @@
         h1 {
             font-size: 5rem;
             line-height: 1.5;
-        }
-
-        p {
-            //font-size: 2rem;
         }
     }
 }
@@ -143,7 +141,6 @@
             right: 0.5rem;
             background: transparent;
             border: none;
-
         }
 
         .timestamp {
@@ -175,7 +172,6 @@
         img {
             max-height: 70vh;
             max-width: 50vw;
-
         }
     }
 }
@@ -374,7 +370,6 @@
 
 .error-cat {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 6rem;
     right: 5vw;
-    text-align: end;
 }

@@ -2,36 +2,32 @@
     'title' => 'Backend',
 ])
 @section('content')
-
-    <div class="d-flex justify-content-between mb-4">
+    <div class="split">
         <h1>Post Collections</h1>
-        <div>
-            <a href="{{ route('backend.collections.create') }}" class="btn btn-primary">New Collection</a>
-        </div>
+            <a href="{{ route('backend.collections.create') }}" class="btn">New Collection</a>
     </div>
-
-    <table class="table table-striped table-hover">
+    <table>
         <thead>
         <tr>
             <th scope="col">Name</th>
-            <th scope="col" class="text-end">Status</th>
-            <th class="col-2 text-end" scope="col">Actions</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         @forelse($collections as $collection)
             <tr>
                 <td><a href="{{ route('backend.collections.edit', $collection->id) }}">{{ $collection->name }}</a></td>
-                <td class="small text-end">@if($collection->meta['published'] == 1)
+                <td>@if($collection->meta['published'] == 1)
                         Published
                     @else
                         Draft
                     @endif</td>
-                <td class="text-end small">
-                    <nav class="text-end">
-                        <a href="/collections/{{ $collection->slug }}" class="btn btn-outline-primary btn-sm" target="_blank"><i class="fa-solid fa-eye"></i></a>
-                        <a href="{{ route('backend.collections.edit', $collection->id) }}" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-pen"></i></a>
-                        <a href="{{ route('backend.collections.destroy', $collection->id) }}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                <td>
+                    <nav>
+                        <a href="/collections/{{ $collection->slug }}" class="btn" target="_blank"><i class="fa-solid fa-eye"></i></a>
+                        <a href="{{ route('backend.collections.edit', $collection->id) }}" class="btn"><i class="fa-solid fa-pen"></i></a>
+                        <a href="{{ route('backend.collections.destroy', $collection->id) }}" class="btn"><i class="fa-solid fa-trash"></i></a>
                     </nav>
 
                 </td>

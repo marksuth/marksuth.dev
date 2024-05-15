@@ -5,7 +5,6 @@ import purge from '@erbelion/vite-plugin-laravel-purgecss'
 export default defineConfig({
     resolve: {
         alias: {
-            '~bootstrap': '/node_modules/bootstrap',
             '~geist': '/node_modules/geist/dist/fonts',
             '~@fortawesome': '/node_modules/@fortawesome',
             '~easymde': '/node_modules/easymde/dist',

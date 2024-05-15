@@ -2,6 +2,16 @@
 @import "fonts";
 @import "_pagination";
 
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: "Geist", Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
 h1, h2, h3, h4 {
     font-weight: 700;
     line-height: 1.25;
@@ -29,15 +39,7 @@ ul {
     padding-left: 2rem;
 }
 
-body {
-    background: var(--primary);
-    color: #fff;
-    font-family: "Geist", Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin: 0;
-    padding: 0;
-}
+
 
 a {
     color: var(--text-muted);
@@ -73,19 +75,18 @@ input[type="checkbox"] {
 #navbar {
     background: rgba(33, 65, 84, 0.7);
     backdrop-filter: blur(20px);
-    color: var(--text);
+    color: #fff;
     padding: 0.5rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
 
     & .logo {
-        font-family: "Geist", sans-serif;
         font-weight: 800;
         font-size: 1.25rem;
         text-decoration: none;
         text-transform: uppercase;
-        color: var(--text);
+        color: #fff;
         margin: 0;
     }
 
@@ -321,7 +322,6 @@ input[type="checkbox"] {
             color: var(--dark);
             transition: 0.3s all ease;
             filter: none;
-
         }
     }
 
