@@ -225,6 +225,12 @@ input[type="checkbox"] {
     }
 }
 
+@media (min-width: 1960px) {
+    .tile-grid-sm {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
 .tile {
     background: white;
     color: black;

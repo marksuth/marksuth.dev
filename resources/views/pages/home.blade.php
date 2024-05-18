@@ -50,42 +50,42 @@
                     <li><a data-hint="Website" class="u-url u-uid"
                            href="{{ config('app.url') }}" rel="me" title="Website"
                            aria-label="Website">
-                            <i class="fa-solid fa-globe fa-fw fa-2x"></i>
+                            <i class="fa-solid fa-globe"></i>
                         </a></li>
                     <li><a data-hint="Email" class="u-email"
                            href="mailto:mark@marksuth.dev" rel="me" title="Email"
                            aria-label="Email">
-                            <i class="fa-solid fa-envelope fa-fw fa-2x"></i>
+                            <i class="fa-solid fa-envelope"></i>
                         </a></li>
                     <li><a data-hint="GitHub"
                            href="https://github.com/marksuth" rel="me" title="GitHub"
                            aria-label="GitHub">
-                            <i class="fa-brands fa-github fa-fw fa-2x"></i>
+                            <i class="fa-brands fa-github"></i>
                         </a></li>
                     <li><a data-hint="Linkedin"
                            href="https://www.linkedin.com/in/marksuth" rel="me" title="Linkedin"
                            aria-label="Linkedin">
-                            <i class="fa-brands fa-linkedin fa-fw fa-2x"></i>
+                            <i class="fa-brands fa-linkedin"></i>
                         </a></li>
                     <li><a data-hint="Mastodon"
                            href="https://mastodon.social/@marksuth" rel="me" title="Mastodon"
                            aria-label="Mastodon">
-                            <i class="fa-brands fa-mastodon fa-fw fa-2x"></i>
+                            <i class="fa-brands fa-mastodon"></i>
                         </a></li>
                     <li><a data-hint="CodePen"
                            href="https://codepen.io/marksuth" rel="me" title="CodePen"
                            aria-label="CodePen">
-                            <i class="fa-brands fa-codepen fa-fw fa-2x"></i>
+                            <i class="fa-brands fa-codepen"></i>
                         </a></li>
                     <li><a data-hint="Medium"
                            href="https://medium.com/@marksuth" rel="me" title="Medium"
                            aria-label="Medium">
-                            <i class="fa-brands fa-medium fa-fw fa-2x"></i>
+                            <i class="fa-brands fa-medium"></i>
                         </a></li>
                     <li><a data-hint="Discogs"
                            href="https://www.discogs.com/user/marksuth" rel="me" title="Discogs"
                            aria-label="Discogs">
-                            <i class="fa-solid fa-record-vinyl fa-fw fa-2x"></i>
+                            <i class="fa-solid fa-record-vinyl"></i>
                         </a></li>
                 </ul>
             </div>

@@ -190,6 +190,7 @@
     border: 2px solid var(--text);
     border-radius: 0.5rem;
     overflow: hidden;
+    width: max-content;
 
     &-mid {
         border-top: 2px solid var(--text);
@@ -205,9 +206,16 @@
     }
 }
 
+@media (max-width: 991px) {
+    .box {
+        margin: 0.5rem;
+        width: 98%;
+    }
+}
+
 .elsewhere {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     list-style: none;
     padding: 0.25rem;
 
@@ -223,6 +231,8 @@
             background: var(--gradient);
             background-clip: text;
             transition: 0.3s all ease;
+            text-align: center;
+
 
             &:hover {
                 color: rgba(0, 0, 0, 0);
@@ -235,6 +245,27 @@
         }
     }
 
+}
+
+@media (min-width: 992px) {
+    .elsewhere {
+        justify-content: start;
+
+        & > li {
+            margin: 0.25rem 1rem;
+
+            .fa-brands, .fa-solid {
+                font-size: 2.5rem;
+                line-height: 3rem;
+            }
+
+        }
+
+    }
+
+    .box {
+        min-width: 75%;
+    }
 }
 
 #feed {
@@ -277,6 +308,15 @@
     .photo,
     .post {
         max-width: 90vw !important;
+    }
+
+    #feed {
+        grid-template-columns: 1fr;
+
+        h2 {
+            text-align: left;
+
+        }
     }
 }
 
