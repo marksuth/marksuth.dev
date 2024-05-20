@@ -21,7 +21,7 @@
     }
 
     h1 {
-        padding: 0.25rem 0.25rem 0.25rem 0.75rem;
+        padding: 0.25rem 0.75rem 0.25rem 0.75rem;
     }
 
 }
@@ -170,7 +170,7 @@
 @media (min-width: 992px) {
     #latest-photo:popover-open {
         max-height: 80vh;
-        width: fit-content(50vw);
+        width: fit-content(60vw);
 
         img {
             max-height: 70vh;
@@ -208,8 +208,17 @@
 
 @media (max-width: 991px) {
     .box {
-        margin: 0.5rem;
-        width: 98%;
+        margin-bottom: 1rem;
+        width: calc(100% - 1rem);
+    }
+
+    .avatar-box {
+        max-width: 98%;
+
+        & img {
+            width: 32vh;
+            height: 32vh;
+        }
     }
 }
 
