@@ -15,7 +15,7 @@
                 <div class="bg-white p-2 mb-4 rounded-1 shadow">
                     <div class="ratio ratio-1x1">
                         <a href="{{ route('backend.photos.show', $photo->id) }}" class="photo-thumb">
-                            <img loading="lazy" src="/storage/{{ $photo->meta['img_url'] }}" alt="{{ $photo->title }}" class="img-fluid rounded">
+                            <img loading="lazy" src="/storage/thumbs/{{ $photo->meta['img_url'] }}" alt="{{ $photo->title }}" class="img-fluid rounded">
                         </a>
                     </div>
                     <p class="text-gray text-end small">
