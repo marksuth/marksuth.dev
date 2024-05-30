@@ -22,10 +22,6 @@ class BackendPageController extends Controller
 
     public function store()
     {
-        $this->validate(request(), [
-            'title' => 'required',
-            'content' => 'required',
-        ]);
 
         $page = new Page;
 
@@ -52,10 +48,6 @@ class BackendPageController extends Controller
 
     public function update($id)
     {
-        $this->validate(request(), [
-            'title' => 'required',
-            'content' => 'required',
-        ]);
 
         $page = Page::find($id);
 

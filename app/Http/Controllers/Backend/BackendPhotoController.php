@@ -78,6 +78,7 @@ class BackendPhotoController extends Controller
         $photo->content = request('content');
         $photo->published_at = request('published_at');
 
+        $meta['img_url'] = $meta['img_url'];
         $meta['location'] = request('location');
         $meta['instagram_url'] = request('instagram_url');
         $meta['published'] = request('published');
