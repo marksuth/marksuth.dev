@@ -2,18 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\PostType;
 use Illuminate\Database\Seeder;
-use \App\Models\PostType;
 
 class PostTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-
     public function run(): void
     {
-        foreach($postTypes as $postType) {
+        foreach ($postTypes as $postType) {
             PostType::create(['name' => 'Watch', 'slug' => 'watch']);
             PostType::create(['name' => 'Video', 'slug' => 'video']);
             PostType::create(['name' => 'Sign', 'slug' => 'sign']);
