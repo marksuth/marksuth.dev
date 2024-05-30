@@ -2,8 +2,10 @@
     --primary: #214154;
     --dark: #13252f;
     --text: #ffffff;
+    --body: var(--primary);
+    --navbar: var(--primary);
     --text-muted: #cccccc;
-    --inverse-text: #000000;
+    --text-inverse: #000000;
     --gradient: linear-gradient(-45deg, #5cb8ed, #7dcb8a, #4aff00);
 }
 
@@ -11,7 +13,6 @@
 
 #intro {
     p {
-        background: var(--dark);
         font-size: 1.5rem;
         font-weight: 700;
         letter-spacing: -0.05rem;
@@ -182,6 +183,7 @@
 
 .box {
     background: var(--dark);
+    color: var(--text);
     flex-direction: column;
     align-items: center;
     font-weight: 800;
@@ -226,14 +228,14 @@
     display: flex;
     justify-content: space-evenly;
     list-style: none;
-    padding: 0.25rem;
+    padding: 0.25rem 0.25rem 0.25rem 0;
 
     & a {
         color: var(--text);
     }
 
     & > li {
-        margin: 0.5rem;
+        margin: 0.25rem;
 
         .fa-solid, .fa-brands {
             font-size: 2rem;
@@ -290,8 +292,23 @@
     }
 }
 
+#activity-stream {
+    ul {
+        list-style: none;
+        padding: 0.5rem;
+        margin: 0;
+
+        li {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
 .photo,
 .post {
+    //border: 2px solid var(--text);
+    padding: 0.75rem;
+    border-radius: 0.25rem;
     max-width: 50vw;
     margin: 0 auto 2rem;
 
@@ -311,12 +328,20 @@
             text-decoration: none;
         }
     }
+
+    footer {
+        text-align: right;
+    }
 }
 
 @media (max-width: 991px) {
     .photo,
     .post {
         max-width: 90vw !important;
+
+        h2 {
+            font-size: 1.2px;
+        }
     }
 
     #feed {
@@ -324,7 +349,6 @@
 
         h2 {
             text-align: left;
-
         }
     }
 }
@@ -427,3 +451,5 @@
     right: 5vw;
     text-align: end;
 }
+
+@import "light";

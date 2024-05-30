@@ -4,6 +4,7 @@
 
 h1, h2, h3, h4 {
     font-weight: 700;
+    color: var(--headings);
     line-height: 1.25;
 }
 
@@ -30,8 +31,8 @@ ul {
 }
 
 body {
-    background: var(--primary);
-    color: #fff;
+    background: var(--body);
+    color: var(--text);
     font-family: "Geist", Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.5;
@@ -71,8 +72,7 @@ input[type="checkbox"] {
 }
 
 #navbar {
-    background: rgba(33, 65, 84, 0.7);
-    backdrop-filter: blur(20px);
+    background: var(--navbar);
     color: var(--text);
     padding: 0.5rem 0;
     position: sticky;
@@ -82,10 +82,10 @@ input[type="checkbox"] {
     & .logo {
         font-family: "Geist", sans-serif;
         font-weight: 800;
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         text-decoration: none;
         text-transform: uppercase;
-        color: var(--text);
+        color: var(--logo);
         margin: 0;
     }
 
@@ -129,7 +129,6 @@ input[type="checkbox"] {
 
         .inline-toggle, .logo {
             display: block;
-            margin: 0 1rem;
         }
 
         .inline-toggle:checked + nav {
@@ -143,12 +142,13 @@ input[type="checkbox"] {
             top: calc(100%);
             left: 0;
             right: 0;
-            background: var(--primary);
+            background: var(--navbar);
             padding: 1rem;
             font-size: 1.5rem;
             height: 100vh;
             z-index: 1000;
             text-align: center;
+
             & a {
                 display: block;
                 margin: 0.5rem 0;
@@ -160,8 +160,8 @@ input[type="checkbox"] {
 
 .tube {
     margin: 0 auto;
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 @media (min-width: 992px) {
@@ -209,6 +209,12 @@ input[type="checkbox"] {
     display: flex;
     justify-content: space-between;
     margin: 0.5rem 0;
+}
+
+@media (max-width: 991px) {
+    .split {
+        flex-direction: column;
+    }
 }
 
 .tile-grid {
@@ -302,13 +308,9 @@ input[type="checkbox"] {
 
 .btn {
     background: var(--dark);
-    color: var(--text);
+    color: #fff;
     transition: 0.3s all ease;
-
-    &-right {
-        float: right;
-        margin-bottom: 1rem;
-    }
+    display: inline-block;
 
     &:hover {
         filter: drop-shadow(0 0 0.2rem var(--text));
@@ -322,6 +324,7 @@ input[type="checkbox"] {
         line-height: 2rem;
         border-radius: 0.25rem;
         margin: 0;
+
         &:hover {
             background: var(--text);
             color: var(--dark);

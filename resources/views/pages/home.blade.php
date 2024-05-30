@@ -94,46 +94,43 @@
     <section id="feed">
         <h2>Recent Posts</h2>
         <div class="h-feed">
-            @forelse($posts as $post)
-                <article class="h-entry">
-                    <small><a
-                            href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
+        @forelse($posts as $post)
+                <article class="post hentry h-entry">
+                    <small><a href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
                         posted
                         <time datetime="{{ $post->published_at }}">
                             @if($post->published_at->diffInWeeks(now()) < 6)
                                 {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                             @else
                                 {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
-                            @endif </time>
-                    </small>
-                    <h3 class="p-name"><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}"
-                                          class="u-url">{{ $post->title }}</a></h3>
+                            @endif
+                        </time>
+                    </small><br>
+                    <h2><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}">
+                            {{ $post->title }}</a></h2>
                     <x-markdown>
                         {!! Str::words("$post->content", 30, ' ...') !!}
                     </x-markdown>
                     <footer>
-                        <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}"
-                           class="btn btn-right" title="View {{ $post->post_type->name }}">View
-                            {{ $post->post_type->name }}
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </a>
+
+                        <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}" class="btn btn-right" title="View {{ $post->post_type->name }}">View
+                            {{ $post->post_type->name }} <i class="fa-solid fa-chevron-right"></i></a>
                     </footer>
-                    <hr>
                 </article>
             @empty
-                <p>No posts to display</p>
+                <p>No posts found</p>
             @endforelse
-            <a href="/posts" class="btn btn-right">View All Posts <i class="fa-solid fa-chevron-right"></i></a>
+            <a href="/posts" class="btn">View All Posts <i class="fa-solid fa-chevron-right"></i></a>
         </div>
     </section>
     <div class="half-split">
         <section id="activity-stream">
             <h2>Activity Stream</h2>
             <div class="tile tile-alt">
+                <ul>
                 @forelse($activities as $activity)
-                    <div class="tile tile-inverse tile-sm">
-                        <small><a
-                                href="/posts/type/{{ strtolower($activity->post_type->name) }}">{{ $activity->post_type->name }}</a>
+                    <li>
+                        <small><a href="/posts/type/{{ strtolower($activity->post_type->name) }}">{{ $activity->post_type->name }}</a>
                             posted
                             <time datetime="{{ $activity->published_at }}">
                                 @if($activity->published_at->diffInWeeks(now()) < 6)
@@ -142,10 +139,10 @@
                                     {{ $activity->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
                                 @endif </time>
                         </small>
-                        <h3 class="h4"><a
+                        <h3><a
                                 href="/posts/{{ $activity->published_at->format('Y/m') }}/{{ $activity->slug }}">{{ $activity->title }}</a>
                         </h3>
-                    </div>
+                    </li>
                 @empty
                     <p class="py-3">No activity to display</p>
                 @endforelse
