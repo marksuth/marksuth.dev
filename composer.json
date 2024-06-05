@@ -8,6 +8,7 @@
         "php": "^8.2",
         "laravel/fortify": "^1.21",
         "laravel/framework": "^11.9",
+        "laravel/scout": "^10.9",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "sentry/sentry-laravel": "^4.4",
