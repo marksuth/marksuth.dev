@@ -5,7 +5,7 @@
 h1, h2, h3, h4 {
     font-weight: 700;
     color: var(--headings);
-    line-height: 1.25;
+    line-height: 1.25;;
 }
 
 h1 {
@@ -108,12 +108,12 @@ input[type="checkbox"] {
 
         & a {
             margin: 0 0.5rem;
-            color: var(--text-muted);
+            color: var(--text);
             text-decoration: none;
             transition: 0.3s all ease;
 
             &:hover {
-                color: var(--text);
+                color: var(--text-muted);
                 transition: 0.3s all ease;
             }
         }
@@ -198,6 +198,7 @@ input[type="checkbox"] {
     .half-split,
     .third-split,
     #feed {
+
         grid-template-columns: 1fr;
         max-width: 90vw;
         margin-left: auto;
@@ -347,7 +348,7 @@ input[type="checkbox"] {
 
 .site-footer {
     padding: 1.5rem 0;
-    color: var(--text-muted);
+    color: var(--text);
     text-align: center;
 }
 
