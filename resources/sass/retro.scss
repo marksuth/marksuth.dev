@@ -1,15 +1,44 @@
 :root {
-    --primary: #1b171f;
-    --dark: #214154;
+    --primary: #214154;
+    --dark: blue;
     --text: #ffffff;
-    --body: var(--primary);
+    --body: #000;
     --navbar: var(--primary);
-    --text-muted: #43a1c5;
+    --text-muted: #cccccc;
     --text-inverse: #000000;
-    --gradient: linear-gradient(-45deg, #d60270, #9b4f96, #0038a8);
+    --gradient: linear-gradient(-45deg, #5cb8ed, #7dcb8a, #4aff00);
 }
 
 @import "base";
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Courier New", monospace;
+    color: var(--text);
+}
+
+.tile, .btn {
+    border-radius: 0;
+
+
+&-alt {
+    background:var(--body);
+    border: 2px solid var(--text);
+}
+
+}
+
+#navbar {
+    background: var(--body);
+    border-bottom: 8px ridge var(--text);
+}
+
+.site-footer {
+    background: var(--body);
+}
 
 #intro {
     p {
@@ -44,7 +73,6 @@
 }
 
 .avatar {
-    border-radius: 50%;
     border: 8px solid var(--dark);
     max-width: 100%;
     height: auto;
@@ -59,7 +87,6 @@
         animation: gradient 15s ease infinite;
         background: var(--gradient);
         background-size: 400% 400%;
-        border-radius: 50%;
         border: 0;
         display: flex;
         justify-content: center;
@@ -119,7 +146,6 @@
         height: auto;
         display: block;
         object-fit: cover;
-        border-radius: 0.25rem;
     }
 
     &-header {
@@ -160,7 +186,6 @@
     &:popover-open {
         max-width: 90vw;
         max-height: 90vh;
-        border-radius: 0.25rem;
     }
 
     &::backdrop {
@@ -182,7 +207,6 @@
 }
 
 .box {
-    background: var(--dark);
     color: var(--text);
     flex-direction: column;
     align-items: center;
@@ -190,7 +214,6 @@
     line-height: 2;
     margin: 0;
     border: 2px solid var(--text);
-    border-radius: 0.5rem;
     overflow: hidden;
     width: max-content;
 
@@ -239,7 +262,7 @@
 
         .fa-solid, .fa-brands {
             font-size: 2rem;
-            background: var(--gradient);
+            background: limegreen;
             background-clip: text;
             transition: 0.3s all ease;
             text-align: center;
@@ -285,9 +308,9 @@
     gap: 1rem;
 
     h2 {
-        font-weight: 500;
+        font-weight: 800;
         text-align: right;
-        font-size: 2rem;
+        font-size: 2.5rem;
         display: inline-block;
     }
 }
@@ -310,7 +333,7 @@
     padding: 0.75rem;
     border-radius: 0.25rem;
     max-width: 50vw;
-    margin: 0 auto 1rem;
+    margin: 0 auto 2rem;
 
     .details {
         padding: 0.5rem 1rem;
@@ -364,12 +387,6 @@
 
     .page-title {
         display: flex;
-
-        h1 {
-            background: var(--gradient);
-            background-clip: text;
-            color: transparent;
-        }
     }
 }
 
@@ -412,7 +429,7 @@
 }
 
 .site-footer {
-    background: var(--dark);
+    background: var(--body);
 }
 
 #login-box {

@@ -221,4 +221,11 @@ class PostController extends Controller
 
         return view('posts.nearfuture.type', compact('posts', 'type'));
     }
+
+    public function search(Request $request)
+    {
+        $posts = Post::search($request->input('query'))->paginate(20);
+
+        return view('search.search', compact('posts'));
+    }
 }
