@@ -14,7 +14,7 @@
         "sentry/sentry-laravel": "^4.4",
         "spatie/image": "^3.5",
         "spatie/laravel-markdown": "^2.5",
-        "typesense/typesense-php": "*"
+        "typesense/typesense-php": "^4.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
