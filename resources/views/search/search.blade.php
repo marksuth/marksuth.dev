@@ -34,6 +34,7 @@
             @empty
                 <p>No posts found</p>
             @endforelse
+            
         </div>
     </div>
 

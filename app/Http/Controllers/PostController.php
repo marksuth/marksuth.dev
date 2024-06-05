@@ -224,7 +224,7 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        $posts = Post::search($request->input('query'))->paginate(20);
+        $posts = Post::search($request->input('query'))->where('published_at', '<=', now())->whereNull('meta->distant_past')->whereNull('meta->near_future')->get();
 
         return view('search.search', compact('posts'));
     }
