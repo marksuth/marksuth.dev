@@ -363,3 +363,28 @@ input[type="checkbox"] {
         margin: 0.5rem;
     }
 }
+
+#search-box {
+    display: flex;
+    justify-content: end;
+    width: 50vw;
+
+    .btn {
+        max-width: max-content;
+        max-height: 2rem;
+        padding: 0.25rem;
+        .fa-solid {
+            margin: 0.25rem;
+        }
+    }
+
+    input[type="search"] {
+        width: 15rem;
+        height: 2rem;
+        margin: 0;
+        border: var(--text-muted) 2px solid;
+        background: var(--body);
+        color: var(--text);
+        border-radius: 0.25rem;
+    }
+}

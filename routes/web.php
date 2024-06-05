@@ -14,6 +14,8 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostCollectionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SitemapController;
+use App\Models\Post;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Photo routes
@@ -35,6 +37,13 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/posts/{year}/{month}', 'month')->name('posts.month');
     Route::get('/posts/{year}/{month}/{slug}', 'show')->name('posts.show');
 });
+
+// Post search routes
+Route::get('/search', function (Request $request) {
+    $posts = Post::search($request->input('q'))->get();
+
+    return view('search.search', compact('posts'));
+})->name('search.search');
 
 Route::controller(PostCollectionController::class)->group(function () {
     Route::get('/collections', 'index')->name('collections');
