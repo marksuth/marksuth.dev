@@ -23,4 +23,11 @@ class BackendDashboardController extends Controller
 
         return view('backend.index', compact('posts', 'photos'));
     }
+
+    public function webmanifest()
+    {
+        return response()
+            ->view('backend.webmanifest')
+            ->header('Content-Type', 'application/manifest+json');
+    }
 }

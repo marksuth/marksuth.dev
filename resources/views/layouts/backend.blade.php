@@ -15,8 +15,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ config('app.url') }}/icons/icon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ config('app.url') }}/icons/icon-16.png">
 
-    <link rel="manifest" href="{{ config('app.url') }}/backend.webmanifest">
-
+    <link rel="manifest" href="{{ route('backend.webmanifest') }}">
 
     @yield('metatags')
 
