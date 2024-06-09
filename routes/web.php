@@ -39,11 +39,11 @@ Route::controller(PostController::class)->group(function () {
 });
 
 // Post search routes
-Route::get('/search', function (Request $request) {
-    $posts = Post::search($request->input('q'))->get();
-
-    return view('search.search', compact('posts'));
-})->name('search.search');
+Route::controller(\App\Http\Controllers\SearchController::class)->group(function () {
+    Route::get('/search', 'search')->name('search.search');
+    Route::get('/search/posts', 'post_search')->name('search.posts');
+    Route::get('/search/photos', 'photo_search')->name('search.photos');
+});
 
 Route::controller(PostCollectionController::class)->group(function () {
     Route::get('/collections', 'index')->name('collections');

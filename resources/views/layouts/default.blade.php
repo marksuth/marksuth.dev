@@ -83,7 +83,7 @@
 <div class="tube">
     <div id="search-box">
     <form action="{{ route('search.search') }}" method="GET" class="search-form">
-        <input type="search" name="q" id="q" placeholder="Search..." value="{{ request('q') }}" class="form-control">
+        <input type="search" name="query" id="query" placeholder="Search..." value="{{ request('query') }}" class="form-control">
         <button type="submit" class="btn"><i class="fa-solid fa-search"></i></button>
     </form>
     </div>
