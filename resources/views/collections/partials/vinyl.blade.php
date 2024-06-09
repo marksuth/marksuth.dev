@@ -9,7 +9,7 @@
                                 <i class="fa-solid fa-record-vinyl fa-5x py-5"></i>
                             </div>
                         @endif
-                        <h2 class="h5">{{$post->title}}</h2>
+                        <h2 class="tile-title">{{$post->title}}</h2>
                         <p>{{$post->meta['artist']}}<br>
                             <small>Released {{$post->meta['year']}}</small></p>
                         <nav class="nav">

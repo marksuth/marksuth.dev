@@ -5,7 +5,7 @@
 ])
 @section('content')
     <header class="page-header py-5">
-        <h1 class="page-name">Collections of Things</h1>
+        <h1 class="fancy-title">Collections of Things</h1>
     </header>
     <ul class="tile-grid tile-grid-lg">
         @forelse($collections as $collection)

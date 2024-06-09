@@ -7,7 +7,7 @@
     --text-muted: #43a1c5;
     --text-inverse: #000000;
     --gradient: linear-gradient(-45deg, #d60270, #9b4f96, #0038a8);
-    --headings-font: 'Mattone', sans-serif;
+    --fancy-font: 'Mattone', sans-serif;
     --body-font: 'Geist', sans-serif;
 }
 
@@ -371,6 +371,8 @@
 }
 
 .fancy-title, .page-title h1 {
+    font-family: var(--fancy-font);
+    font-weight: 800;
     background: var(--gradient);
     background-clip: text;
     color: transparent;
@@ -392,6 +394,7 @@
 .collection-cover {
     display: flex;
     height: 20rem;
+    font-family: var(--fancy-font);
     color: var(--text);
     background-color: var(--primary);
     background-size: cover;
