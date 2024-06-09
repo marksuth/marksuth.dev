@@ -15,6 +15,10 @@
     "file": "assets/Geist-Variable-p2GUc8qZ.woff2",
     "src": "node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2"
   },
+  "resources/assets/fonts/Mattone-Black.woff2": {
+    "file": "assets/Mattone-Black-DGNq5wFf.woff2",
+    "src": "resources/assets/fonts/Mattone-Black.woff2"
+  },
   "resources/js/app.js": {
     "file": "assets/app-alupiQGU.js",
     "name": "app",
@@ -40,7 +44,7 @@
     ]
   },
   "resources/sass/backend.scss": {
-    "file": "assets/backend-DY8CP4iP.css",
+    "file": "assets/backend-Cd6KowLq.css",
     "src": "resources/sass/backend.scss",
     "isEntry": true
   },
@@ -50,7 +54,7 @@
     "isEntry": true
   },
   "resources/sass/style.scss": {
-    "file": "assets/style-azM4x4XC.css",
+    "file": "assets/style-BVq4etsQ.css",
     "src": "resources/sass/style.scss",
     "isEntry": true
   }

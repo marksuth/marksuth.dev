@@ -7,6 +7,8 @@
     --text-muted: #43a1c5;
     --text-inverse: #000000;
     --gradient: linear-gradient(-45deg, #d60270, #9b4f96, #0038a8);
+    --headings-font: 'Mattone', sans-serif;
+    --body-font: 'Geist', sans-serif;
 }
 
 @import "base";
@@ -364,13 +366,13 @@
 
     .page-title {
         display: flex;
-
-        h1 {
-            background: var(--gradient);
-            background-clip: text;
-            color: transparent;
-        }
     }
+}
+
+.fancy-title, .page-title h1 {
+    background: var(--gradient);
+    background-clip: text;
+    color: transparent;
 }
 
 .tiny-avatar {

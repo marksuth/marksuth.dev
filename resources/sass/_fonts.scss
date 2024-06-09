@@ -7,6 +7,15 @@
     src: url("~geist/geist-sans/Geist-Variable.woff2") format("woff2");
 }
 
+// Geist Sans
+@font-face {
+    font-family: Mattone;
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("@/fonts/Mattone-Black.woff2") format("woff2");
+}
+
 // Font Awesome 6
 @import "~@fortawesome/fontawesome-free/scss/functions";
 @import "~@fortawesome/fontawesome-free/scss/variables";

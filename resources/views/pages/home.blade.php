@@ -92,7 +92,7 @@
         </div>
     </section>
     <section id="feed">
-        <h2>Recent Posts</h2>
+        <h2 class="fancy-title">Recent Posts</h2>
         <div class="h-feed">
         @forelse($posts as $post)
                 <article class="post hentry h-entry">
@@ -125,7 +125,7 @@
     </section>
     <div class="half-split">
         <section id="activity-stream">
-            <h2>Activity Stream</h2>
+            <h2 class="fancy-title">Activity Stream</h2>
             <div class="tile tile-alt">
                 <ul>
                 @forelse($activities as $activity)
@@ -152,7 +152,7 @@
             </a>
         </section>
         <section id="photo-stream">
-            <h2>Photo Stream</h2>
+            <h2 class="fancy-title">Photo Stream</h2>
             <ul class="tile-grid tile-grid-sm">
                 @forelse($photos as $photo)
                     <li class="tile tile-sm ">

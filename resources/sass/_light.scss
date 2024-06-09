@@ -1,14 +1,13 @@
 @media (prefers-color-scheme: light) {
     :root {
         --primary: #214154;
-        --dark: #13252f;
+        --dark: #1b171f;
         --body: #f0f0f0;
         --headings: var(--primary);
         --navbar: var(--body);
         --text: #000000;
-        --text-muted: #575757;
+        --text-muted: #43a1c5;
         --text-inverse: #ffffff;
-        --gradient: linear-gradient(-45deg, #5cb8ed, #7dcb8a, #4aff00);
     }
 
     #navbar {
@@ -32,7 +31,7 @@
         }
     }
 
-    .box, .tile, .tile-alt, .post, .photo {
+    .box, .tile, .tile-alt, .photo {
         background: var(--body);
         border: 2px solid var(--text-muted);
         color: var(--primary);
@@ -44,11 +43,11 @@
     }
 
     .site-footer {
-        background: var(--primary);
-        color: var(--text-inverse);
+        background: var(--body);
+        color: var(--primary);
 
         a {
-            color: var(--text-inverse);
+            color: var(--dark);
         }
     }
 

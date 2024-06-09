@@ -3,7 +3,8 @@
 @import "_pagination";
 
 h1, h2, h3, h4 {
-    font-weight: 700;
+    font-family: var(--headings-font);
+    font-weight: 800;
     color: var(--headings);
     line-height: 1.25;;
 }
