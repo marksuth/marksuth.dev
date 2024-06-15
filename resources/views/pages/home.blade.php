@@ -96,9 +96,9 @@
         <div class="h-feed">
         @forelse($posts as $post)
                 <article class="post hentry h-entry">
-                    <small><a href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
+                    <small><a class="p-category" href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
                         posted
-                        <time datetime="{{ $post->published_at }}">
+                        <time datetime="{{ $post->published_at }}" class="dt-published">
                             @if($post->published_at->diffInWeeks(now()) < 6)
                                 {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                             @else
@@ -106,14 +106,14 @@
                             @endif
                         </time>
                     </small><br>
-                    <h2><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}">
+                    <h2 class="p-name"><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}">
                             {{ $post->title }}</a></h2>
-                    <x-markdown>
+                    <x-markdown class="e-content">
                         {!! Str::words("$post->content", 30, ' ...') !!}
                     </x-markdown>
                     <footer>
 
-                        <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}" class="btn btn-right" title="View {{ $post->post_type->name }}">View
+                        <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}" class="btn btn-right u-url" title="View {{ $post->post_type->name }}">View
                             {{ $post->post_type->name }} <i class="fa-solid fa-chevron-right"></i></a>
                     </footer>
                 </article>

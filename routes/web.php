@@ -151,5 +151,6 @@ Route::get('/teapot', function () {
 // Page routes
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'home')->name('home');
+    Route::get('/site.webmanifest', 'webmanifest')->name('webmanifest');
     Route::get('/{slug}', 'show')->name('page.show');
 });

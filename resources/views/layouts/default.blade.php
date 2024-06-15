@@ -41,6 +41,7 @@
     <link rel="me" href="https://www.instagram.com/marksuth">
     <link rel="me" href="https://www.linkedin.com/in/marksuth">
     <link rel="me" href="https://medium.com/@marksuth">
+    <link rel="author" href="{{ config('app.url') }}">
     <link rel="alternate" type="application/rss+xml" href="{{ route('feeds.posts') }}" title="{{ config('app.name') }} - Posts">
     <link rel="alternate" type="application/rss+xml" href="{{ route('feeds.photos') }}" title="{{ config('app.name') }} - Photos">
     <link rel="alternate" type="application/rss+xml" href="{{ route('feeds.stream') }}" title="{{ config('app.name') }} - Stream">
@@ -48,7 +49,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ config('app.url') }}/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ config('app.url') }}/icons/icon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ config('app.url') }}/icons/icon-16.png">
-    <link rel="manifest" href="{{ config('app.url') }}/site.webmanifest">
+    <link rel="manifest" href="{{ route('webmanifest') }}">
     <link rel="openid.delegate" href="{{ config('app.url') }}/">
     <link rel="openid.server" href="https://openid.indieauth.com/openid">
     <link rel="webmention" href="https://webmention.io/marksuth.dev/webmention">

@@ -50,4 +50,11 @@ class PageController extends Controller
 
         return view('pages.page', compact('page'));
     }
+
+    public function webmanifest()
+    {
+        return response()
+            ->view('pages.webmanifest')
+            ->header('Content-Type', 'application/manifest+json');
+    }
 }
