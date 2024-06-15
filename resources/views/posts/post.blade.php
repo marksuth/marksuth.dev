@@ -20,17 +20,14 @@
             </small>
         </header>
         <div class="post">
-            <x-markdown class="entry-content">
+            <x-markdown class="entry-content e-content">
                 {!! $post->content !!}
-                @if(isset($post->meta['mubi']))
-                <p>I watched this film using [MUBI GO](https://mubi.com/t/web/global/gvDIn1ym) as their pick of the week.</p>
-                @endif
             </x-markdown>
             @if(isset($post->meta['location']))
                 <small><i class="fa-solid fa-location-dot"></i> {{ $post->meta['location'] }}</small>
             @endif
             <footer class="entry-meta">
-                <small><a
+                <a class="p-category"
                         href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>@if($post->distant_past != '1')
                         posted
                     @else
@@ -47,12 +44,12 @@
                                   datetime="{{ $post->updated_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->updated_at)->format('d/m/Y @ H:i') }}</time>
                         </i>
                     @endif
-                    <br>
-                    Posted to:
+
+                    <nav class="links">Posted to:
                     &nbsp;<a
                         href="@if (Str::startsWith($current = url()->current(), 'https://www')){{ str_replace('https://www.', 'https://', $current) }}@else{{ $current }}@endif"
                         class="u-url"><i class="fa-solid fa-globe"></i></a>
-                </small>
+                    </nav>
             </footer>
         </div>
     </article>
