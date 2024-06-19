@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Post;
 use App\Models\PostCollection;
 use App\Models\PostType;
@@ -225,7 +226,10 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $posts = Post::search($request->input('query'))->where('published_at', '<=', now())->whereNull('meta->distant_past')->whereNull('meta->near_future')->get();
+        $photos = Photo::search($request->input('query'))->get();
 
-        return view('search.search', compact('posts'));
+        dd($photos);
+
+        return view('search.search', compact('photos', 'posts'));
     }
 }

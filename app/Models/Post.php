@@ -19,6 +19,7 @@ class Post extends Model
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
+            'meta' => $this->meta,
         ];
     }
 
