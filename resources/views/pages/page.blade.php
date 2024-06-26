@@ -9,12 +9,10 @@
 @section('content')
     <article class="h-entry hentry">
         <header class="page-header">
-                <h1 class="p-name fancy-title">{{ $page->title }}</h1>
+            <h1 class="p-name fancy-title">{{ $page->title }}</h1>
         </header>
-        <div class="post">
-            <x-markdown class="entry-content">
-                {!! $page->content !!}
-            </x-markdown>
+        <div class="post entry-content">
+            {!! Str::markdown($page->content) !!}
         </div>
     </article>
 @endsection

@@ -20,9 +20,9 @@
             </small>
         </header>
         <div class="post">
-            <x-markdown class="entry-content e-content">
-                {!! $post->content !!}
-            </x-markdown>
+            <div class="entry-content e-content">
+                {!! Str::markdown($post->content) !!}
+            </div>
             @if(isset($post->meta['location']))
                 <small><i class="fa-solid fa-location-dot"></i> {{ $post->meta['location'] }}</small>
             @endif

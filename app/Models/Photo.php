@@ -9,7 +9,6 @@ use Laravel\Scout\Searchable;
 class Photo extends Model
 {
     use HasFactory;
-
     use Searchable;
 
     public function toSearchableArray(): array

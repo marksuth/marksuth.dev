@@ -42,9 +42,7 @@
                 </small>
                 <h2><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}">
                         {{ $post->title }}</a></h2>
-                <x-markdown>
-                    {!! Str::words("$post->content", 30, ' ...') !!}
-                </x-markdown>
+                    {!! Str::markdown(Str::words("$post->content", 30, ' ...')) !!}
                 <footer>
 
                     <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}" class="btn btn-right"

@@ -15,7 +15,7 @@
                 @endif
             </div>
             @if(isset($photo->content) && $photo->content != $photo->title)
-                <x-markdown class="entry-description text-dark">{{ $photo->content }}</x-markdown>
+                <div class="entry-description text-dark">{{!! Str::markdown($photo->content) !!}}</div>
             @endif
             <div class="split">
                 <time class="dt-published created"
@@ -33,6 +33,7 @@
                     @endif
                 </p>
             </div>
+        </div>
     </article>
 
 @endsection

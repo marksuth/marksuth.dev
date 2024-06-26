@@ -15,7 +15,7 @@
             <title>{{ $post->title }}</title>
             <link>https://marksuth.dev/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}</link>
             <pubDate>{{ $post->published_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}</pubDate>
-            <description><![CDATA[<x-markdown>{{ $post->content }}</x-markdown>]]></description>
+            <description><![CDATA[{{ Str::markdown($post->content) }}]]></description>
         </item>
         @endforeach
     </channel>

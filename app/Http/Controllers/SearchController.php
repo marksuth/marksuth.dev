@@ -13,6 +13,7 @@ class SearchController extends Controller
         $search = $request->get('query');
         $posts = Post::search($request->input('query'))->paginate(10);
         $photos = Photo::search($request->input('query'))->get();
+
         return view('search.search', compact('posts', 'photos', 'search'));
     }
 
@@ -20,14 +21,15 @@ class SearchController extends Controller
     {
         $search = $request->get('query');
         $posts = Post::search($request->input('query'))->paginate(10);
-        return view('search.search', compact( 'posts', 'search'));
+
+        return view('search.search', compact('posts', 'search'));
     }
 
     public function photo_search(Request $request)
     {
         $search = $request->get('query');
         $photos = Photo::search($request->input('query'))->get();
-        return view('search.search', compact( 'photos', 'search'));
-    }
 
+        return view('search.search', compact('photos', 'search'));
+    }
 }

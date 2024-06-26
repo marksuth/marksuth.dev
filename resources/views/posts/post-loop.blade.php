@@ -14,9 +14,9 @@
                 </small>
                 <h2 class="p-name"><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}">
                         {{ $post->title }}</a></h2>
-                <x-markdown class="e-content">
-                    {!! Str::words("$post->content", 30, ' ...') !!}
-                </x-markdown>
+                <div class="e-content">
+                    {!! Str::markdown(Str::words("$post->content", 30, ' ...')) !!}
+                </div>
                 <footer>
 
                     <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}" class="btn btn-right u-url"
