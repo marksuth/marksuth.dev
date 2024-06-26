@@ -41,6 +41,7 @@
     <link rel="me" href="https://www.instagram.com/marksuth">
     <link rel="me" href="https://www.linkedin.com/in/marksuth">
     <link rel="me" href="https://medium.com/@marksuth">
+    <link rel="me" href="https://letterboxd.com/marksuth">
     <link rel="author" href="{{ config('app.url') }}">
     <link rel="alternate" type="application/rss+xml" href="{{ route('feeds.posts') }}" title="{{ config('app.name') }} - Posts">
     <link rel="alternate" type="application/rss+xml" href="{{ route('feeds.photos') }}" title="{{ config('app.name') }} - Photos">

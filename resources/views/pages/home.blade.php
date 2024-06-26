@@ -77,15 +77,15 @@
                            aria-label="CodePen">
                             <i class="fa-brands fa-codepen"></i>
                         </a></li>
-                    <li><a data-hint="Medium"
-                           href="https://medium.com/@marksuth" rel="me" title="Medium"
-                           aria-label="Medium">
-                            <i class="fa-brands fa-medium"></i>
-                        </a></li>
                     <li><a data-hint="Discogs"
                            href="https://www.discogs.com/user/marksuth" rel="me" title="Discogs"
                            aria-label="Discogs">
                             <i class="fa-solid fa-record-vinyl"></i>
+                        </a></li>
+                    <li><a data-hint="Letterboxd"
+                           href="https://letterboxd.com/marksuth/" rel="me" title="Letterboxd"
+                           aria-label="Letterboxd">
+                            <i class="fa-brands fa-letterboxd"></i>
                         </a></li>
                 </ul>
             </div>
