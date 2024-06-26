@@ -402,3 +402,11 @@ input[type="checkbox"] {
         padding: 0.25rem;
     }
 }
+
+#footer-logo {
+    fill: var(--text);
+    height: 3rem;
+    width: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+}
