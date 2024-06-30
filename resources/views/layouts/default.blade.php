@@ -79,8 +79,8 @@
                    href="{{ route('posts.stream') }}">Stream</a>
                 <a class="@if (Request::segment(1) == 'projects') active @endif" href="/projects">Projects</a>
                 @if (Auth::check())
-                    <a href="{{ route('backend.index') }}"><i class="fa-solid fa-gear"></i></a>
-                    <a href="{{ route('logout') }}" title="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                    <a href="{{ route('backend.index') }}" aria-label="backend"><i class="fa-solid fa-gear" aria-hidden="true"></i></a>
+                    <a href="{{ route('logout') }}" aria-label="Logout"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">@csrf</form>
                 @endif
             </nav>
@@ -92,7 +92,7 @@
         <form action="{{ route('search.search') }}" method="GET" class="search-form">
             <input type="search" name="query" id="query" placeholder="Search..." value="{{ request('query') }}"
                    class="form-control">
-            <button type="submit" class="btn" name="Search"><i class="fa-solid fa-search"></i></button>
+            <button type="submit" class="btn" aria-label="Search"><i class="fa-solid fa-search" aria-hidden="true"></i></button>
         </form>
     </div>
     <main class="site-main">

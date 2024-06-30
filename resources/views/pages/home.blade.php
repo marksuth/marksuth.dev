@@ -47,14 +47,14 @@
                         <i class="fa-solid fa-user"></i>
                         <span class="p-pronouns box-divider">He/Him</span></p></div>
                 <nav id="social-links" class="elsewhere">
-                    <a class="u-url u-uid" href="{{ config('app.url') }}" rel="me" title="Website"><i class="fa-solid fa-globe"></i></a>
-                    <a class="u-email" href="mailto:mark@marksuth.dev" rel="me" title="Email"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://github.com/marksuth" rel="me" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/marksuth" rel="me" title="Linkedin"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://mastodon.social/@marksuth" rel="me" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
-                    <a href="https://codepen.io/marksuth" rel="me" title="CodePen"><i class="fa-brands fa-codepen"></i></a>
-                    <a href="https://www.discogs.com/user/marksuth" rel="me" title="Discogs"><i class="fa-solid fa-record-vinyl"></i></a>
-                    <a href="https://letterboxd.com/marksuth/" rel="me" title="Letterboxd"><i class="fa-brands fa-letterboxd"></i></a>
+                    <a class="u-url u-uid" href="{{ config('app.url') }}" rel="me" aria-label="Website"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
+                    <a class="u-email" href="mailto:mark@marksuth.dev" rel="me" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+                    <a href="https://github.com/marksuth" rel="me" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/marksuth" rel="me" aria-label="Linkedin"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://mastodon.social/@marksuth" rel="me" aria-label="Mastodon"><i class="fa-brands fa-mastodon" aria-hidden="true"></i></a>
+                    <a href="https://codepen.io/marksuth" rel="me" aria-label="CodePen"><i class="fa-brands fa-codepen" aria-hidden="true"></i></a>
+                    <a href="https://www.discogs.com/user/marksuth" rel="me" aria-label="Discogs"><i class="fa-solid fa-record-vinyl" aria-hidden="true"></i></a>
+                    <a href="https://letterboxd.com/marksuth/" rel="me" aria-label="Letterboxd"><i class="fa-brands fa-letterboxd" aria-hidden="true"></i></a>
                 </nav>
             </div>
         </div>
