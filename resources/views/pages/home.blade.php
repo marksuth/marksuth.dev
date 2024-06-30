@@ -46,7 +46,7 @@
                         <span class="p-country-name">UK</span>
                         <i class="fa-solid fa-user"></i>
                         <span class="p-pronouns box-divider">He/Him</span></p></div>
-                <nav id="social-links" class="elsewhere">
+                <nav id="social-links" class="elsewhere" aria-label="Social links">
                     <a class="u-url u-uid" href="{{ config('app.url') }}" rel="me" aria-label="Website"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
                     <a class="u-email" href="mailto:mark@marksuth.dev" rel="me" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
                     <a href="https://github.com/marksuth" rel="me" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
