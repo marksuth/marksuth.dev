@@ -115,8 +115,9 @@
                             </h3>
                         </li>
                     @empty
-                        <p class="py-3">No activity to display</p>
+                        <li class="py-3">No activity to display</li>
                 @endforelse
+            </ul>
             </div>
             <a href="/stream" class="btn">
                 View Activity Stream <i class="fa-solid fa-chevron-right"></i>
@@ -146,6 +147,7 @@
             <p><a href="/photos" class="btn">View All Photos <i class="fa-solid fa-chevron-right"></i></a>
             </p>
         </section>
+    </div>
         @endsection
         @section('extrascripts')
             <script>
