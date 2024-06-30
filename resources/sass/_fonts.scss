@@ -7,7 +7,7 @@
     src: url("~geist/geist-sans/Geist-Variable.woff2") format("woff2");
 }
 
-// Geist Sans
+// Mattone
 @font-face {
     font-family: Mattone;
     font-style: normal;
@@ -31,21 +31,21 @@
     font-family: 'Font Awesome 6 Free';
     font-style: normal;
     font-weight: 900;
-    font-display: $fa-font-display;
+    font-display: block;
     src: url('~@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2') format('woff2');
 }
 
-.fas, fa-solid {font-weight: 900;}
+.fas, .fa-solid {font-weight: 900;}
 
 @font-face {
     font-family: 'Font Awesome 6 Brands';
     font-style: normal;
     font-weight: 400;
-    font-display: $fa-font-display;
+    font-display: block;
     src: url('~@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2') format('woff2');
 }
 
-.fab, fa-brands {font-weight: 400;}
+.fab, .fa-brands {font-weight: 400;}
 
 @each $name, $icon in $fa-brand-icons {
     .#{$fa-css-prefix}-#{$name}:before { content: unquote("\"#{ $icon }\""); }

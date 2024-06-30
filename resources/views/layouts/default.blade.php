@@ -64,12 +64,12 @@
     @vite(['resources/sass/style.scss', 'resources/js/app.js'])
 </head>
 <body>
-<nav id="navbar" aria-label="main-navigation">
+<div id="navbar">
     <div class="tube">
         <a class="logo" href="{{ config('app.url') }}" rel="author">{{ config('app.name') }}</a>
         <section><label for="main-nav" class="btn-menu inline-toggle"><i class="fa-solid fa-bars"></i></label><input
                 type="checkbox" id="main-nav" class="inline-toggle">
-            <nav>
+            <nav id="main-menu" aria-label="main navigation">
                 <a class="@if($current == config('app.url'))active @endif" href="/">Home</a>
                 <a class="@if(Request::segment(1) == 'now') active @endif" href="/now">Now</a>
                 <a class="@if(Request::segment(1) == 'posts') active @endif" href="{{ route('posts') }}">Posts</a>
@@ -86,13 +86,13 @@
             </nav>
         </section>
     </div>
-</nav>
+</div>
 <div class="tube">
     <div id="search-box">
         <form action="{{ route('search.search') }}" method="GET" class="search-form">
             <input type="search" name="query" id="query" placeholder="Search..." value="{{ request('query') }}"
                    class="form-control">
-            <button type="submit" class="btn"><i class="fa-solid fa-search"></i></button>
+            <button type="submit" class="btn" name="Search"><i class="fa-solid fa-search"></i></button>
         </form>
     </div>
     <main class="site-main">
@@ -113,21 +113,23 @@
                         class="cls-1"/>
                 </svg>
                 <small>&copy; Mark Sutherland {{ date('Y') }}. 🌈</small>
-                <nav class="footer-nav">
+            </div>
+            <div>
+                <p>
+                    <a href="https://xn--sr8hvo.ws/%F0%9F%93%BB%F0%9F%93%85%F0%9F%9A%BF/previous"
+                       title="Webring Previous"
+                       aria-label="Webring Previous"><i class="fa-solid fa-chevron-left"></i></a>
+                    An IndieWeb Webring
+                    <a href="https://xn--sr8hvo.ws/%F0%9F%93%BB%F0%9F%93%85%F0%9F%9A%BF/next" title="Webring Next"
+                       aria-label="Webring Next"><i class="fa-solid fa-chevron-right"></i></a>
+                </p>
+                <nav id="footer-nav" aria-label="footer navigation">
                     <a href="/privacy">Privacy Policy</a>
                     <a href="/contact">Contact Me</a>
                 </nav>
             </div>
-            <p>
-                <a href="https://xn--sr8hvo.ws/%F0%9F%93%BB%F0%9F%93%85%F0%9F%9A%BF/previous" title="Webring Previous"
-                   aria-label="Webring Previous"><i class="fa-solid fa-chevron-left"></i></a>
-                An IndieWeb Webring
-                <a href="https://xn--sr8hvo.ws/%F0%9F%93%BB%F0%9F%93%85%F0%9F%9A%BF/next" title="Webring Next"
-                   aria-label="Webring Next"><i class="fa-solid fa-chevron-right"></i></a>
-            </p>
         </div>
     </div>
-
 </footer>
 @yield('extrascripts')
 <script async defer src="https://scripts.withcabin.com/hello.js"></script>

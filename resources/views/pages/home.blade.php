@@ -46,57 +46,26 @@
                         <span class="p-country-name">UK</span>
                         <i class="fa-solid fa-user"></i>
                         <span class="p-pronouns box-divider">He/Him</span></p></div>
-                <ul class="elsewhere">
-                    <li><a data-hint="Website" class="u-url u-uid"
-                           href="{{ config('app.url') }}" rel="me" title="Website"
-                           aria-label="Website">
-                            <i class="fa-solid fa-globe"></i>
-                        </a></li>
-                    <li><a data-hint="Email" class="u-email"
-                           href="mailto:mark@marksuth.dev" rel="me" title="Email"
-                           aria-label="Email">
-                            <i class="fa-solid fa-envelope"></i>
-                        </a></li>
-                    <li><a data-hint="GitHub"
-                           href="https://github.com/marksuth" rel="me" title="GitHub"
-                           aria-label="GitHub">
-                            <i class="fa-brands fa-github"></i>
-                        </a></li>
-                    <li><a data-hint="Linkedin"
-                           href="https://www.linkedin.com/in/marksuth" rel="me" title="Linkedin"
-                           aria-label="Linkedin">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a></li>
-                    <li><a data-hint="Mastodon"
-                           href="https://mastodon.social/@marksuth" rel="me" title="Mastodon"
-                           aria-label="Mastodon">
-                            <i class="fa-brands fa-mastodon"></i>
-                        </a></li>
-                    <li><a data-hint="CodePen"
-                           href="https://codepen.io/marksuth" rel="me" title="CodePen"
-                           aria-label="CodePen">
-                            <i class="fa-brands fa-codepen"></i>
-                        </a></li>
-                    <li><a data-hint="Discogs"
-                           href="https://www.discogs.com/user/marksuth" rel="me" title="Discogs"
-                           aria-label="Discogs">
-                            <i class="fa-solid fa-record-vinyl"></i>
-                        </a></li>
-                    <li><a data-hint="Letterboxd"
-                           href="https://letterboxd.com/marksuth/" rel="me" title="Letterboxd"
-                           aria-label="Letterboxd">
-                            <i class="fa-brands fa-letterboxd"></i>
-                        </a></li>
-                </ul>
+                <nav id="social-links" class="elsewhere">
+                    <a class="u-url u-uid" href="{{ config('app.url') }}" rel="me" title="Website"><i class="fa-solid fa-globe"></i></a>
+                    <a class="u-email" href="mailto:mark@marksuth.dev" rel="me" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://github.com/marksuth" rel="me" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/marksuth" rel="me" title="Linkedin"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://mastodon.social/@marksuth" rel="me" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
+                    <a href="https://codepen.io/marksuth" rel="me" title="CodePen"><i class="fa-brands fa-codepen"></i></a>
+                    <a href="https://www.discogs.com/user/marksuth" rel="me" title="Discogs"><i class="fa-solid fa-record-vinyl"></i></a>
+                    <a href="https://letterboxd.com/marksuth/" rel="me" title="Letterboxd"><i class="fa-brands fa-letterboxd"></i></a>
+                </nav>
             </div>
         </div>
     </section>
     <section id="feed">
         <h2 class="fancy-title">Recent Posts</h2>
         <div class="h-feed">
-        @forelse($posts as $post)
+            @forelse($posts as $post)
                 <article class="post hentry h-entry">
-                    <small><a class="p-category" href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
+                    <small><a class="p-category"
+                              href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
                         posted
                         <time datetime="{{ $post->published_at }}" class="dt-published">
                             @if($post->published_at->diffInWeeks(now()) < 6)
@@ -113,7 +82,8 @@
                     </div>
                     <footer>
 
-                        <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}" class="btn btn-right u-url" title="View {{ $post->post_type->name }}">View
+                        <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}"
+                           class="btn btn-right u-url" title="View {{ $post->post_type->name }}">View
                             {{ $post->post_type->name }} <i class="fa-solid fa-chevron-right"></i></a>
                     </footer>
                 </article>
@@ -128,23 +98,24 @@
             <h2 class="fancy-title">Activity Stream</h2>
             <div class="tile tile-alt">
                 <ul>
-                @forelse($activities as $activity)
-                    <li>
-                        <small><a href="/posts/type/{{ strtolower($activity->post_type->name) }}">{{ $activity->post_type->name }}</a>
-                            posted
-                            <time datetime="{{ $activity->published_at }}">
-                                @if($activity->published_at->diffInWeeks(now()) < 6)
-                                    {{ $activity->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
-                                @else
-                                    {{ $activity->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
-                                @endif </time>
-                        </small>
-                        <h3><a
-                                href="/posts/{{ $activity->published_at->format('Y/m') }}/{{ $activity->slug }}">{{ $activity->title }}</a>
-                        </h3>
-                    </li>
-                @empty
-                    <p class="py-3">No activity to display</p>
+                    @forelse($activities as $activity)
+                        <li>
+                            <small><a
+                                    href="/posts/type/{{ strtolower($activity->post_type->name) }}">{{ $activity->post_type->name }}</a>
+                                posted
+                                <time datetime="{{ $activity->published_at }}">
+                                    @if($activity->published_at->diffInWeeks(now()) < 6)
+                                        {{ $activity->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                                    @else
+                                        {{ $activity->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
+                                    @endif </time>
+                            </small>
+                            <h3><a
+                                    href="/posts/{{ $activity->published_at->format('Y/m') }}/{{ $activity->slug }}">{{ $activity->title }}</a>
+                            </h3>
+                        </li>
+                    @empty
+                        <p class="py-3">No activity to display</p>
                 @endforelse
             </div>
             <a href="/stream" class="btn">
