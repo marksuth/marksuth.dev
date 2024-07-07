@@ -147,6 +147,8 @@ Route::get('/teapot', function () {
     return abort(418);
 })->name('teapot');
 
+Route::webhooks('webhook-webmentions', 'webmentions');
+
 // Page routes
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'home')->name('home');

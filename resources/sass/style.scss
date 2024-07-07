@@ -6,8 +6,8 @@
     --navbar: var(--primary);
     --text-muted: #43a1c5;
     --text-inverse: #000000;
-    --gradient: linear-gradient(-45deg, #d60270, #9b4f96, #0038a8);
-    --fancy-font: 'Mattone', sans-serif;
+    --gradient: linear-gradient(-45deg, #ff7e33, #ffad33, #f9da63);
+    --fancy-font: 'Righteous', sans-serif;
     --body-font: 'Geist', sans-serif;
 }
 
@@ -370,7 +370,7 @@
 
 .fancy-title, .page-title h1 {
     font-family: var(--fancy-font);
-    font-weight: 800;
+    font-weight: 400;
     background: var(--gradient);
     background-clip: text;
     color: transparent;

@@ -7,13 +7,13 @@
     src: url("~geist/geist-sans/Geist-Variable.woff2") format("woff2");
 }
 
-// Mattone
+// Righteous
 @font-face {
-    font-family: Mattone;
+    font-family: 'Righteous';
     font-style: normal;
-    font-weight: 800;
     font-display: swap;
-    src: url("@/fonts/Mattone-Black.woff2") format("woff2");
+    font-weight: 400;
+    src: url("~righteous/files/righteous-latin-400-normal.woff2") format("woff2");
 }
 
 // Font Awesome 6
