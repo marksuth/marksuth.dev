@@ -57,4 +57,11 @@ class PageController extends Controller
             ->view('pages.webmanifest')
             ->header('Content-Type', 'application/manifest+json');
     }
+
+    public function robots()
+    {
+        return response()
+            ->view('pages.robots')
+            ->header('Content-Type', 'text/plain');
+    }
 }

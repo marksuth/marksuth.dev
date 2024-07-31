@@ -151,5 +151,6 @@ Route::get('/teapot', function () {
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'home')->name('home');
     Route::get('/site.webmanifest', 'webmanifest')->name('webmanifest');
+    Route::get('/robots.txt', 'robots')->name('robots');
     Route::get('/{slug}', 'show')->name('page.show');
 });

@@ -1,6 +1,6 @@
 {
 "name": "{{ config('app.name') }}",
-"short_name": "marksuth.dev",
+"short_name": "{{ config('app.name') }}",
 "icons": [
 {
 "src": "{{ config('app.url') }}/icons/icon.svg",
