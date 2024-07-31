@@ -24,7 +24,7 @@
                         @elseif($photo->published_at->isFuture() && $photo->meta['published'] == 1)
                             Scheduled {{ $photo->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                         @elseif($photo->published_at->diffInWeeks(now()) > 6 && $photo->meta['published'] == 1)
-                            Published {{ $photo->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
+                            Published {{ $photo->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
                         @elseif($photo->meta['published'] == 0)
                             Draft
                         @endif

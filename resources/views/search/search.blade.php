@@ -18,7 +18,7 @@
                     @if($photo->published_at->diffInWeeks(now()) < 6)
                         {{ $photo->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                     @else
-                        {{ $photo->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
+                        {{ $photo->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
                     @endif
                 </time>
             </li>
@@ -36,7 +36,7 @@
                                                 @if($post->published_at->diffInWeeks(now()) < 6)
                                                     {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                                                 @else
-                                                    {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
+                                                    {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
                                                 @endif
                                             </time>
                 </small>

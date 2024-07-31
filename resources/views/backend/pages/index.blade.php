@@ -26,7 +26,7 @@
                     @elseif($page->published_at->isFuture() && $page->meta['published'] == 1)
                         Scheduled {{ $page->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                     @elseif($page->published_at->diffInWeeks(now()) > 6 && $page->meta['published'] == 1)
-                        Published {{ $page->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
+                        Published {{ $page->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
                     @elseif($page->meta['published'] == 0)
                         Draft
                     @endif

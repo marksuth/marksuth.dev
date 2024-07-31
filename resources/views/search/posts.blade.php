@@ -16,7 +16,7 @@
                         @if($post->published_at->diffInWeeks(now()) < 6)
                             {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                         @else
-                            {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
+                            {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
                         @endif
                     </time>
                 </small>

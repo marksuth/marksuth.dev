@@ -15,7 +15,7 @@
             </div>
             <small>Published:
                 <time class="dt-published" datetime="{{ $post->published_at }}">
-                    {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:m') }}
+                    {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
                 </time>
             </small>
         </header>
