@@ -9,7 +9,7 @@ export default defineConfig({
             '~geist': '/node_modules/geist/dist/fonts',
             '~@fortawesome': '/node_modules/@fortawesome',
             '~easymde': '/node_modules/easymde/dist',
-            '~righteous': '/node_modules/@fontsource/righteous',
+            '~fancy-title': '/node_modules/@fontsource/rock-salt',
             '@': '/resources/assets',
         }
     },

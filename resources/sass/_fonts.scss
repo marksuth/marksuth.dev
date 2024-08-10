@@ -7,13 +7,12 @@
     src: url("~geist/geist-sans/Geist-Variable.woff2") format("woff2");
 }
 
-// Righteous
 @font-face {
-    font-family: 'Righteous';
+    font-family: 'Rock Salt';
     font-style: normal;
     font-display: swap;
     font-weight: 400;
-    src: url("~righteous/files/righteous-latin-400-normal.woff2") format("woff2");
+    src: url("~fancy-title/files/rock-salt-latin-400-normal.woff2") format("woff2");
 }
 
 // Font Awesome 6
@@ -45,7 +44,7 @@
     src: url('~@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2') format('woff2');
 }
 
-.fab, .fa-brands {font-weight: 400;}
+.fa-brands {font-weight: 400;}
 
 @each $name, $icon in $fa-brand-icons {
     .#{$fa-css-prefix}-#{$name}:before { content: unquote("\"#{ $icon }\""); }
