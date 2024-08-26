@@ -1,36 +1,36 @@
-name: Build Vite Assets
+name: Build and Commit Assets
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-  workflow_dispatch:
-
-env:
-  NODE: 22
-
-permissions:
-  contents: read
+    types: [closed]
 
 jobs:
-  css:
+  build-vite:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone repository
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          ref: main
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "${{ env.NODE }}"
+          node-version: '22'
           cache: npm
 
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Build CSS
+      - name: Build assets
         run: npm run build
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m 'Build assets'
+          git push origin main
