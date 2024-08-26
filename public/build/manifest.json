@@ -3,9 +3,9 @@
     "file": "assets/_commonjsHelpers-C4iS2aBk.js",
     "name": "_commonjsHelpers"
   },
-  "node_modules/@fontsource/rock-salt/files/rock-salt-latin-400-normal.woff2": {
-    "file": "assets/rock-salt-latin-400-normal-ATTG4WQR.woff2",
-    "src": "node_modules/@fontsource/rock-salt/files/rock-salt-latin-400-normal.woff2"
+  "node_modules/@fontsource/dm-serif-text/files/dm-serif-text-latin-400-normal.woff2": {
+    "file": "assets/dm-serif-text-latin-400-normal-MthuGx-P.woff2",
+    "src": "node_modules/@fontsource/dm-serif-text/files/dm-serif-text-latin-400-normal.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400-O7nZalfM.woff2",
@@ -44,7 +44,7 @@
     ]
   },
   "resources/sass/backend.scss": {
-    "file": "assets/backend-DLW9RK84.css",
+    "file": "assets/backend-BomSfLok.css",
     "src": "resources/sass/backend.scss",
     "isEntry": true
   },
@@ -54,7 +54,7 @@
     "isEntry": true
   },
   "resources/sass/style.scss": {
-    "file": "assets/style-nBvwZwSq.css",
+    "file": "assets/style-DFv0cAEn.css",
     "src": "resources/sass/style.scss",
     "isEntry": true
   }
