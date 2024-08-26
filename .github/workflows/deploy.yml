@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy to remote server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          ssh ${{ secrets.SSH_HOST }}
           cd /var/www/${{ secrets.SSH_HOST }}
           php artisan down --message="Deploying new changes. Site will be back shortly." --retry=15
           git pull
