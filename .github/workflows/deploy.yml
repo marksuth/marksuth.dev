@@ -10,22 +10,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up SSH
+      - name: Configure SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: Deploy to remote server
+      - name: Git pull to server
+        run: |
+          echo "Pulling files to server
+          cd ${{ github.workspace }}
+          ssh-keyscan -t rsa ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /var/www/${{ secrets.SSH_HOST }} && git pull origin main"
+          echo "Successfully pulled repo to server"
+
+      - name: Running Laravel commands
         run: |
           ssh ${{ secrets.SSH_HOST }}
-          cd /var/www/${{ secrets.SSH_HOST }}
+          "cd /var/www/${{ secrets.SSH_HOST }}
           php artisan down --message="Deploying new changes. Site will be back shortly." --retry=15
           git pull
           composer install --no-dev --optimize-autoloader
           php artisan migrate --force
           php artisan optimize:clear
           php artisan up
-          exit
+          exit"
+          echo "Site deployed successfully"
