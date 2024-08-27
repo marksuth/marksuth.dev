@@ -20,7 +20,7 @@ jobs:
 
       - name: Git pull to server
         run: |
-          echo "Pulling files to server
+          echo "Pulling files to server"
           cd ${{ github.workspace }}
           ssh-keyscan -t rsa ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /var/www/${{ secrets.SSH_HOST }} && git pull origin main"
