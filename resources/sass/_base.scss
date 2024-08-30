@@ -322,6 +322,9 @@ input[type="checkbox"] {
     color: #fff;
     transition: 0.3s all ease;
     display: inline-block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
 
     &:hover {
         filter: drop-shadow(0 0 0.2rem var(--text));
@@ -345,9 +348,7 @@ input[type="checkbox"] {
         }
     }
 
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-    border-radius: 0.5rem;
+
 }
 
 @media (min-width: 992px) {
@@ -379,6 +380,7 @@ input[type="checkbox"] {
     justify-content: end;
 
     .btn {
+        background: var(--gradient);
         max-width: max-content;
         height: 2.25rem;
         padding: 0.25rem;
