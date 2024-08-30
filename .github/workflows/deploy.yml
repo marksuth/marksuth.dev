@@ -39,6 +39,7 @@ jobs:
   deploy:
     name: Deploy to server
     runs-on: ubuntu-latest
+    needs: build-vite
 
     steps:
     - name: Establish connection
