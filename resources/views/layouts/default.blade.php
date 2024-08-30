@@ -88,13 +88,12 @@
     </div>
 </div>
 <div class="tube">
-    <div id="search-box">
+    <search id="search-box">
         <form action="{{ route('search.search') }}" method="GET" class="search-form">
-            <input type="search" name="query" id="query" placeholder="Search..." value="{{ request('query') }}"
-                   class="form-control">
+            <input type="search" name="query" id="query" placeholder="Search..." value="{{ request('query') }}">
             <button type="submit" class="btn" aria-label="Search"><i class="fa-solid fa-search" aria-hidden="true"></i></button>
         </form>
-    </div>
+    </search>
     <main class="site-main">
         @yield('content')
     </main>
