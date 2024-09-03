@@ -22,7 +22,7 @@ class BackendCollectionController extends Controller
 
     public function store()
     {
-        $collection = new PostCollection();
+        $collection = new PostCollection;
 
         $collection->name = request('name');
         $collection->slug = Str::slug(request('name'));

@@ -24,7 +24,7 @@ class BackendNoteController extends Controller
     public function store(Request $request)
     {
 
-        $note = new Note();
+        $note = new Note;
 
         $note->title = request('title');
         $note->content = request('content');
