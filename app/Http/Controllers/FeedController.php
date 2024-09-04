@@ -15,6 +15,7 @@ class FeedController extends Controller
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
+            ->take(10)
             ->get();
 
         $latest = $posts->first();
@@ -32,7 +33,9 @@ class FeedController extends Controller
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
+            ->take(10)
             ->get();
+
 
         $latest = $posts->first();
 
@@ -46,6 +49,7 @@ class FeedController extends Controller
         $photos = Photo::where('meta->published', '1')
             ->where('published_at', '<=', now())
             ->latest('published_at')
+            ->take(10)
             ->get();
 
         $latest = $photos->first();
