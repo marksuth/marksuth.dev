@@ -37,7 +37,7 @@ class FeedController extends Controller
         $latest = $posts->first();
 
         return response()
-            ->view('feeds.stream', compact('posts', 'latest'))
+            ->view('feeds.posts', compact('posts', 'latest'))
             ->header('Content-Type', 'text/xml');
     }
 
