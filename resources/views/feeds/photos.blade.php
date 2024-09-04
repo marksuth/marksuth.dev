@@ -3,7 +3,7 @@
         @foreach($photos as $photo)
         <item>
             <title>{{ $photo->title }}</title>
-            <author><![CDATA[Mark Sutherland]]></author>
+            <author><![CDATA[mark@marksuth.dev (Mark Sutherland)]]></author>
             <link>{{ config('app.url') }}/photos/{{ $photo->published_at->format('Y/m') }}/{{ $photo->slug }}</link>
             <pubDate>{{ $photo->published_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}</pubDate>
             <description><![CDATA[
