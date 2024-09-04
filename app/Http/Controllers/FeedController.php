@@ -36,7 +36,6 @@ class FeedController extends Controller
             ->take(10)
             ->get();
 
-
         $latest = $posts->first();
 
         return response()
