@@ -228,8 +228,6 @@ class PostController extends Controller
         $posts = Post::search($request->input('query'))->where('published_at', '<=', now())->whereNull('meta->distant_past')->whereNull('meta->near_future')->get();
         $photos = Photo::search($request->input('query'))->get();
 
-        dd($photos);
-
         return view('search.search', compact('photos', 'posts'));
     }
 }
