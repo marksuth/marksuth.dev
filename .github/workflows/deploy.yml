@@ -29,6 +29,9 @@ jobs:
       - name: Run Pint code linting
         run: ./vendor/bin/pint
 
+      - name: Run Pest
+        run: ./vendor/bin/pest
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
