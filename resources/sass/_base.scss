@@ -124,7 +124,7 @@ input[type="checkbox"] {
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
     #navbar {
 
         .inline-toggle, .logo {
@@ -164,9 +164,9 @@ input[type="checkbox"] {
     padding-right: 1rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1440px) {
     .tube {
-        width: 70vw;
+        width: 75vw;
 
         &-content {
             width: 50vw;
@@ -190,7 +190,7 @@ input[type="checkbox"] {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 2rem;
-    margin: 2rem auto;
+    margin: 2rem 0;
     align-items: center;
 }
 
@@ -198,13 +198,18 @@ input[type="checkbox"] {
     .half-split,
     .third-split,
     #feed {
-
         grid-template-columns: 1fr;
         max-width: 90vw;
         margin-left: auto;
         margin-right: auto;
     }
 }
+
+//@media (min-width: 992px) and (max-width: 1449px) {
+//    .third-split {
+//        grid-template-columns: 1fr;
+//    }
+//}
 
 .split {
     display: flex;
