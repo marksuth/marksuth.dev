@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PostCollection extends Model
 {
@@ -15,7 +16,7 @@ class PostCollection extends Model
         'meta' => 'array',
     ];
 
-    public function posts()
+    public function posts(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'collection_id', 'id');
     }

@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use App\Models\Post;
+use Illuminate\Http\Response;
 
 class FeedController extends Controller
 {
-    public function posts()
+    public function posts(): Response
     {
         $posts = Post::where('meta->published', '1')
             ->where('published_at', '<=', now())
@@ -25,7 +26,7 @@ class FeedController extends Controller
             ->header('Content-Type', 'text/xml');
     }
 
-    public function stream()
+    public function stream(): Response
     {
         $posts = Post::where('meta->published', '1')
             ->where('published_at', '<=', now())
@@ -43,7 +44,7 @@ class FeedController extends Controller
             ->header('Content-Type', 'text/xml');
     }
 
-    public function photos()
+    public function photos(): Response
     {
         $photos = Photo::where('meta->published', '1')
             ->where('published_at', '<=', now())

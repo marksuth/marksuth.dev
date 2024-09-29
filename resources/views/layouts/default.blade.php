@@ -10,7 +10,8 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{config('app.name')  . ' - ' . $title}}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @if (Str::startsWith($current = url()->current(), 'https://www.'))
+    @php $current = url()->current() @endphp
+    @if (Str::startsWith($current, 'https://www.'))
         <meta property="og:url" content="{{ strtolower(str_replace('https://www.', 'https://', $current)) }}">
     @else
         <meta property="og:url" content="{{ strtolower($current) }}">
@@ -31,7 +32,7 @@
     <meta name="copyright" content="{{ config('app.name') }}">
     <meta name="theme-color" content="#214154">
     @yield('metatags')
-    @if (Str::startsWith($current = url()->current(), 'https://www.'))
+    @if (Str::startsWith($current, 'https://www.'))
         <link rel="canonical" href="{{ strtolower(str_replace('https://www.', 'https://', $current)) }}">
     @else
         <link rel="canonical" href="{{ strtolower($current) }}">

@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Photo;
 use App\Models\Post;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\Response;
 
 class BackendDashboardController extends Controller
 {
-    public function index()
+    public function index(): View|Factory|Application
     {
         $posts = Post::whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -24,7 +28,7 @@ class BackendDashboardController extends Controller
         return view('backend.index', compact('posts', 'photos'));
     }
 
-    public function webmanifest()
+    public function webmanifest(): Response
     {
         return response()
             ->view('backend.webmanifest')

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Dotenv\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -9,14 +10,17 @@ class PhotoUploader extends Component
 {
     use WithFileUploads;
 
-    public $photo;
+    public string $photo;
 
-    public function save()
+    public function save(): void
     {
-        $this->validate([
-            'photo' => 'image|max:1024', // 1MB Max
-        ]);
+
+        Validator::make(
+            ['photo' => $this->photo],
+            ['photo' => 'image|max:1024'],
+        )->validate();
 
         $this->photo->store('photos');
+
     }
 }

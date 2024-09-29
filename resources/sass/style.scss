@@ -1,12 +1,13 @@
 :root {
     --primary: #1b171f;
     --dark: #214154;
+    --alt:#005EB8;
     --text: #ffffff;
     --body: var(--primary);
     --navbar: var(--primary);
     --text-muted: #43a1c5;
     --text-inverse: #000000;
-    --gradient: linear-gradient(45deg, #214154, #005EB8);
+    --gradient: linear-gradient(45deg, var(--dark), var(--alt));
     --fancy-font: 'DM Serif Text';
     --body-font: 'Geist';
 }
@@ -283,7 +284,7 @@
 
     h2 {
         font-weight: 500;
-        font-size: 2rem;
+        font-size: 1.75rem;
         display: inline-block;
     }
 

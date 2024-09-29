@@ -12,10 +12,8 @@ class PostCollectionController extends Controller
 {
     /**
      * Display a listing of posts collections.
-     *
-     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         $collections = PostCollection::all();
 
@@ -24,17 +22,15 @@ class PostCollectionController extends Controller
 
     /**
      * Display a listing of posts from a specific collections.
-     *
-     * @param  string  $collection
-     * @return Application|Factory|View
      */
-    public function show($collection)
+    public function show(string $collection): Factory|View|Application
     {
         $collection = PostCollection::where('slug', $collection)->firstOrFail();
 
         // Get posts from posts table that match the collection_id
         $posts = Post::where('published_at', '<=', now())
             ->where('collection_id', $collection->id)
+            ->select('title', 'slug', 'meta', 'content', 'published_at')
             ->latest('published_at')
             ->get();
 
