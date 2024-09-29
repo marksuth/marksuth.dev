@@ -13,8 +13,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostCollectionController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SitemapController;
-use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 // Photo routes
@@ -38,10 +38,8 @@ Route::controller(PostController::class)->group(function () {
 });
 
 // Post search routes
-Route::controller(\App\Http\Controllers\SearchController::class)->group(function () {
-    Route::get('/search', 'search')->name('search.search');
-    Route::get('/search/posts', 'post_search')->name('search.posts');
-    Route::get('/search/photos', 'photo_search')->name('search.photos');
+Route::controller(SearchController::class)->group(function () {
+    Route::get('/search', 'index')->name('search.search');
 });
 
 Route::controller(PostCollectionController::class)->group(function () {
@@ -69,7 +67,6 @@ Route::controller(SitemapController::class)->group(function () {
 // Backend routes
 Route::controller(BackendDashboardController::class)->group(function () {
     Route::get('/backend', 'index')->middleware('auth')->name('backend.index');
-    Route::get('/backend.webmanifest', 'webmanifest')->name('backend.webmanifest');
 });
 
 Route::controller(BackendPageController::class)->middleware(['auth'])->group(function () {
@@ -141,11 +138,6 @@ Route::controller(BackendUserController::class)->middleware(['auth'])->group(fun
     Route::put('/backend/users/{id}', 'update')->name('backend.users.update');
     Route::get('/backend/users/{id}/delete', 'destroy')->name('backend.users.destroy');
 });
-
-//Teapot route
-Route::get('/teapot', function () {
-    return abort(418);
-})->name('teapot');
 
 // Page routes
 Route::controller(PageController::class)->group(function () {

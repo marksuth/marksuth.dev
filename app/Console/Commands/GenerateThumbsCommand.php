@@ -5,9 +5,10 @@ namespace App\Console\Commands;
 use App\Models\Photo;
 use Illuminate\Console\Command;
 use Spatie\Image\Enums\Fit;
+use Spatie\Image\Exceptions\CouldNotLoadImage;
 use Spatie\Image\Image;
 
-class GenerateThumbs extends Command
+class GenerateThumbsCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -25,8 +26,10 @@ class GenerateThumbs extends Command
 
     /**
      * Execute the console command.
+     *
+     * @throws CouldNotLoadImage
      */
-    public function handle()
+    public function handle(): void
     {
         $photos = Photo::all();
 

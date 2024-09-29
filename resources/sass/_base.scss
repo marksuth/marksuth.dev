@@ -13,11 +13,11 @@ h1 {
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.85rem;
 }
 
 h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
 }
 
 small {
@@ -332,7 +332,8 @@ input[type="checkbox"] {
     border-radius: 0.5rem;
 
     &:hover {
-        filter: drop-shadow(0 0 0.2rem var(--text));
+        background: var(--alt);
+        box-shadow: 0px 0px 7px var(--text-inverse) inset;
         transition: 0.3s all ease;
     }
 

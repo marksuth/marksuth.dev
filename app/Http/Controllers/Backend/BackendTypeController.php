@@ -4,61 +4,72 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\PostType;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class BackendTypeController extends Controller
 {
-    public function index()
+    public function index(): View|Factory|Application
     {
         $types = PostType::all()->sortBy('title');
 
         return view('backend.types.index', compact('types'));
     }
 
-    public function create()
+    public function create(): View|Factory|Application
     {
         return view('backend.types.type');
     }
 
-    public function store()
+    /**
+     * @throws ValidationException
+     */
+    public function store(): RedirectResponse
     {
-        $this->validate(request(), [
+        Validator::make(request()->all(), [
             'name' => 'required',
-        ]);
+        ])->validate();
 
         $type = new PostType;
 
         $type->name = request('name');
         $type->description = request('description');
-        $type->slug = Str::slug($request->input('title'));
+        $type->slug = Str::slug(request('title'));
 
         $type->save();
 
         return redirect()->route('backend.types.index');
     }
 
-    public function edit($id)
+    public function edit($id): View|Factory|Application
     {
         $type = PostType::findOrFail($id);
 
         return view('backend.types.type', compact('type'));
     }
 
-    public function update($id)
+    /**
+     * @throws ValidationException
+     */
+    public function update($id): RedirectResponse
     {
-        $this->validate(request(), [
+        Validator::make(request()->all(), [
             'name' => 'required',
-        ]);
+        ])->validate();
 
         $type = PostType::findOrFail($id);
 
         $type->name = request('name');
         $type->description = request('description');
-        $type->slug = Str::slug($request->input('title'));
+        $type->slug = Str::slug(request('title'));
 
-        $meta = [];
+        $meta[] = $type->meta;
         $meta['published'] = request('published') ? 1 : 0;
-        $meta['img_url'] = request('image')->store('public/photos');
-        $meta['img_url'] = str_replace('public/', '', $meta['img_url']);
 
         $type->meta = $meta;
 
@@ -67,7 +78,7 @@ class BackendTypeController extends Controller
         return redirect()->route('backend.types.index');
     }
 
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $type = PostType::findOrFail($id);
 

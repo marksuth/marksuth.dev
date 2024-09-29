@@ -13,7 +13,7 @@
                 <li>
                 <a href="/posts/type/{{ strtolower($type->name) }}" class="title tile-dark">
 
-                    @if($type->count > 0)
+                    @if($type->count > 1)
                         {{ Str::of($type->name)->plural() }}
                     @else
                         {{ $type->name }}

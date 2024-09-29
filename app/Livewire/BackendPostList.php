@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use App\Models\Post;
 use App\Models\PostType;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,24 +14,24 @@ class BackendPostList extends Component
 {
     use WithPagination;
 
-    public $search = [
+    public array $search = [
         'title' => '',
         'type' => '',
         'published' => '',
     ];
 
-    public $status = [
+    public array $status = [
         'published' => 'Published',
         'draft' => 'Draft',
     ];
 
-    public $orderBy = 'created_at';
+    public string $orderBy = 'created_at';
 
-    public $sort = 'desc';
+    public string $sort = 'desc';
 
-    public $per_page = 25;
+    public int $per_page = 25;
 
-    public function render()
+    public function render(): View|Factory|Application
     {
 
         return view('livewire.backend-post-list',
@@ -56,7 +59,7 @@ class BackendPostList extends Component
             ->paginate($this->per_page);
     }
 
-    public function sortBy($field)
+    public function sortBy($field): void
     {
         if ($this->orderBy == $field) {
             $this->sort = $this->sort == 'asc' ? 'desc' : 'asc';

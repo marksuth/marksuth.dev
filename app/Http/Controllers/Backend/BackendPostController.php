@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\PostType;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Str;
 
 class BackendPostController extends Controller
 {
-    public function index()
+    public function index(): View|Factory|Application
     {
         $posts = Post::whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -20,14 +24,14 @@ class BackendPostController extends Controller
         return view('backend.posts.index', compact('posts'));
     }
 
-    public function create()
+    public function create(): View|Factory|Application
     {
         $post_types = PostType::whereNotIn('id', [49, 50, 51])->get();
 
         return view('backend.posts.post', compact('post_types'));
     }
 
-    public function store(Request $request)
+    public function store(): Application|Redirector|RedirectResponse
     {
         $post = new Post;
 
@@ -55,7 +59,7 @@ class BackendPostController extends Controller
         return redirect('/backend/posts');
     }
 
-    public function edit($id)
+    public function edit($id): View|Factory|Application
     {
         $post = Post::find($id);
         $post_types = PostType::whereNotIn('id', [49, 50, 51])->get();
@@ -63,7 +67,7 @@ class BackendPostController extends Controller
         return view('backend.posts.post', compact('post', 'post_types'));
     }
 
-    public function update($id)
+    public function update($id): Application|Redirector|RedirectResponse
     {
 
         $post = Post::find($id);
@@ -88,12 +92,14 @@ class BackendPostController extends Controller
         $meta['img_url'] = request('image')->store('public/photos');
         $meta['img_url'] = str_replace('public/', '', $meta['img_url']);
 
+        $post->meta = $meta;
+
         $post->save();
 
         return redirect('/backend/posts');
     }
 
-    public function destroy($id)
+    public function destroy($id): Application|Redirector|RedirectResponse
     {
         $post = Post::find($id);
 

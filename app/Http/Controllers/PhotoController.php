@@ -11,19 +11,18 @@ class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         $photos = Photo::where('meta->published', '1')
             ->latest('published_at')
+            ->select('id', 'title', 'slug', 'meta', 'published_at')
             ->get();
 
         return view('photos.index', compact('photos'));
     }
 
-    public function show($year, $month, $slug)
+    public function show($year, $month, $slug): Factory|View|Application
     {
         $photo = Photo::where('published_at', 'like', $year.'-'.$month.'%')
             ->where('slug', $slug)
@@ -32,27 +31,30 @@ class PhotoController extends Controller
         return view('photos.photo', compact('photo'));
     }
 
-    public function year($year)
+    public function year($year): Factory|View|Application
     {
         $photos = Photo::whereYear('published_at', $year)
             ->where('meta->published', '1')
             ->where('published_at', '<=', now())
+            ->select('id', 'title', 'slug', 'meta', 'published_at')
             ->latest('published_at')
             ->get();
 
         if ($photos->count() == 0) {
             return abort(404);
         } else {
+
             return view('photos.year', compact('photos', 'year'));
         }
     }
 
-    public function month($year, $month)
+    public function month($year, $month): Factory|View|Application
     {
         $photos = Photo::whereYear('published_at', $year)
             ->whereMonth('published_at', $month)
             ->where('meta->published', '1')
             ->where('published_at', '<=', now())
+            ->select('id', 'title', 'slug', 'meta', 'published_at')
             ->latest('published_at')
             ->get();
 

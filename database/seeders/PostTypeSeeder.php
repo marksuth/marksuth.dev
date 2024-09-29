@@ -4,43 +4,51 @@ namespace Database\Seeders;
 
 use App\Models\PostType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class PostTypeSeeder extends Seeder
 {
+    public array $postTypes = [
+        'Watch',
+        'Video',
+        'Sign',
+        'RSVP',
+        'Review',
+        'Repost',
+        'Reply',
+        'Read',
+        'Quote',
+        'Play',
+        'Note',
+        'Listen',
+        'Like',
+        'Lamp',
+        'Jam',
+        'Item',
+        'Issue',
+        'Gate',
+        'Fence',
+        'Exercise',
+        'Event',
+        'Eat',
+        'Drink',
+        'Craft',
+        'Checkin',
+        'Bookmark',
+        'Audio',
+        'Article',
+    ];
+
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run($postTypes): void
     {
         foreach ($postTypes as $postType) {
-            PostType::create(['name' => 'Watch', 'slug' => 'watch']);
-            PostType::create(['name' => 'Video', 'slug' => 'video']);
-            PostType::create(['name' => 'Sign', 'slug' => 'sign']);
-            PostType::create(['name' => 'RSVP', 'slug' => 'rsvp']);
-            PostType::create(['name' => 'Review', 'slug' => 'review']);
-            PostType::create(['name' => 'Repost', 'slug' => 'repost']);
-            PostType::create(['name' => 'Reply', 'slug' => 'reply']);
-            PostType::create(['name' => 'Read', 'slug' => 'read']);
-            PostType::create(['name' => 'Quote', 'slug' => 'quote']);
-            PostType::create(['name' => 'Play', 'slug' => 'play']);
-            PostType::create(['name' => 'Note', 'slug' => 'note']);
-            PostType::create(['name' => 'Listen', 'slug' => 'listen']);
-            PostType::create(['name' => 'Like', 'slug' => 'like']);
-            PostType::create(['name' => 'Lamp', 'slug' => 'lamp']);
-            PostType::create(['name' => 'Jam', 'slug' => 'jam']);
-            PostType::create(['name' => 'Item', 'slug' => 'item']);
-            PostType::create(['name' => 'Issue', 'slug' => 'issue']);
-            PostType::create(['name' => 'Gate', 'slug' => 'gate']);
-            PostType::create(['name' => 'Fence', 'slug' => 'fence']);
-            PostType::create(['name' => 'Exercise', 'slug' => 'exercise']);
-            PostType::create(['name' => 'Event', 'slug' => 'event']);
-            PostType::create(['name' => 'Eat', 'slug' => 'eat']);
-            PostType::create(['name' => 'Drink', 'slug' => 'drink']);
-            PostType::create(['name' => 'Craft', 'slug' => 'craft']);
-            PostType::create(['name' => 'Checkin', 'slug' => 'checkin']);
-            PostType::create(['name' => 'Bookmark', 'slug' => 'bookmark']);
-            PostType::create(['name' => 'Audio', 'slug' => 'audio']);
-            PostType::create(['name' => 'Article', 'slug' => 'article']);
+            PostType::create([
+                'name' => $postType,
+                'slug' => Str::slug($postType),
+            ]);
         }
     }
 }
