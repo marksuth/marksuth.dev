@@ -13,7 +13,8 @@
         "livewire/livewire": "^3.4",
         "sentry/sentry-laravel": "^4.4",
         "spatie/image": "^3.5",
-        "typesense/typesense-php": "^4.9"
+        "typesense/typesense-php": "^4.9",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
@@ -21,8 +22,8 @@
         "laravel/pint": "^1.13",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
-        "pestphp/pest": "^2.34",
-        "pestphp/pest-plugin-laravel": "^2.3"
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
     },
     "autoload": {
         "psr-4": {

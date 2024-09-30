@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use App\Models\Post;
+use Illuminate\Http\Response;
 
 class FeedController extends Controller
 {
-    public function posts()
+    public function posts(): Response
     {
         $posts = Post::where('meta->published', '1')
             ->where('published_at', '<=', now())
@@ -15,6 +16,7 @@ class FeedController extends Controller
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
+            ->take(10)
             ->get();
 
         $latest = $posts->first();
@@ -24,7 +26,7 @@ class FeedController extends Controller
             ->header('Content-Type', 'text/xml');
     }
 
-    public function stream()
+    public function stream(): Response
     {
         $posts = Post::where('meta->published', '1')
             ->where('published_at', '<=', now())
@@ -32,20 +34,22 @@ class FeedController extends Controller
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
+            ->take(10)
             ->get();
 
         $latest = $posts->first();
 
         return response()
-            ->view('feeds.stream', compact('posts', 'latest'))
+            ->view('feeds.posts', compact('posts', 'latest'))
             ->header('Content-Type', 'text/xml');
     }
 
-    public function photos()
+    public function photos(): Response
     {
         $photos = Photo::where('meta->published', '1')
             ->where('published_at', '<=', now())
             ->latest('published_at')
+            ->take(10)
             ->get();
 
         $latest = $photos->first();

@@ -9,34 +9,35 @@ use App\Models\PostType;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): Factory|View|Application
     {
         //Get Article and Note Posts
         $posts = Post::where('published_at', '<=', now())
             ->whereIn('post_type_id', [1, 14])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
+            ->select('id', 'title', 'slug', 'post_type_id', 'content', 'published_at')
             ->latest('published_at')
             ->paginate(10);
 
         return view('posts.index', compact('posts'));
     }
 
-    public function stream()
+    public function stream(): View|Factory|Application
     {
         $posts = Post::where('published_at', '<=', now())
             ->whereNotIn('post_type_id', [1, 14, 28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
+            ->select('id', 'title', 'slug', 'post_type_id', 'content', 'published_at')
             ->latest('published_at')
             ->paginate(20);
 
@@ -45,10 +46,8 @@ class PostController extends Controller
 
     /**
      * Display an individual post.
-     *
-     * @return Application|Factory|View
      */
-    public function show($year, $month, $slug)
+    public function show($year, $month, $slug): Factory|View|Application
     {
         $post = Post::where('published_at', 'like', $year.'-'.$month.'%')
             ->where('slug', $slug)
@@ -61,7 +60,7 @@ class PostController extends Controller
         return view('posts.post', compact('post'));
     }
 
-    public function posts($type)
+    public function posts($type): Factory|View|Application
     {
         $type = PostType::where('slug', $type)->firstOrFail();
 
@@ -103,7 +102,7 @@ class PostController extends Controller
     /**
      * Display a listing of posts from a specific month.
      */
-    public function month(int $year, int $month): Application|Factory|View
+    public function month(int $year, int $month): Factory|View|Application
     {
         $posts = Post::whereYear('published_at', $year)
             ->whereMonth('published_at', $month)
@@ -124,11 +123,8 @@ class PostController extends Controller
 
     /**
      * Display a listing of posts of a specific type.
-     *
-     * @param  string  $type
-     * @return Application|Factory|View
      */
-    public function type($type)
+    public function type(string $type): Factory|View|Application
     {
         $type = PostType::where('slug', $type)
             ->whereNotIn('id', [28])
@@ -146,10 +142,8 @@ class PostController extends Controller
 
     /**
      * Display a listing of posts types.
-     *
-     * @return Application|Factory|View
      */
-    public function types()
+    public function types(): Factory|View|Application
     {
         $types = PostType::whereNotIn('id', [28])->get();
 
@@ -166,7 +160,7 @@ class PostController extends Controller
         return view('posts.types', compact('types'));
     }
 
-    public function post_collection($collection)
+    public function post_collection($collection): Factory|View|Application
     {
         $collection = PostCollection::where('slug', $collection)->firstOrFail();
 
@@ -182,10 +176,8 @@ class PostController extends Controller
 
     /**
      * Display a listing of posts from the distant past.
-     *
-     * @return Application|Factory|View
      */
-    public function distant_past_type($type)
+    public function distant_past_type($type): Factory|View|Application
     {
         $type = PostType::where('slug', $type)->firstOrFail();
 
@@ -204,10 +196,8 @@ class PostController extends Controller
 
     /**
      * Display a listing of posts from the distant past.
-     *
-     * @return Application|Factory|View
      */
-    public function near_future_type($type)
+    public function near_future_type($type): Factory|View|Application
     {
         $type = PostType::where('name', $type)->firstOrFail();
 
@@ -223,12 +213,10 @@ class PostController extends Controller
         return view('posts.nearfuture.type', compact('posts', 'type'));
     }
 
-    public function search(Request $request)
+    public function search(Request $request): View|Factory|\Illuminate\Foundation\Application
     {
-        $posts = Post::search($request->input('query'))->where('published_at', '<=', now())->whereNull('meta->distant_past')->whereNull('meta->near_future')->get();
+        $posts = Post::search($request->input('query'))->where('published_at', '<=', now())->get();
         $photos = Photo::search($request->input('query'))->get();
-
-        dd($photos);
 
         return view('search.search', compact('photos', 'posts'));
     }

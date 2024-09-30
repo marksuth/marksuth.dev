@@ -1,16 +1,20 @@
-<?= '<'.'?'.'xml version="1.0" encoding="UTF-8"?>'."\n"; ?>
+<?=
+/* Using an echo tag here so the `<? ... ?>` won't get parsed as short tags */
+'<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL
+?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <atom:link href="https://marksuth.dev/feed/posts" rel="self" type="application/rss+xml" />
+        <atom:link href="{{ config('app.url') }}" rel="self" type="application/rss+xml" />
         <title><![CDATA[Mark Sutherland]]></title>
+        <link><![CDATA[{{ config('app.url') }}]]></link>
         <image>
-            <url><![CDATA[https://marksuth.dev/images/avatar.jpg]]></url>
+            <url><![CDATA[{{ config('app.url') }}/images/avatar.jpg]]></url>
             <title><![CDATA[Mark Sutherland]]></title>
-            <link><![CDATA[https://marksuth.dev/]]></link>
+            <link><![CDATA[{{ config('app.url') }}]]></link>
         </image>
-        <link><![CDATA[https://marksuth.dev/feed/posts]]></link>
         <description><![CDATA[Web Developer based in Leicester, UK]]></description>
-        <language>en-GB</language>
+        <language>en-gb</language>
+        <pubDate>{{ $latest->published_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}</pubDate>
         @yield('feed')
     </channel>
 </rss>

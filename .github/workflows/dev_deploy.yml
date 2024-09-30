@@ -1,9 +1,9 @@
-name: Deploy to Server
+name: Deploy to Dev
 
 on:
   push:
     branches:
-      - main
+      - dev
   workflow_dispatch:
 
 jobs:
@@ -76,7 +76,7 @@ jobs:
     - name: Deploying updates to site
       run: >
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
-        cd ${{ secrets.WORK_DIR }} &&
+        cd ${{ secrets.DEV_DIR }} &&
         php artisan down --retry=15 &&
         git pull &&
         composer update --prefer-stable --prefer-dist --no-interaction --no-progress &&

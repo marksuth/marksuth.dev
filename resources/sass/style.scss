@@ -1,14 +1,15 @@
 :root {
     --primary: #1b171f;
     --dark: #214154;
+    --alt:#005EB8;
     --text: #ffffff;
     --body: var(--primary);
     --navbar: var(--primary);
     --text-muted: #43a1c5;
     --text-inverse: #000000;
-    --gradient: linear-gradient(45deg, #214154, #005EB8);
-    --fancy-font: 'DM Serif Text', sans-serif;
-    --body-font: 'Geist', sans-serif;
+    --gradient: linear-gradient(45deg, var(--dark), var(--alt));
+    --fancy-font: 'DM Serif Text';
+    --body-font: 'Geist';
 }
 
 @import "base";
@@ -24,7 +25,7 @@
     }
 
     h1 {
-        font-family: var(--body-font);
+        font-family: var(--body-font), sans-serif;
         padding: 0.25rem 0.75rem 0.25rem 0.75rem;
     }
 
@@ -47,6 +48,7 @@
     border-radius: 50%;
     border: 8px solid var(--dark);
     max-width: 100%;
+    min-width: 250px;
     height: auto;
 
     &-box {
@@ -282,9 +284,12 @@
 
     h2 {
         font-weight: 500;
-        text-align: right;
-        font-size: 2rem;
+        font-size: 1.75rem;
         display: inline-block;
+    }
+
+    .fancy-title {
+        text-align: right;
     }
 }
 
@@ -366,7 +371,7 @@
 }
 
 .fancy-title, .page-title h1 {
-    font-family: var(--fancy-font);
+    font-family: var(--fancy-font), sans-serif;
     font-weight: 400;
 }
 
@@ -386,7 +391,7 @@
 .collection-cover {
     display: flex;
     height: 20rem;
-    font-family: var(--fancy-font);
+    font-family: var(--fancy-font), sans-serif;
     color: var(--text);
     background-color: var(--primary);
     background-size: cover;

@@ -1,22 +1,13 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <atom:link href="https://marksuth.dev" rel="self" type="application/rss+xml" />
-        <title><![CDATA[Mark Sutherland]]></title>
-        <link><![CDATA[https://marksuth.dev]]></link>
-        <image>
-            <url><![CDATA[https://marksuth.dev/images/avatar.jpg]]></url>
-            <title><![CDATA[Mark Sutherland]]></title>
-            <link><![CDATA[https://marksuth.dev]]></link>
-        </image>
-        <description><![CDATA[Web Developer based in Leicester, UK]]></description>
-        <pubDate>{{ $latest->published_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}</pubDate>
+@extends('layouts.feed')
+@section('feed')
         @foreach($posts as $post)
         <item>
             <title>{{ $post->title }}</title>
-            <link>https://marksuth.dev/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}</link>
+            <author><![CDATA[mark@marksuth.dev (Mark Sutherland)]]></author>
+            <link>{{ config('app.url') }}/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}</link>
             <pubDate>{{ $post->published_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}</pubDate>
-            <description>{{ htmlspecialchars(Str::markdown($post->content)) }}</description>
+            <description>{{ Str::markdown($post->content) }}</description>
+            <guid>{{ config('app.url') }}/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}</guid>
         </item>
         @endforeach
-    </channel>
-</rss>
+@endsection

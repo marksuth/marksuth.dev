@@ -6,17 +6,18 @@ use App\Models\Page;
 use App\Models\Photo;
 use App\Models\Post;
 use App\Models\PostType;
+use Illuminate\Http\Response;
 
 class SitemapController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         return response()
             ->view('sitemaps.index')
             ->header('Content-Type', 'text/xml');
     }
 
-    public function posts()
+    public function posts(): Response
     {
 
         $latest = Post::where('meta->published', '1')
@@ -51,7 +52,7 @@ class SitemapController extends Controller
             ->header('Content-Type', 'text/xml');
     }
 
-    public function photos()
+    public function photos(): Response
     {
         $photos = Photo::where('meta->published', '1')
             ->where('published_at', '<=', now())
@@ -62,7 +63,7 @@ class SitemapController extends Controller
             ->header('Content-Type', 'text/xml');
     }
 
-    public function pages()
+    public function pages(): Response
     {
         $pages = Page::where('meta->published', '1')
             ->where('published_at', '<=', now())

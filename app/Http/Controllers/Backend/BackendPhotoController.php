@@ -4,15 +4,20 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Photo;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\Image\Enums\Fit;
+use Spatie\Image\Exceptions\CouldNotLoadImage;
 use Spatie\Image\Image;
 
 class BackendPhotoController extends Controller
 {
-    public function index()
+    public function index(): View|Factory|Application
     {
         $photos = Photo::latest('created_at')->get();
 
@@ -21,12 +26,15 @@ class BackendPhotoController extends Controller
         return view('backend.photos.index', compact('photos'));
     }
 
-    public function create()
+    public function create(): View|Factory|Application
     {
         return view('backend.photos.photo');
     }
 
-    public function store(Request $request)
+    /**
+     * @throws CouldNotLoadImage
+     */
+    public function store(): Application|Redirector|RedirectResponse
     {
 
         $photo = new Photo;
@@ -61,14 +69,14 @@ class BackendPhotoController extends Controller
         return redirect('/backend/photos');
     }
 
-    public function show($id)
+    public function show($id): View|Factory|Application
     {
         $photo = Photo::find($id);
 
         return view('backend.photos.photo', compact('photo'));
     }
 
-    public function update($id)
+    public function update($id): Application|Redirector|RedirectResponse
     {
 
         $photo = Photo::find($id);
@@ -78,7 +86,7 @@ class BackendPhotoController extends Controller
         $photo->content = request('content');
         $photo->published_at = request('published_at');
 
-        $meta['img_url'] = $meta['img_url'];
+        $meta[] = $photo->meta;
         $meta['location'] = request('location');
         $meta['instagram_url'] = request('instagram_url');
         $meta['published'] = request('published');
@@ -90,7 +98,7 @@ class BackendPhotoController extends Controller
         return redirect('/backend/photos');
     }
 
-    public function destroy($id)
+    public function destroy($id): Application|Redirector|RedirectResponse
     {
         $photo = Photo::find($id);
 

@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Photo;
 use Illuminate\Console\Command;
 
-class ImageUrls extends Command
+class ImageUrlsCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -24,7 +24,7 @@ class ImageUrls extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $photos = Photo::all();
 
