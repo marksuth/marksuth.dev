@@ -16,10 +16,10 @@ profile:
 exclude:
   - name: All
     paths:
-      - public/**
-      - vendor/**
-
-
+      - public/build
+      - vendor
+      - node_modules
+      - storage
 
 php:
   version: 8.3 #(Applied in CI/CD pipeline)
