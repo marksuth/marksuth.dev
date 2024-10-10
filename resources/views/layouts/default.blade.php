@@ -10,8 +10,14 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{config('app.name')  . ' - ' . $title}}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @php $current = url()->current() @endphp
-    @if (Str::startsWith($current, 'https://www.'))
+    @env('staging')
+    <meta name="robots" content="noindex, nofollow">
+    @endenv
+    @production
+        <meta name="robots" content="index, follow">
+    @endproduction
+    @php $current = url()->current(); @endphp
+@if (Str::startsWith($current, 'https://www.'))
         <meta property="og:url" content="{{ strtolower(str_replace('https://www.', 'https://', $current)) }}">
     @else
         <meta property="og:url" content="{{ strtolower($current) }}">
@@ -28,9 +34,6 @@
     <meta name="twitter:site" content="@marksuth">
     <meta name="twitter:image" content="{{ config('app.url') }}/images/opengraph.jpg">
     <meta name="twitter:creator" content="@marksuth">
-    <meta name="author" content="{{ config('app.name') }}">
-    <meta name="copyright" content="{{ config('app.name') }}">
-    <meta name="theme-color" content="#214154">
     @yield('metatags')
     @if (Str::startsWith($current, 'https://www.'))
         <link rel="canonical" href="{{ strtolower(str_replace('https://www.', 'https://', $current)) }}">
@@ -63,6 +66,9 @@
     <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
     <link rel="microsub" href="https://aperture.p3k.io/microsub/658">
     @vite(['resources/sass/style.scss', 'resources/js/app.js'])
+        <meta name="author" content="{{ config('app.name') }}">
+        <meta name="copyright" content="{{ config('app.name') }}">
+        <meta name="theme-color" content="#214154">
 </head>
 <body>
 <div id="navbar">
@@ -132,6 +138,8 @@
     </div>
 </footer>
 @yield('extrascripts')
+@env('staging')
 <script async defer src="https://scripts.withcabin.com/hello.js"></script>
+@endenv
 </body>
 </html>
