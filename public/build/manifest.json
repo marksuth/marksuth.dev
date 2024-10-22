@@ -3,9 +3,9 @@
     "file": "assets/_commonjsHelpers-C4iS2aBk.js",
     "name": "_commonjsHelpers"
   },
-  "node_modules/@fontsource/dm-serif-text/files/dm-serif-text-latin-400-normal.woff2": {
-    "file": "assets/dm-serif-text-latin-400-normal-MthuGx-P.woff2",
-    "src": "node_modules/@fontsource/dm-serif-text/files/dm-serif-text-latin-400-normal.woff2"
+  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2": {
+    "file": "assets/space-grotesk-latin-700-normal-DUDKB872.woff2",
+    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400-O7nZalfM.woff2",
@@ -14,10 +14,6 @@
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
     "file": "assets/fa-solid-900-DOQJEhcS.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
-  },
-  "node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2": {
-    "file": "assets/Geist-Variable-p2GUc8qZ.woff2",
-    "src": "node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2"
   },
   "resources/js/app.js": {
     "file": "assets/app-dLw8dtN3.js",
@@ -44,7 +40,7 @@
     ]
   },
   "resources/sass/backend.scss": {
-    "file": "assets/backend-BwWz_NBi.css",
+    "file": "assets/backend-DI3W5J53.css",
     "src": "resources/sass/backend.scss",
     "isEntry": true
   },
@@ -54,7 +50,7 @@
     "isEntry": true
   },
   "resources/sass/style.scss": {
-    "file": "assets/style-W80DZWKI.css",
+    "file": "assets/style-Bkniw0y2.css",
     "src": "resources/sass/style.scss",
     "isEntry": true
   }
