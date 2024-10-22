@@ -2,9 +2,9 @@
     <div class="h-feed">
         @forelse($posts as $post)
             <article class="post hentry h-entry">
-                <small><a class="p-category" href="/posts/type/{{ strtolower($post->post_type->name) }}" >{{ $post->post_type->name }}</a>
-                    posted
-                    <time class="dt-published" datetime="{{ $post->published_at }}">
+                <small class="lozenge"><a class="p-category category"
+                                          href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
+                    <time datetime="{{ $post->published_at }}" class="dt-published timestamp">
                         @if($post->published_at->diffInWeeks(now()) < 6)
                             {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                         @else

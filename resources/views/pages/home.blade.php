@@ -5,7 +5,7 @@
 @section('content')
     <section id="intro">
         <div class="third-split h-card">
-            <div class="avatar-box mb-3">
+            <div class="avatar-box">
                 @if ($latest_photo)
                     <button class="avatar-surround" popovertarget="latest-photo">
                         <img src="{{ config('app.url') }}/images/avatar.jpg" alt="Mark Sutherland"
@@ -64,10 +64,9 @@
         <div class="h-feed">
             @forelse($posts as $post)
                 <article class="post hentry h-entry">
-                    <small><a class="p-category"
+                    <small class="lozenge"><a class="p-category category"
                               href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
-                        posted
-                        <time datetime="{{ $post->published_at }}" class="dt-published">
+                        <time datetime="{{ $post->published_at }}" class="dt-published timestamp">
                             @if($post->published_at->diffInWeeks(now()) < 6)
                                 {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
                             @else
@@ -90,7 +89,7 @@
             @empty
                 <p>No posts found</p>
             @endforelse
-            <a href="/posts" class="btn">View All Posts <i class="fa-solid fa-chevron-right"></i></a>
+            <a href="/posts" class="btn btn-right">View All Posts <i class="fa-solid fa-chevron-right"></i></a>
         </div>
     </section>
     <div class="half-split">
@@ -102,7 +101,7 @@
                         <li>
                             <small><a
                                     href="/posts/type/{{ strtolower($activity->post_type->name) }}">{{ $activity->post_type->name }}</a>
-                                posted
+                                 |
                                 <time datetime="{{ $activity->published_at }}">
                                     @if($activity->published_at->diffInWeeks(now()) < 6)
                                         {{ $activity->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
@@ -119,9 +118,6 @@
                 @endforelse
             </ul>
             </div>
-            <a href="/stream" class="btn">
-                View Activity Stream <i class="fa-solid fa-chevron-right"></i>
-            </a>
         </section>
         <section id="photo-stream">
             <h2 class="fancy-title">Photo Stream</h2>
@@ -144,8 +140,6 @@
                     <p>No photos found</p>
                 @endforelse
             </ul>
-            <p><a href="/photos" class="btn">View All Photos <i class="fa-solid fa-chevron-right"></i></a>
-            </p>
         </section>
     </div>
         @endsection

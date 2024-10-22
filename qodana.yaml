@@ -1,35 +1,23 @@
-#-------------------------------------------------------------------------------#
-#               Qodana analysis is configured by qodana.yaml file               #
-#             https://www.jetbrains.com/help/qodana/qodana-yaml.html            #
-#-------------------------------------------------------------------------------#
 version: "1.0"
 
-#Specify inspection profile for code analysis
+linter: jetbrains/qodana-php:2024.2
+
+php:
+  version: "8.2"
+
 profile:
   name: qodana.recommended
 
-#Enable inspections
-#include:
-#  - name: <SomeEnabledInspectionId>
+include:
+  - name: CheckDependencyLicenses
+  - name: LaravelPintValidationInspection
+  - name: BladeControlDirectives
+  - name: BladeUnpairedParenthesesInStringLiteral
 
-#Disable inspections
 exclude:
   - name: All
     paths:
       - public/build
-      - vendor
-      - node_modules
       - storage
 
-php:
-  version: 8.3 #(Applied in CI/CD pipeline)
-
-#Execute shell command before Qodana execution (Applied in CI/CD pipeline)
-#bootstrap: sh ./prepare-qodana.sh
-
-#Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
-#plugins:
-#  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
-
-#Specify Qodana linter for analysis (Applied in CI/CD pipeline)
-linter: jetbrains/qodana-php:latest
+fixesStrategy: cleanup
