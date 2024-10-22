@@ -67,6 +67,7 @@ Route::controller(SitemapController::class)->group(function () {
 // Backend routes
 Route::controller(BackendDashboardController::class)->group(function () {
     Route::get('/backend', 'index')->middleware('auth')->name('backend.index');
+    Route::get('/backend.webmanifest', 'webmanifest')->name('backend.webmanifest');
 });
 
 Route::controller(BackendPageController::class)->middleware(['auth'])->group(function () {
