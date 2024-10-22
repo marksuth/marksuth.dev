@@ -9,7 +9,7 @@ export default defineConfig({
             '~geist': '/node_modules/geist/dist/fonts',
             '~@fortawesome': '/node_modules/@fortawesome',
             '~easymde': '/node_modules/easymde/dist',
-            '~fancy-title': '/node_modules/@fontsource/dm-serif-text',
+            '~fancy-title': '/node_modules/@fontsource/space-grotesk',
             '@': '/resources/assets',
         }
     },

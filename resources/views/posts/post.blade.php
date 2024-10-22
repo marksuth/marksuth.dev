@@ -10,14 +10,20 @@
 @section('content')
     <article class="h-entry hentry">
         <header class="page-header">
+
+            <small class="lozenge"><a class="p-category category"
+                                      href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
+                <time datetime="{{ $post->published_at }}" class="dt-published timestamp">
+                    @if($post->published_at->diffInWeeks(now()) < 6)
+                        {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                    @else
+                        {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
+                    @endif
+                </time>
+            </small>
             <div class="page-title">
                 <h1 class="p-name">{{ $post->title }}</h1>
             </div>
-            <small>Published:
-                <time class="dt-published" datetime="{{ $post->published_at }}">
-                    {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
-                </time>
-            </small>
         </header>
         <div class="post">
             <div class="entry-content e-content">

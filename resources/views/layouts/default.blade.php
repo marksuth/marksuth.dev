@@ -11,13 +11,13 @@
     <meta property="og:title" content="{{config('app.name')  . ' - ' . $title}}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @env('staging')
-    <meta name="robots" content="noindex, nofollow">
+        <meta name="robots" content="noindex, nofollow">
     @endenv
     @production
         <meta name="robots" content="index, follow">
     @endproduction
     @php $current = url()->current(); @endphp
-@if (Str::startsWith($current, 'https://www.'))
+    @if (Str::startsWith($current, 'https://www.'))
         <meta property="og:url" content="{{ strtolower(str_replace('https://www.', 'https://', $current)) }}">
     @else
         <meta property="og:url" content="{{ strtolower($current) }}">
@@ -66,9 +66,9 @@
     <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
     <link rel="microsub" href="https://aperture.p3k.io/microsub/658">
     @vite(['resources/sass/style.scss', 'resources/js/app.js'])
-        <meta name="author" content="{{ config('app.name') }}">
-        <meta name="copyright" content="{{ config('app.name') }}">
-        <meta name="theme-color" content="#214154">
+    <meta name="author" content="{{ config('app.name') }}">
+    <meta name="copyright" content="{{ config('app.name') }}">
+    <meta name="theme-color" content="#214154">
 </head>
 <body>
 <div id="navbar">
@@ -86,8 +86,10 @@
                    href="{{ route('posts.stream') }}">Stream</a>
                 <a class="@if (Request::segment(1) == 'projects') active @endif" href="/projects">Projects</a>
                 @if (Auth::check())
-                    <a href="{{ route('backend.index') }}" aria-label="backend"><i class="fa-solid fa-gear" aria-hidden="true"></i></a>
-                    <a href="{{ route('logout') }}" aria-label="Logout"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i></a>
+                    <a href="{{ route('backend.index') }}" aria-label="backend"><i class="fa-solid fa-gear"
+                                                                                   aria-hidden="true"></i></a>
+                    <a href="{{ route('logout') }}" aria-label="Logout"><i class="fa-solid fa-arrow-right-from-bracket"
+                                                                           aria-hidden="true"></i></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">@csrf</form>
                 @endif
             </nav>
@@ -98,14 +100,25 @@
     <search id="search-box">
         <form action="{{ route('search.search') }}" method="GET" class="search-form">
             <input type="search" name="query" id="query" placeholder="Search..." value="{{ request('query') }}">
-            <button type="submit" class="btn" aria-label="Search"><i class="fa-solid fa-search" aria-hidden="true"></i></button>
+            <button type="submit" class="btn" aria-label="Search"><i class="fa-solid fa-search" aria-hidden="true"></i>
+            </button>
         </form>
     </search>
     <main class="site-main">
         @yield('content')
     </main>
 </div>
-@yield('strap')
+<div class="strap">
+    <div class="tube">
+        <div class="tile tile-strap">
+            <img src="/images/movember-logo.jpg" width="200" height="52" alt="Movember">
+            <div class="details">
+                I'm taking part in Movember 2024. To donate or find out more <a
+                    href="https://movember.com/m/marksuth" title="Movember 2024" class="btn">CLICK HERE</a>
+            </div>
+        </div>
+    </div>
+</div>
 <footer class="site-footer">
     <div class="tube">
         <div class="split">
@@ -139,7 +152,7 @@
 </footer>
 @yield('extrascripts')
 @env('staging')
-<script async defer src="https://scripts.withcabin.com/hello.js"></script>
+    <script async defer src="https://scripts.withcabin.com/hello.js"></script>
 @endenv
 </body>
 </html>
