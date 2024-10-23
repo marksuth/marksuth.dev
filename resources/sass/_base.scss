@@ -51,6 +51,10 @@ a {
     }
 }
 
+p {
+    text-wrap: pretty;
+}
+
 hr {
     margin: 1rem 0;
     color: var(--text-muted);
