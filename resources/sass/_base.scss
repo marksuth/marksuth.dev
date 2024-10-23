@@ -5,7 +5,8 @@
 h1, h2, h3, h4 {
     font-weight: 700;
     color: var(--headings);
-    line-height: 1.25;;
+    text-wrap: balance;
+    line-height: 1.25;
 }
 
 h1 {
