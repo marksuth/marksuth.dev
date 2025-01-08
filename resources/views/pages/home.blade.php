@@ -53,6 +53,7 @@
                     <a href="https://www.linkedin.com/in/marksuth" rel="me" aria-label="Linkedin"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
                     <a href="https://mastodon.social/@marksuth" rel="me" aria-label="Mastodon"><i class="fa-brands fa-mastodon" aria-hidden="true"></i></a>
                     <a href="https://codepen.io/marksuth" rel="me" aria-label="CodePen"><i class="fa-brands fa-codepen" aria-hidden="true"></i></a>
+                    <a href="https://bsky.app/profile/marksuth.dev" rel="me" aria-label="BlueSky"><i class="fa-brands fa-bluesky" aria-hidden="true"></i></a>
                     <a href="https://www.discogs.com/user/marksuth" rel="me" aria-label="Discogs"><i class="fa-solid fa-record-vinyl" aria-hidden="true"></i></a>
                     <a href="https://letterboxd.com/marksuth/" rel="me" aria-label="Letterboxd"><i class="fa-brands fa-letterboxd" aria-hidden="true"></i></a>
                 </nav>

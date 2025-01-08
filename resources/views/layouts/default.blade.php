@@ -108,17 +108,6 @@
         @yield('content')
     </main>
 </div>
-<div class="strap">
-    <div class="tube">
-        <div class="tile tile-strap">
-            <img src="/images/movember-logo.jpg" width="200" height="52" alt="Movember">
-            <div class="details">
-                I'm taking part in Movember 2024. To donate or find out more <a
-                    href="https://movember.com/m/marksuth" title="Movember 2024" class="btn">CLICK HERE</a>
-            </div>
-        </div>
-    </div>
-</div>
 <footer class="site-footer">
     <div class="tube">
         <div class="split">

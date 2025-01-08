@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index(): Factory|View|Application
     {
-        //Get Article and Note Posts
+        // Get Article and Note Posts
         $posts = Post::where('published_at', '<=', now())
             ->whereIn('post_type_id', [1, 14])
             ->whereNull('meta->distant_past')
@@ -147,7 +147,7 @@ class PostController extends Controller
     {
         $types = PostType::whereNotIn('id', [28])->get();
 
-        //Get Post count for each type
+        // Get Post count for each type
         foreach ($types as $type) {
             $type->count = Post::where('post_type_id', $type->id)
                 ->where('meta->published', 1)
@@ -201,7 +201,7 @@ class PostController extends Controller
     {
         $type = PostType::where('name', $type)->firstOrFail();
 
-        //Display Posts from the Near Future
+        // Display Posts from the Near Future
         $posts = Post::where('post_type_id', $type->id)
             ->where('meta->published', '1')
             ->where('published_at', '<=', now())

@@ -35,7 +35,7 @@
                                             <div class="mb-3">
                                                 <label for="image" class="h6">Image</label>
                                                 <input type="file" class="form-control" id="image" name="image"
-                                                       accept="image/*" capture value="{{ $photo->meta['img_url'] ?? '' }}">
+                                                       accept="image/*" value="{{ $photo->meta['img_url'] ?? '' }}">
                                             </div>
 
                                             <div class="mb-3">

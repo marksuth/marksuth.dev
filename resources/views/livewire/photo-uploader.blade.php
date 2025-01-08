@@ -2,7 +2,7 @@
     <form wire:submit.prevent="save">
         @if ($photo)
             Photo Preview:
-            <img src="{{ $photo->temporaryUrl() }}">
+            <img src="{{ $photo->temporaryUrl() }}" alt="image preview">
         @endif
 
         <input type="file" wire:model="photo">
