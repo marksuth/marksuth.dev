@@ -41,7 +41,7 @@ class PhotoController extends Controller
             ->firstorfail()
             ->get();
 
-            return view('photos.year', compact('photos', 'year'));
+        return view('photos.year', compact('photos', 'year'));
     }
 
     public function month($year, $month): Factory|View|Application
