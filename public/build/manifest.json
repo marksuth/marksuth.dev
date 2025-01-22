@@ -1,8 +1,4 @@
 {
-  "__commonjsHelpers-C4iS2aBk.js": {
-    "file": "assets/_commonjsHelpers-C4iS2aBk.js",
-    "name": "_commonjsHelpers"
-  },
   "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2": {
     "file": "assets/space-grotesk-latin-700-normal-DUDKB872.woff2",
     "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2"
@@ -22,22 +18,16 @@
     "isEntry": true
   },
   "resources/js/backend.js": {
-    "file": "assets/backend-Bw4tjKPP.js",
+    "file": "assets/backend-BPnnsIiG.js",
     "name": "backend",
     "src": "resources/js/backend.js",
-    "isEntry": true,
-    "imports": [
-      "__commonjsHelpers-C4iS2aBk.js"
-    ]
+    "isEntry": true
   },
   "resources/js/easymde.js": {
-    "file": "assets/easymde-CLE4LJiD.js",
+    "file": "assets/easymde-B5SUvYaa.js",
     "name": "easymde",
     "src": "resources/js/easymde.js",
-    "isEntry": true,
-    "imports": [
-      "__commonjsHelpers-C4iS2aBk.js"
-    ]
+    "isEntry": true
   },
   "resources/sass/backend.scss": {
     "file": "assets/backend-t1Fxessk.css",
@@ -50,7 +40,7 @@
     "isEntry": true
   },
   "resources/sass/style.scss": {
-    "file": "assets/style-W0xKfnI5.css",
+    "file": "assets/style-B-fMf7f7.css",
     "src": "resources/sass/style.scss",
     "isEntry": true
   }
