@@ -234,7 +234,7 @@ input[type="checkbox"] {
     padding: 0;
 
     &-sm {
-        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     }
 
     &-lg {
@@ -346,8 +346,7 @@ input[type="checkbox"] {
     border-radius: 0.5rem;
 
     &:hover {
-        background: var(--alt);
-        box-shadow: 0 0 7px var(--text-inverse) inset;
+        box-shadow: 0 0 7px var(--text) inset;
         transition: 0.3s all ease;
     }
 
@@ -366,6 +365,10 @@ input[type="checkbox"] {
             filter: none;
 
         }
+    }
+
+    &-right {
+        float: right;
     }
 
 }

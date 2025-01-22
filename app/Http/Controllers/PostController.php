@@ -69,13 +69,11 @@ class PostController extends Controller
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
+            ->firstOrFail()
             ->paginate(10);
 
-        if ($posts->count() == 0) {
-            return abort(404);
-        } else {
-            return view('posts.type', compact('posts', 'type'));
-        }
+        return view('posts.type', compact('posts', 'type'));
+
     }
 
     /**
@@ -90,13 +88,11 @@ class PostController extends Controller
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
+            ->firstOrFail()
             ->paginate(10);
 
-        if ($posts->count() == 0) {
-            return abort(404);
-        } else {
-            return view('posts.year', compact('posts', 'year'));
-        }
+        return view('posts.year', compact('posts', 'year'));
+
     }
 
     /**
@@ -112,13 +108,10 @@ class PostController extends Controller
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
+            ->firstOrFail()
             ->paginate(10);
 
-        if ($posts->count() == 0) {
-            return abort(404);
-        } else {
-            return view('posts.month', compact('posts', 'year', 'month'));
-        }
+        return view('posts.month', compact('posts', 'year', 'month'));
     }
 
     /**
@@ -185,13 +178,11 @@ class PostController extends Controller
             ->where('published_at', '<=', now())
             ->where('meta->distant_past', 1)
             ->latest('published_at')
+            ->firstOrFail()
             ->paginate(30);
 
-        if ($posts->count() == 0) {
-            return abort(404);
-        } else {
-            return view('posts.distantpast.type', compact('posts', 'type'));
-        }
+        return view('posts.distantpast.type', compact('posts', 'type'));
+
     }
 
     /**

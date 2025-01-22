@@ -34,22 +34,27 @@ class PageController extends Controller
             ->take(9)
             ->get();
 
+        $watched = Post::where('meta->published', '1')
+            ->where('published_at', '<=', now())
+            ->where('post_type_id', '23')
+            ->where('collection_id', '3')
+            ->latest('published_at')
+            ->take(3)
+            ->get();
+
         $photos = Photo::where('meta->published', '1')
             ->latest('published_at')
             ->select('id', 'title', 'slug', 'meta', 'published_at')
-            ->take(9)
+            ->take(6)
             ->get();
 
         $latest_photo = Photo::where('meta->published', '1')
+            ->where('published_at', '>=', now()->subDay())
             ->latest('published_at')
             ->select('id', 'title', 'slug', 'meta', 'published_at')
             ->first();
 
-        if ($latest_photo->published_at->diffInHours(now()) > 24) {
-            $latest_photo = null;
-        }
-
-        return view('pages.home', compact('posts', 'activities', 'photos', 'latest_photo'));
+        return view('pages.home', compact('posts', 'activities', 'watched', 'photos', 'latest_photo'));
     }
 
     public function show($slug): View|Factory|Application

@@ -8,6 +8,7 @@
     --text-muted: #43a1c5;
     --text-inverse: #000000;
     --gradient: linear-gradient(45deg, var(--dark), var(--alt));
+    --notify: linear-gradient(45deg, #D60270, #69D1CC);
     --fancy-font: 'Space Grotesk';
     --body-font: system-ui;
 }
@@ -88,13 +89,16 @@
 
     &-surround {
         animation: gradient 15s ease infinite;
-        background: var(--gradient);
+        background: var(--notify);
         background-size: 400% 400%;
         border-radius: 50%;
         border: 0;
         display: flex;
         justify-content: center;
         padding: 0.5rem;
+        img {
+            opacity: 0.8;
+        }
 
         & {
             margin-top: 0;
@@ -113,6 +117,8 @@
         & {
             margin-top: 0;
         }
+
+
     }
 }
 
@@ -304,7 +310,6 @@
 
 #feed {
     display: grid;
-    grid-template-columns: 10vw 1fr;
     gap: 1rem;
     margin: auto 0;
 
@@ -316,6 +321,7 @@
 
     .fancy-title {
         text-align: right !important;
+        align-self: start;
     }
 }
 

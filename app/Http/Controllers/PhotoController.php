@@ -41,7 +41,7 @@ class PhotoController extends Controller
             ->firstorfail()
             ->get();
 
-            return view('photos.year', compact('photos', 'year'));
+        return view('photos.year', compact('photos', 'year'));
     }
 
     public function month($year, $month): Factory|View|Application
@@ -52,12 +52,9 @@ class PhotoController extends Controller
             ->where('published_at', '<=', now())
             ->select('id', 'title', 'slug', 'meta', 'published_at')
             ->latest('published_at')
+            ->firstorfail()
             ->get();
 
-        if ($photos->count() == 0) {
-            return abort(404);
-        } else {
-            return view('photos.month', compact('photos', 'year', 'month'));
-        }
+        return view('photos.month', compact('photos', 'year', 'month'));
     }
 }

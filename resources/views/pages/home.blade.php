@@ -60,7 +60,7 @@
             </div>
         </div>
     </section>
-    <section id="feed">
+    <section id="feed" class="third-split">
         <h2 class="fancy-title">Recent Posts</h2>
         <div class="h-feed">
             @forelse($posts as $post)
@@ -80,46 +80,40 @@
                     <div class="e-content">
                         {!! Str::markdown(Str::words("$post->content", 30, ' ...')) !!}
                     </div>
-                    <footer>
-
-                        <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}"
-                           class="btn btn-right u-url" title="View {{ $post->post_type->name }}">View
-                            {{ $post->post_type->name }} <i class="fa-solid fa-chevron-right"></i></a>
-                    </footer>
                 </article>
             @empty
                 <p>No posts found</p>
             @endforelse
-            <a href="/posts" class="btn btn-right">View All Posts <i class="fa-solid fa-chevron-right"></i></a>
+            <a href="{{ route('posts') }}" class="btn btn-right">View All Posts <i class="fa-solid fa-chevron-right"></i></a>
         </div>
     </section>
     <div class="half-split">
-        <section id="activity-stream">
-            <h2 class="fancy-title">Activity Stream</h2>
-            <div class="tile tile-alt">
-                <ul>
-                    @forelse($activities as $activity)
-                        <li>
-                            <small><a
-                                    href="/posts/type/{{ strtolower($activity->post_type->name) }}">{{ $activity->post_type->name }}</a>
-                                 |
-                                <time datetime="{{ $activity->published_at }}">
-                                    @if($activity->published_at->diffInWeeks(now()) < 6)
-                                        {{ $activity->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
-                                    @else
-                                        {{ $activity->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
-                                    @endif </time>
-                            </small>
-                            <h3><a
-                                    href="/posts/{{ $activity->published_at->format('Y/m') }}/{{ $activity->slug }}">{{ $activity->title }}</a>
-                            </h3>
+        <div id="activities">
+            <section id="watched">
+                <h2 class="fancy-title">Recently Watched</h2>
+                <ul class="tile-grid tile-grid-sm">
+                    @forelse($watched as $watch)
+                        <li class="tile tile-sm">
+                            <a href="/watched/{{ $watch->published_at->format('Y/m') }}/{{ $watch->slug }}">
+                                <img src="{{$watch->meta['img_url']}}" alt="{{$watch->title}}">
+                            </a>
+                            <time datetime="{{ $watch->published_at }}">
+                                @if($watch->published_at->diffInWeeks(now()) < 6)
+                                    {{ $watch->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                                @else
+                                    {{ $watch->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
+                                @endif
+                            </time>
                         </li>
                     @empty
-                        <li class="py-3">No activity to display</li>
-                @endforelse
-            </ul>
-            </div>
-        </section>
+                        <p>No watched items found</p>
+                    @endforelse
+                </ul>
+                <a href="/collections/films" class="btn btn-right">View All Watched <i
+                        class="fa-solid fa-chevron-right"></i></a>
+
+            </section>
+        </div>
         <section id="photo-stream">
             <h2 class="fancy-title">Photo Stream</h2>
             <ul class="tile-grid tile-grid-sm">
@@ -141,6 +135,8 @@
                     <p>No photos found</p>
                 @endforelse
             </ul>
+            <a href="{{ route('photos') }}" class="btn btn-right">View All Photos <i
+                    class="fa-solid fa-chevron-right"></i></a>
         </section>
     </div>
         @endsection

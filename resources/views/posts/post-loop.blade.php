@@ -12,17 +12,11 @@
                         @endif
                     </time>
                 </small>
-                <h2 class="p-name"><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}">
+                <h2 class="p-name"><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}" class="u-url">
                         {{ $post->title }}</a></h2>
                 <div class="e-content">
                     {!! Str::markdown(Str::words("$post->content", 30, ' ...')) !!}
                 </div>
-                <footer>
-
-                    <a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}" class="btn btn-right u-url"
-                       title="View {{ $post->post_type->name }}">View
-                        {{ $post->post_type->name }} <i class="fa-solid fa-chevron-right"></i></a>
-                </footer>
             </article>
         @empty
             <p>No posts found</p>
