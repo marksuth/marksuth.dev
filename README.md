@@ -1,8 +1,6 @@
 # marksuth.dev
 
-Repo for my personal site built using Laravel and various other things.
-
-This readme, like the rest of of this is a work in progress.
+Repo for my personal site built using Laravel
 
 ## Documentation
 

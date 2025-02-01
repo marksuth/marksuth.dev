@@ -58,10 +58,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ config('app.url') }}/icons/icon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ config('app.url') }}/icons/icon-16.png">
     <link rel="manifest" href="{{ route('webmanifest') }}">
+    <link rel="openid.delegate" href="{{ config('app.url') }}/">
+    <link rel="openid.server" href="https://openid.indieauth.com/openid">
     <link rel="webmention" href="https://webmention.io/marksuth.dev/webmention">
     <link rel="pingback" href="https://webmention.io/marksuth.dev/xmlrpc">
-    <link rel="authorization_endpoint" href="{{ config('app.url') }}/indieauth">
-    <link rel="token_endpoint" href="{{ config('app.url') }}/indieauth/token">
+    <link rel="authorization_endpoint" href="https://indieauth.com/auth">
+    <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
     <link rel="microsub" href="https://aperture.p3k.io/microsub/658">
     @vite(['resources/sass/style.scss', 'resources/js/app.js'])
     <meta name="author" content="{{ config('app.name') }}">
