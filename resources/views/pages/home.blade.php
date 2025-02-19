@@ -94,7 +94,7 @@
                 <ul class="tile-grid tile-grid-sm">
                     @forelse($watched as $watch)
                         <li class="tile tile-sm">
-                            <a href="/watched/{{ $watch->published_at->format('Y/m') }}/{{ $watch->slug }}">
+                            <a href="/posts/{{ $watch->published_at->format('Y/m') }}/{{ $watch->slug }}">
                                 <img src="{{$watch->meta['img_url']}}" alt="{{$watch->title}}">
                             </a>
                             <time datetime="{{ $watch->published_at }}">

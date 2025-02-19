@@ -15,7 +15,7 @@ class PageController extends Controller
     public function home(): View|Factory|Application
     {
         $posts = Post::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereIn('post_type_id', [1, 14])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -25,7 +25,7 @@ class PageController extends Controller
             ->get();
 
         $activities = Post::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [1, 14, 28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -35,7 +35,7 @@ class PageController extends Controller
             ->get();
 
         $watched = Post::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->where('post_type_id', '23')
             ->where('collection_id', '3')
             ->latest('published_at')

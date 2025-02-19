@@ -1,5 +1,5 @@
 {
-"short_name": "marksuth",
+"short_name": "{{ config('app.name') }}",
 "name": "{{ config('app.name') }}",
 "icons": [
 {

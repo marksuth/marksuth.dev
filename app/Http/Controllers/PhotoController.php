@@ -35,7 +35,7 @@ class PhotoController extends Controller
     {
         $photos = Photo::whereYear('published_at', $year)
             ->where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->select('id', 'title', 'slug', 'meta', 'published_at')
             ->latest('published_at')
             ->firstorfail()
@@ -49,7 +49,7 @@ class PhotoController extends Controller
         $photos = Photo::whereYear('published_at', $year)
             ->whereMonth('published_at', $month)
             ->where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->select('id', 'title', 'slug', 'meta', 'published_at')
             ->latest('published_at')
             ->firstorfail()

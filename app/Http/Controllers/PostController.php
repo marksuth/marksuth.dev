@@ -20,7 +20,7 @@ class PostController extends Controller
     public function index(): Factory|View|Application
     {
         // Get Article and Note Posts
-        $posts = Post::where('published_at', '<=', now())
+        $posts = Post::whereNowOrPast('published_at')
             ->whereIn('post_type_id', [1, 14])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -33,7 +33,7 @@ class PostController extends Controller
 
     public function stream(): View|Factory|Application
     {
-        $posts = Post::where('published_at', '<=', now())
+        $posts = Post::whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [1, 14, 28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -51,7 +51,7 @@ class PostController extends Controller
     {
         $post = Post::where('published_at', 'like', $year.'-'.$month.'%')
             ->where('slug', $slug)
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -65,7 +65,7 @@ class PostController extends Controller
         $type = PostType::where('slug', $type)->firstOrFail();
 
         $posts = Post::where('post_type_id', $type->id)
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
@@ -83,7 +83,7 @@ class PostController extends Controller
     {
         $posts = Post::whereYear('published_at', $year)
             ->where('meta->published', 1)
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -104,7 +104,7 @@ class PostController extends Controller
             ->whereMonth('published_at', $month)
             ->where('meta->published', 1)
             ->whereNotIn('post_type_id', [28])
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
@@ -124,7 +124,7 @@ class PostController extends Controller
             ->firstOrFail();
 
         $posts = Post::where('post_type_id', $type->id)
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
@@ -144,7 +144,7 @@ class PostController extends Controller
         foreach ($types as $type) {
             $type->count = Post::where('post_type_id', $type->id)
                 ->where('meta->published', 1)
-                ->where('published_at', '<=', now())
+                ->whereNowOrPast('published_at')
                 ->whereNull('meta->distant_past')
                 ->whereNull('meta->near_future')
                 ->count();
@@ -158,7 +158,7 @@ class PostController extends Controller
         $collection = PostCollection::where('slug', $collection)->firstOrFail();
 
         $posts = Post::where('collection_id', $collection->id)
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
             ->latest('published_at')
@@ -175,7 +175,7 @@ class PostController extends Controller
         $type = PostType::where('slug', $type)->firstOrFail();
 
         $posts = Post::where('post_type_id', $type->id)
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->where('meta->distant_past', 1)
             ->latest('published_at')
             ->firstOrFail()
@@ -195,7 +195,7 @@ class PostController extends Controller
         // Display Posts from the Near Future
         $posts = Post::where('post_type_id', $type->id)
             ->where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNull('meta->distant_past')
             ->where('meta->near_future', '1')
             ->latest('published_at')
@@ -206,7 +206,7 @@ class PostController extends Controller
 
     public function search(Request $request): View|Factory|\Illuminate\Foundation\Application
     {
-        $posts = Post::search($request->input('query'))->where('published_at', '<=', now())->get();
+        $posts = Post::search($request->input('query'))->whereNowOrPast('published_at')->get();
         $photos = Photo::search($request->input('query'))->get();
 
         return view('search.search', compact('photos', 'posts'));

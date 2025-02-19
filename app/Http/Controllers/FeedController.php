@@ -11,7 +11,7 @@ class FeedController extends Controller
     public function posts(): Response
     {
         $posts = Post::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereIn('post_type_id', [1, 14])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -29,7 +29,7 @@ class FeedController extends Controller
     public function stream(): Response
     {
         $posts = Post::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [1, 14, 28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -47,7 +47,7 @@ class FeedController extends Controller
     public function photos(): Response
     {
         $photos = Photo::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->latest('published_at')
             ->take(10)
             ->get();

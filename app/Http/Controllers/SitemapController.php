@@ -21,7 +21,7 @@ class SitemapController extends Controller
     {
 
         $latest = Post::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -29,7 +29,7 @@ class SitemapController extends Controller
             ->first();
 
         $posts = Post::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
@@ -41,7 +41,7 @@ class SitemapController extends Controller
             $type->count = Post::where('post_type_id', $type->id)
                 ->where('meta->published', 1)
                 ->whereNotIn('post_type_id', [28])
-                ->where('published_at', '<=', now())
+                ->whereNowOrPast('published_at')
                 ->whereNull('meta->distant_past')
                 ->whereNull('meta->near_future')
                 ->count();
@@ -55,7 +55,7 @@ class SitemapController extends Controller
     public function photos(): Response
     {
         $photos = Photo::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->orderBy('published_at', 'desc')->get();
 
         return response()
@@ -66,7 +66,7 @@ class SitemapController extends Controller
     public function pages(): Response
     {
         $pages = Page::where('meta->published', '1')
-            ->where('published_at', '<=', now())
+            ->whereNowOrPast('published_at')
             ->orderBy('updated_at', 'desc')->get();
 
         return response()

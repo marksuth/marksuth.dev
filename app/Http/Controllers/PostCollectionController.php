@@ -28,7 +28,7 @@ class PostCollectionController extends Controller
         $collection = PostCollection::where('slug', $collection)->firstOrFail();
 
         // Get posts from posts table that match the collection_id
-        $posts = Post::where('published_at', '<=', now())
+        $posts = Post::whereNowOrPast('published_at')
             ->where('collection_id', $collection->id)
             ->select('title', 'slug', 'meta', 'content', 'published_at')
             ->latest('published_at')
