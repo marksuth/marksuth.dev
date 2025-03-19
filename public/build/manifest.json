@@ -24,7 +24,7 @@
     "isEntry": true
   },
   "resources/js/easymde.js": {
-    "file": "assets/easymde-B5SUvYaa.js",
+    "file": "assets/easymde-BR1hkoqW.js",
     "name": "easymde",
     "src": "resources/js/easymde.js",
     "isEntry": true
@@ -35,12 +35,12 @@
     "isEntry": true
   },
   "resources/sass/easymde.scss": {
-    "file": "assets/easymde-qT04zsjL.css",
+    "file": "assets/easymde-iVuKhmhc.css",
     "src": "resources/sass/easymde.scss",
     "isEntry": true
   },
   "resources/sass/style.scss": {
-    "file": "assets/style-B-fMf7f7.css",
+    "file": "assets/style-XFi6PM-r.css",
     "src": "resources/sass/style.scss",
     "isEntry": true
   }

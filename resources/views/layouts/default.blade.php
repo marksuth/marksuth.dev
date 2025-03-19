@@ -74,7 +74,7 @@
 <div id="navbar">
     <div class="tube">
         <a class="logo" href="{{ config('app.url') }}" rel="author">{{ config('app.name') }}</a>
-        <section><label for="main-nav" class="btn-menu inline-toggle"><i class="fa-solid fa-bars"></i></label><input
+        <section><label for="main-nav" class="btn-menu inline-toggle"><i class="fa-solid fa-bars"></i> <span class="sr-only">Menu</span></label><input
                 type="checkbox" id="main-nav" class="inline-toggle">
             <nav id="main-menu" aria-label="main navigation">
                 <a class="@if($current == config('app.url'))active @endif" href="/">Home</a>
@@ -99,6 +99,7 @@
 <div class="tube">
     <search id="search-box">
         <form action="{{ route('search.search') }}" method="GET" class="search-form">
+            <label for="query" class="sr-only">Search</label>
             <input type="search" name="query" id="query" placeholder="Search..." value="{{ request('query') }}">
             <button type="submit" class="btn" aria-label="Search"><i class="fa-solid fa-search" aria-hidden="true"></i>
             </button>
