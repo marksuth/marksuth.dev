@@ -55,8 +55,8 @@
           title="{{ config('app.name') }} - Stream">
     <link rel="icon" type="image/png" href="{{ config('app.url') }}/images/icon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ config('app.url') }}/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ config('app.url') }}/icons/icon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ config('app.url') }}/icons/icon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ config('app.url') }}/images/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ config('app.url') }}/images/icon-16.png">
     <link rel="manifest" href="{{ route('webmanifest') }}">
     <link rel="openid.delegate" href="{{ config('app.url') }}/">
     <link rel="openid.server" href="https://openid.indieauth.com/openid">

@@ -3,18 +3,18 @@
 "name": "{{ config('app.name') }}",
 "icons": [
 {
-"src": "{{ config('app.url') }}/icons/icon.svg",
+"src": "{{ config('app.url') }}/images/icon.svg",
 "type": "image/svg+xml",
 "sizes": "any",
 "purpose": "any"
 },
 {
-"src": "{{ config('app.url') }}/icons/icon-192.png",
+"src": "{{ config('app.url') }}/images/icon-192.png",
 "type": "image/png",
 "sizes": "192x192"
 },
 {
-"src": "{{ config('app.url') }}/icons/icon-512.png",
+"src": "{{ config('app.url') }}/images/icon-512.png",
 "type": "image/png",
 "sizes": "512x512",
 "purpose": "any"

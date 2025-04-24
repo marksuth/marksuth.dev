@@ -1,6 +1,6 @@
 version: "1.0"
 
-linter: jetbrains/qodana-php:2024.3
+linter: jetbrains/qodana-php:2025.1
 
 php:
   version: "8.4"

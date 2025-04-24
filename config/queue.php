@@ -21,7 +21,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may configure the connection options for every queue backend
-    | used by your application. An example configuration is provided for
+    | used by the app. An example configuration is provided for
     | each backend supported by Laravel. You're also free to add more.
     |
     | Drivers: "sync", "database", "beanstalkd", "sqs", "redis", "null"
@@ -81,7 +81,7 @@ return [
     |
     | The following options configure the database and table that store job
     | batching information. These options can be updated to any database
-    | connection and table which has been defined by your application.
+    | connection and table that has been defined by your app.
     |
     */
 
