@@ -1,6 +1,6 @@
-@import "reset";
-@import "fonts";
-@import "_pagination";
+@use "reset";
+@use "fonts";
+@use "_pagination";
 
 h1, h2, h3, h4 {
     font-weight: 700;

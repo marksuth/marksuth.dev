@@ -1,11 +1,3 @@
-@font-face {
-    font-family: 'Space Grotesk';
-    font-style: normal;
-    font-display: swap;
-    font-weight: 700;
-    src: url("~fancy-title/files/space-grotesk-latin-700-normal.woff2") format("woff2");
-}
-
 // Font Awesome 6
 @import "~@fortawesome/fontawesome-free/scss/functions";
 @import "~@fortawesome/fontawesome-free/scss/variables";
@@ -16,6 +8,14 @@
 @import "~@fortawesome/fontawesome-free/scss/list";
 @import "~@fortawesome/fontawesome-free/scss/icons";
 @import "~@fortawesome/fontawesome-free/scss/screen-reader";
+
+@font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url("~fancy-title/files/space-grotesk-latin-700-normal.woff2") format("woff2");
+}
 
 @font-face {
     font-family: 'Font Awesome 6 Free';

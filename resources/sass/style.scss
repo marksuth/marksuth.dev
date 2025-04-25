@@ -1,3 +1,4 @@
+@use "sass:meta";
 :root {
     --primary: #1b171f;
     --dark: #214154;
@@ -13,7 +14,7 @@
     --body-font: system-ui;
 }
 
-@import "base";
+@include meta.load-css("base");
 
 .sr-only {
     visibility: hidden;
@@ -497,7 +498,7 @@
     text-align: end;
 }
 
-@import "light";
+@include meta.load-css("light");
 
 
 .lozenge {
