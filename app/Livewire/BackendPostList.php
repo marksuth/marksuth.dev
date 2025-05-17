@@ -34,7 +34,8 @@ class BackendPostList extends Component
     public function render(): View|Factory|Application
     {
 
-        return view('livewire.backend-post-list',
+        return view(
+            'livewire.backend-post-list',
             [
                 'posts' => $this->getPosts(),
                 'post_types' => PostType::all(),

@@ -1,0 +1,31 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+    paths:
+        - app/
+        - config/
+        - database/
+        - routes/
+
+    # Level 10 is the highest level
+    level: 5
+
+    ignoreErrors:
+        - '#PHPDoc tag @var#'
+        - '#Access to an undefined property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+#'
+        - '#Call to an undefined method [a-zA-Z0-9\\_]+::([a-zA-Z0-9_]+)\(\)#'
+
+    excludePaths:
+        analyseAndScan:
+            - app/Console/Kernel.php (?)
+            - app/Exceptions/Handler.php (?)
+            - app/Http/Middleware/Authenticate.php (?)
+            - app/Providers/BroadcastServiceProvider.php (?)
+            - database/factories/
+            - database/seeders/
+
+    tmpDir: storage/framework/cache/phpstan
+
+    editorUrl: 'vscode://file/%%file%%:%%line%%'

@@ -18,7 +18,7 @@
     "isEntry": true
   },
   "resources/js/backend.js": {
-    "file": "assets/backend-CWqhwIyn.js",
+    "file": "assets/backend-CJJawMF8.js",
     "name": "backend",
     "src": "resources/js/backend.js",
     "isEntry": true
@@ -30,7 +30,7 @@
     "isEntry": true
   },
   "resources/sass/backend.scss": {
-    "file": "assets/backend-MWtX5oG3.css",
+    "file": "assets/backend-CvJGXYOB.css",
     "src": "resources/sass/backend.scss",
     "isEntry": true
   },
@@ -40,7 +40,7 @@
     "isEntry": true
   },
   "resources/sass/style.scss": {
-    "file": "assets/style-Bu7P1mbv.css",
+    "file": "assets/style-BCKANu7X.css",
     "src": "resources/sass/style.scss",
     "isEntry": true
   }

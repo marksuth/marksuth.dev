@@ -172,6 +172,9 @@ input[type="checkbox"] {
 @media (min-width: 1440px) {
     .tube {
         width: 75vw;
+        &-xl {
+            width: 90vw;
+        }
 
         &-content {
             width: 50vw;

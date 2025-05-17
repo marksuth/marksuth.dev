@@ -2,109 +2,109 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Backend\Traits\HandlesImageProcessing;
+use App\Http\Controllers\Backend\Traits\HandlesMetadata;
+use App\Http\Controllers\Backend\Traits\HandlesSlugGeneration;
 use App\Models\Post;
 use App\Models\PostType;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 
-class BackendPostController extends Controller
+class BackendPostController extends BaseBackendController
 {
-    public function index(): View|Factory|Application
+    use HandlesImageProcessing;
+    use HandlesMetadata;
+    use HandlesSlugGeneration;
+
+    /**
+     * The model class name.
+     */
+    protected string $modelClass = Post::class;
+
+    /**
+     * The view path for this resource.
+     */
+    protected string $viewPath = 'backend.posts';
+
+    /**
+     * The redirect path after store/update/delete.
+     */
+    protected string $redirectPath = '/backend/posts';
+
+    /**
+     * Get the model query builder.
+     */
+    protected function getModelQuery()
     {
-        $posts = Post::whereNull('meta->distant_past')
+        return app($this->modelClass)::whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
-            ->latest('created_at')
-            ->paginate(20);
-
-        return view('backend.posts.index', compact('posts'));
+            ->latest('created_at');
     }
 
-    public function create(): View|Factory|Application
+    /**
+     * Prepare data for the create view.
+     */
+    protected function prepareCreateViewData(): array
     {
-        $post_types = PostType::whereNotIn('id', [49, 50, 51])->get();
-
-        return view('backend.posts.post', compact('post_types'));
+        return [
+            'post_types' => $this->getPostTypes(),
+        ];
     }
 
-    public function store(): Application|Redirector|RedirectResponse
+    /**
+     * Prepare data for the edit view.
+     */
+    protected function prepareEditViewData(Model $model): array
     {
-        $post = new Post;
-
-        $post->title = request('title');
-        $post->slug = Str::slug(request('title'));
-        $post->content = request('content');
-        $post->published_at = request('published_at');
-        $post->post_type_id = request('type');
-
-        $meta = [];
-        $meta['description'] = request('description');
-        $meta['web_url'] = request('web_url');
-        $meta['medium_url'] = request('medium_url');
-        $meta['twitter_url'] = request('twitter_url');
-        $meta['instagram_url'] = request('linkedin_url');
-        $meta['facebook_url'] = request('facebook_url');
-        $meta['published'] = request('published');
-        $meta['distant_past'] = request('distant_past');
-        $meta['near_future'] = request('near_future');
-
-        $post->meta = $meta;
-
-        $post->save();
-
-        return redirect('/backend/posts');
+        return [
+            'post' => $model,
+            'post_types' => $this->getPostTypes(),
+        ];
     }
 
-    public function edit($id): View|Factory|Application
+    /**
+     * Get post types for the form.
+     */
+    protected function getPostTypes()
     {
-        $post = Post::find($id);
-        $post_types = PostType::whereNotIn('id', [49, 50, 51])->get();
-
-        return view('backend.posts.post', compact('post', 'post_types'));
+        return PostType::whereNotIn('id', [49, 50, 51])->get();
     }
 
-    public function update($id): Application|Redirector|RedirectResponse
+    /**
+     * Fill basic model attributes from request.
+     */
+    protected function fillBasicAttributes(Model $model): void
     {
+        $model->title = request('title');
+        $model->content = request('content');
+        $model->published_at = request('published_at');
+        $model->post_type_id = request('type');
 
-        $post = Post::find($id);
-
-        $post->title = request('title');
-        $post->slug = Str::slug(request('title'));
-        $post->content = request('content');
-        $post->published_at = request('published_at');
-        $post->post_type_id = request('type');
-
-        $meta = [];
-        $meta['description'] = request('description');
-        $meta['web_url'] = request('web_url');
-        $meta['medium_url'] = request('medium_url');
-        $meta['untappd_url'] = request('untappd_url');
-        $meta['twitter_url'] = request('twitter_url');
-        $meta['instagram_url'] = request('linkedin_url');
-        $meta['facebook_url'] = request('facebook_url');
-        $meta['published'] = request('published') ? 1 : 0;
-        $meta['distant_past'] = request('distant_past') ? 1 : 0;
-        $meta['near_future'] = request('near_future') ? 1 : 0;
-        $meta['img_url'] = request('image')->store('public/photos');
-        $meta['img_url'] = str_replace('public/', '', $meta['img_url']);
-
-        $post->meta = $meta;
-
-        $post->save();
-
-        return redirect('/backend/posts');
+        $this->applySlug($model);
     }
 
-    public function destroy($id): Application|Redirector|RedirectResponse
+    /**
+     * Process additional data for the model.
+     */
+    protected function processAdditionalData(Model $model): void
     {
-        $post = Post::find($id);
+        // Process metadata
+        $metadataFields = [
+            'description', 'web_url', 'medium_url', 'untappd_url',
+            'twitter_url', 'instagram_url', 'facebook_url',
+            'published', 'distant_past', 'near_future',
+        ];
 
-        $post->delete();
+        $booleanFields = ['published', 'distant_past', 'near_future'];
 
-        return redirect('/backend/posts');
+        $meta = $this->processMetadata($model, $metadataFields, $booleanFields);
+
+        // Process image if it's a new upload
+        if (request()->hasFile('image')) {
+            $image = $this->processAndStoreImage(request('image'));
+            $meta['img_url'] = str_replace('public/', '', $image);
+        }
+
+        $model->meta = $meta;
     }
 }

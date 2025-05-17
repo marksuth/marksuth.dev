@@ -1,3 +1,0 @@
-<?php
-
-arch()->preset()->php();
