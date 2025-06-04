@@ -8,10 +8,10 @@
     position: relative;
     display: block;
     padding: 0.25rem 0.75rem;
-    color: var(--text);
+    color: #fff;
     text-decoration: none;
-    background-color: var(--dark);
-    border: 0 solid var(--dark);
+    background-color: var(--brand);
+    border: 0 solid var(--brand);
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
@@ -23,31 +23,31 @@
 
 .page-link:hover {
     z-index: 2;
-    color: var(--text);
-    background-color: var(--dark);
-    border-color: var(--dark)
+    color: var(--brand);
+    background-color: var(--body);
+    border-color: var(--brand)
 }
 
 .page-link:focus {
     z-index: 3;
-    color: var(--text);
-    background-color: var(--primary);
+    color: var(--body);
+    background-color: var(--brand);
     outline: 0;
     box-shadow: 0 0 0 .25rem rgba(33, 65, 84, .25);
 }
 
 .page-link.active, .active > .page-link {
     z-index: 3;
-    color: var(--text);
-    background-color: var(--primary);
-    border-color: var(--primary)
+    color: var(--body);
+    background-color: var(--brand);
+    border-color: var(--brand)
 }
 
 .page-link.disabled, .disabled > .page-link {
     color: var(--text-muted);
     pointer-events: none;
-    background-color: var(--primary);
-    border-color: var(--primary)
+    background-color: var(--brand);
+    border-color: var(--brand)
 }
 
 .page-item:not(:first-child) .page-link {
