@@ -1,31 +1,58 @@
+// Color variables
 $blue: #214154;
+$dark-blue: darken($blue, 10%);
+$dark: #1b171f;
+$alt: #005EB8;
 $white: #ffffff;
+$black: #000000;
 $gray-600: #ced1d2;
 $gray-alt: #565858;
 $red: #bf2011;
-$dark: darken($blue, 10%);
-$black: #000000;
-$primary: $blue;
+$text-muted: #B2D8E6;
 
+// Bootstrap variables
+$primary: $blue;
 $enable-rounded: true;
 $enable-deprecation-messages: false;
-
 $link-decoration: underline;
+$navbar-dark-color: $gray-600;
+$navbar-dark-hover-color: darken($navbar-dark-color, 5%);
+$pagination-border-width: 0;
+$input-bg: $white;
+$input-color: $dark-blue;
+$btn-close-opacity: 1;
+$btn-close-color: $black;
 
-$font-family-sans-serif: "Geist", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+// Typography
+$font-family-sans-serif: system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$fancy-font: 'Space Grotesk', sans-serif;
 $font-family-monospace: monospace;
 $line-height-base: 1.75;
 $headings-font-family: $font-family-sans-serif;
-$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 $headings-font-weight: 800;
 
-$navbar-dark-color: $gray-600;
-$navbar-dark-hover-color: darken($navbar-dark-color, 5%);
+// Font Awesome
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
-$pagination-border-width: 0;
+// CSS Custom Properties
+:root {
+  // Colors
+  --primary: #{$dark};
+  --dark: #{$blue};
+  --alt: #{$alt};
+  --text: #{$white};
+  --body: var(--primary);
+  --navbar: var(--primary);
+  --text-muted: #{$text-muted};
+  --text-inverse: #{$black};
+  --headings: var(--text);
+  --logo: var(--text);
 
-$input-bg: $white;
-$input-color: $dark;
+  // Gradients
+  --gradient: linear-gradient(45deg, var(--dark), var(--alt));
+  --notify: linear-gradient(45deg, #D60270, #69D1CC);
 
-$btn-close-opacity: 1;
-$btn-close-color: $black;
+  // Typography
+  --fancy-font: #{$fancy-font};
+  --body-font: #{$font-family-sans-serif};
+}

@@ -2,46 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Photo;
 use App\Models\Post;
 use App\Models\PostCollection;
 use App\Models\PostType;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Standard fields to select for post listings
+     */
+    protected $standardPostFields = ['id', 'title', 'slug', 'post_type_id', 'content', 'published_at'];
+
+    /**
+     * Post type IDs to exclude from standard queries
+     */
+    protected $excludedPostTypeIds = [28];
+
+    /**
+     * Display a listing of articles and notes.
      */
     public function index(): Factory|View|Application
     {
-        // Get Article and Note Posts
-        $posts = Post::whereNowOrPast('published_at')
-            ->whereIn('post_type_id', [1, 14])
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->select('id', 'title', 'slug', 'post_type_id', 'content', 'published_at')
-            ->latest('published_at')
-            ->paginate(10);
+        $posts = $this->getResultsOrFail($this->getArticlesAndNotes(), true, 10);
 
-        return view('posts.index', compact('posts'));
+        return $this->renderPaginatedView('posts.index', 'posts', $posts);
     }
 
+    /**
+     * Display a stream of activity posts.
+     */
     public function stream(): View|Factory|Application
     {
-        $posts = Post::whereNowOrPast('published_at')
-            ->whereNotIn('post_type_id', [1, 14, 28])
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->select('id', 'title', 'slug', 'post_type_id', 'content', 'published_at')
-            ->latest('published_at')
-            ->paginate(20);
+        $posts = $this->getResultsOrFail($this->getActivityPosts(), true, 20);
 
-        return view('posts.stream', compact('posts'));
+        return $this->renderPaginatedView('posts.stream', 'posts', $posts);
     }
 
     /**
@@ -49,31 +47,15 @@ class PostController extends Controller
      */
     public function show($year, $month, $slug): Factory|View|Application
     {
-        $post = Post::where('published_at', 'like', $year.'-'.$month.'%')
-            ->where('slug', $slug)
-            ->whereNowOrPast('published_at')
-            ->whereNotIn('post_type_id', [28])
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->firstOrFail();
+        $post = Post::query()
+            ->whereNotIn('post_type_id', $this->excludedPostTypeIds);
 
-        return view('posts.post', compact('post'));
-    }
+        $this->applyYearMonthSlugConstraints($post, $year, $month, $slug);
+        $this->applyPublishedConstraints($post);
 
-    public function posts($type): Factory|View|Application
-    {
-        $type = PostType::where('slug', $type)->firstOrFail();
+        $post = $post->firstOrFail();
 
-        $posts = Post::where('post_type_id', $type->id)
-            ->whereNowOrPast('published_at')
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->latest('published_at')
-            ->firstOrFail()
-            ->paginate(10);
-
-        return view('posts.type', compact('posts', 'type'));
-
+        return $this->renderSingleItemView('posts.post', 'post', $post);
     }
 
     /**
@@ -81,18 +63,16 @@ class PostController extends Controller
      */
     public function year(string $year): View|Response
     {
-        $posts = Post::whereYear('published_at', $year)
-            ->where('meta->published', 1)
-            ->whereNowOrPast('published_at')
-            ->whereNotIn('post_type_id', [28])
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->latest('published_at')
-            ->firstOrFail()
-            ->paginate(10);
+        $query = Post::query()
+            ->whereNotIn('post_type_id', $this->excludedPostTypeIds);
 
-        return view('posts.year', compact('posts', 'year'));
+        $this->applyPublishedConstraints($query);
+        $this->applyDateFilters($query, $year);
+        $this->applyPublishedDateOrdering($query);
 
+        $posts = $this->getResultsOrFail($query, true, 10);
+
+        return $this->renderPaginatedView('posts.year', 'posts', $posts, ['year' => $year]);
     }
 
     /**
@@ -100,18 +80,19 @@ class PostController extends Controller
      */
     public function month(int $year, int $month): Factory|View|Application
     {
-        $posts = Post::whereYear('published_at', $year)
-            ->whereMonth('published_at', $month)
-            ->where('meta->published', 1)
-            ->whereNotIn('post_type_id', [28])
-            ->whereNowOrPast('published_at')
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->latest('published_at')
-            ->firstOrFail()
-            ->paginate(10);
+        $query = Post::query()
+            ->whereNotIn('post_type_id', $this->excludedPostTypeIds);
 
-        return view('posts.month', compact('posts', 'year', 'month'));
+        $this->applyPublishedConstraints($query);
+        $this->applyDateFilters($query, $year, $month);
+        $this->applyPublishedDateOrdering($query);
+
+        $posts = $this->getResultsOrFail($query, true, 10);
+
+        return $this->renderPaginatedView('posts.month', 'posts', $posts, [
+            'year' => $year,
+            'month' => $month,
+        ]);
     }
 
     /**
@@ -119,18 +100,10 @@ class PostController extends Controller
      */
     public function type(string $type): Factory|View|Application
     {
-        $type = PostType::where('slug', $type)
-            ->whereNotIn('id', [28])
-            ->firstOrFail();
+        $type = $this->getPostTypeBySlug($type);
+        $posts = $this->getResultsOrFail($this->getPostsByType($type), true, 10);
 
-        $posts = Post::where('post_type_id', $type->id)
-            ->whereNowOrPast('published_at')
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->latest('published_at')
-            ->paginate(10);
-
-        return view('posts.type', compact('posts', 'type'));
+        return $this->renderPaginatedView('posts.type', 'posts', $posts, ['type' => $type]);
     }
 
     /**
@@ -138,33 +111,34 @@ class PostController extends Controller
      */
     public function types(): Factory|View|Application
     {
-        $types = PostType::whereNotIn('id', [28])->get();
+        $types = PostType::whereNotIn('id', $this->excludedPostTypeIds)->get();
 
         // Get Post count for each type
         foreach ($types as $type) {
-            $type->count = Post::where('post_type_id', $type->id)
-                ->where('meta->published', 1)
-                ->whereNowOrPast('published_at')
-                ->whereNull('meta->distant_past')
-                ->whereNull('meta->near_future')
-                ->count();
+            $query = Post::where('post_type_id', $type->id);
+            $this->applyPublishedConstraints($query);
+            $type->count = $query->count();
         }
 
-        return view('posts.types', compact('types'));
+        return $this->renderView('posts.types', ['types' => $types]);
     }
 
+    /**
+     * Display posts from a specific collection.
+     */
     public function post_collection($collection): Factory|View|Application
     {
         $collection = PostCollection::where('slug', $collection)->firstOrFail();
 
-        $posts = Post::where('collection_id', $collection->id)
-            ->whereNowOrPast('published_at')
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->latest('published_at')
-            ->paginate(10);
+        $query = Post::where('collection_id', $collection->id);
+        $this->applyPublishedConstraints($query);
+        $this->applyPublishedDateOrdering($query);
 
-        return view('collections.collection', compact('posts', 'collection'));
+        $posts = $this->getResultsOrFail($query, true, 10);
+
+        return $this->renderPaginatedView('collections.collection', 'posts', $posts, [
+            'collection' => $collection,
+        ]);
     }
 
     /**
@@ -172,43 +146,90 @@ class PostController extends Controller
      */
     public function distant_past_type($type): Factory|View|Application
     {
-        $type = PostType::where('slug', $type)->firstOrFail();
+        $type = $this->getPostTypeBySlug($type);
 
-        $posts = Post::where('post_type_id', $type->id)
+        $query = Post::where('post_type_id', $type->id)
             ->whereNowOrPast('published_at')
-            ->where('meta->distant_past', 1)
-            ->latest('published_at')
-            ->firstOrFail()
-            ->paginate(30);
+            ->where('meta->distant_past', 1);
 
-        return view('posts.distantpast.type', compact('posts', 'type'));
+        $this->applyPublishedDateOrdering($query);
 
+        $posts = $this->getResultsOrFail($query, true, 30);
+
+        return $this->renderPaginatedView('posts.distantpast.type', 'posts', $posts, [
+            'type' => $type,
+        ]);
     }
 
     /**
-     * Display a listing of posts from the distant past.
+     * Display a listing of posts from the near future.
      */
     public function near_future_type($type): Factory|View|Application
     {
         $type = PostType::where('name', $type)->firstOrFail();
 
-        // Display Posts from the Near Future
-        $posts = Post::where('post_type_id', $type->id)
+        $query = Post::where('post_type_id', $type->id)
             ->where('meta->published', '1')
             ->whereNowOrPast('published_at')
             ->whereNull('meta->distant_past')
-            ->where('meta->near_future', '1')
-            ->latest('published_at')
-            ->paginate(10);
+            ->where('meta->near_future', '1');
 
-        return view('posts.nearfuture.type', compact('posts', 'type'));
+        $this->applyPublishedDateOrdering($query);
+
+        $posts = $this->getResultsOrFail($query, true, 10);
+
+        return $this->renderPaginatedView('posts.nearfuture.type', 'posts', $posts, [
+            'type' => $type,
+        ]);
     }
 
-    public function search(Request $request): View|Factory|\Illuminate\Foundation\Application
+    /**
+     * Get a post type by slug.
+     */
+    protected function getPostTypeBySlug(string $slug): PostType
     {
-        $posts = Post::search($request->input('query'))->whereNowOrPast('published_at')->get();
-        $photos = Photo::search($request->input('query'))->get();
+        return PostType::where('slug', $slug)
+            ->whereNotIn('id', $this->excludedPostTypeIds)
+            ->firstOrFail();
+    }
 
-        return view('search.search', compact('photos', 'posts'));
+    /**
+     * Get posts by type.
+     */
+    protected function getPostsByType(PostType $type)
+    {
+        $query = Post::where('post_type_id', $type->id);
+        $this->applyPublishedConstraints($query);
+        $this->applyPublishedDateOrdering($query);
+
+        return $query;
+    }
+
+    /**
+     * Get articles and notes posts.
+     */
+    protected function getArticlesAndNotes()
+    {
+        $query = Post::whereIn('post_type_id', [1, 14])
+            ->select($this->standardPostFields);
+
+        $this->applyPublishedConstraints($query);
+        $this->applyPublishedDateOrdering($query);
+
+        return $query;
+    }
+
+    /**
+     * Get activity posts.
+     */
+    protected function getActivityPosts()
+    {
+        $query = Post::whereNotIn('post_type_id', [1, 14, 28])
+            ->select($this->standardPostFields);
+
+        $this->applyPublishedConstraints($query);
+        $this->applyPublishedDateOrdering($query);
+
+        return $query;
     }
 }

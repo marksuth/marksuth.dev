@@ -20,6 +20,7 @@
     visibility: hidden;
 }
 
+// Header and intro section
 #intro {
     p {
         font-size: 1.25rem;
@@ -32,7 +33,6 @@
         font-family: var(--title-font), serif;
         line-height: 1;
     }
-
 }
 
 @media (min-width: 992px) {
@@ -50,7 +50,6 @@
         h1 {
             font-size: 6rem;
         }
-
     }
 }
 
@@ -76,15 +75,14 @@
         display: flex;
         justify-content: center;
         padding: 0.5rem;
+
         img {
             opacity: 0.8;
         }
 
-        & {
-            margin-top: 0;
-        }
+        margin-top: 0;
 
-        & .avatar {
+        .avatar {
             border: 0;
         }
     }
@@ -93,15 +91,11 @@
         animation: gradient 15s ease infinite;
         background: linear-gradient(-45deg, red, #cc5208);
         background-size: 400% 400%;
-
-        & {
-            margin-top: 0;
-        }
-
-
+        margin-top: 0;
     }
 }
 
+// Animations
 @keyframes gradient {
     0% {
         background-position: 0 50%;
@@ -114,6 +108,7 @@
     }
 }
 
+// Live streaming indicator
 .live-icon {
     height: 50px;
     left: 12.25rem;
@@ -123,6 +118,7 @@
     width: 150px;
 }
 
+// Latest photo component
 #latest-photo {
     border: 0;
     padding: 0.25rem;
@@ -161,7 +157,6 @@
             right: 0.5rem;
             background: transparent;
             border: none;
-
         }
 
         .timestamp {
@@ -169,7 +164,7 @@
         }
     }
 
-    & figcaption {
+    figcaption {
         font-weight: 700;
         padding: 0.5rem;
     }
@@ -185,6 +180,7 @@
     }
 }
 
+// Responsive styles for latest photo on larger screens
 @media (min-width: 992px) {
     #latest-photo:popover-open {
         max-height: 80vh;
@@ -193,11 +189,11 @@
         img {
             max-height: 70vh;
             max-width: 50vw;
-
         }
     }
 }
 
+// Box component
 .box {
     background: var(--dark);
     color: var(--text);
@@ -218,6 +214,7 @@
     }
 }
 
+// Responsive styles for box and avatar on smaller screens
 @media (max-width: 991px) {
     .box {
         margin-bottom: 1rem;
@@ -227,20 +224,21 @@
     .avatar-box {
         max-width: 98%;
 
-        & img {
+        img {
             width: 32vh;
             height: 32vh;
         }
     }
 }
 
+// Social media links
 #social-links {
     display: flex;
     justify-content: space-evenly;
     list-style: none;
     padding: 0.25rem 0.25rem 0.25rem 0;
 
-    & a {
+    a {
         color: var(--text);
         margin: 0.25rem;
 
@@ -261,26 +259,25 @@
             margin-left: 0;
         }
     }
-
 }
 
+// Responsive styles for social links on larger screens
 @media (min-width: 992px) {
     #social-links {
         justify-content: start;
 
-        & > a {
+        > a {
             margin: 0.25rem 1rem;
 
             .fa-brands, .fa-solid {
                 font-size: 2.5rem;
                 line-height: 3rem;
             }
-
         }
-
     }
 }
 
+// Feed and activity stream components
 #feed {
     display: grid;
     gap: 1rem;
@@ -309,6 +306,7 @@
     }
 }
 
+// Post and photo shared styles
 .photo,
 .post {
     padding: 0.75rem;
@@ -330,7 +328,7 @@
         justify-content: end;
         gap: 0.5rem;
 
-        & > a {
+        > a {
             text-decoration: none;
         }
     }
@@ -341,13 +339,14 @@
     }
 }
 
+// Responsive styles for posts, photos, and feed on smaller screens
 @media (max-width: 991px) {
     .photo,
     .post {
         max-width: 90vw !important;
 
         h2 {
-            font-size: 1.2px;
+            font-size: 1.2rem; // Fixed typo: was 1.2px
         }
     }
 
@@ -360,12 +359,14 @@
     }
 }
 
+// Photo-specific styles
 .photo {
     h1 {
         font-size: 2rem;
     }
 }
 
+// Page header and title styles
 .page-header {
     padding: 2rem 0;
 
@@ -378,12 +379,14 @@
     font-family: var(--title-font), serif;
 }
 
+// Avatar thumbnail
 .tiny-avatar {
     border-radius: 50%;
     height: 2rem;
     width: 2rem;
 }
 
+// Content area styles
 .entry-content {
     p {
         line-height: 1.75;
@@ -391,6 +394,7 @@
     }
 }
 
+// Collection cover display
 .collection-cover {
     display: flex;
     height: 20rem;
@@ -423,28 +427,30 @@
     flex-direction: column;
     justify-content: center;
 
-    & .tile {
+    .tile {
         padding: 1rem;
     }
 
-    & .btn {
+    .btn {
         margin: 0.5rem auto;
         max-width: 100%;
     }
 
-    & small,
+    small,
     h1 {
         text-align: center;
         line-height: 3;
     }
 }
 
+// Responsive styles for login form on larger screens
 @media (min-width: 992px) {
     #login-box {
         max-width: 25vw;
     }
 }
 
+// Error page styles
 #error-page {
     padding-top: 15vh;
 
@@ -491,7 +497,7 @@
     );
 }
 
-
+// Category and timestamp lozenge
 .lozenge {
     line-height: 1.5;
     padding-bottom: 1rem;
@@ -517,6 +523,5 @@
         padding: 0.25rem 0.5rem 0.25rem 2rem;
         display: inline-block;
         z-index: -100;
-
     }
 }
