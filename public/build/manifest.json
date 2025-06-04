@@ -1,7 +1,7 @@
 {
-  "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2": {
-    "file": "assets/space-grotesk-latin-700-normal-B7Rq4K4l.woff2",
-    "src": "node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2"
+  "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2": {
+    "file": "assets/instrument-serif-latin-400-normal-CwvVGij3.woff2",
+    "src": "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400-D_cYUPeE.woff2",
@@ -17,30 +17,8 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
-  "resources/js/backend.js": {
-    "file": "assets/backend-CWqhwIyn.js",
-    "name": "backend",
-    "src": "resources/js/backend.js",
-    "isEntry": true
-  },
-  "resources/js/easymde.js": {
-    "file": "assets/easymde-lQvtOKJH.js",
-    "name": "easymde",
-    "src": "resources/js/easymde.js",
-    "isEntry": true
-  },
-  "resources/sass/backend.scss": {
-    "file": "assets/backend-MWtX5oG3.css",
-    "src": "resources/sass/backend.scss",
-    "isEntry": true
-  },
-  "resources/sass/easymde.scss": {
-    "file": "assets/easymde-iVuKhmhc.css",
-    "src": "resources/sass/easymde.scss",
-    "isEntry": true
-  },
   "resources/sass/style.scss": {
-    "file": "assets/style-Bu7P1mbv.css",
+    "file": "assets/style-DFOQv0vW.css",
     "src": "resources/sass/style.scss",
     "isEntry": true
   }

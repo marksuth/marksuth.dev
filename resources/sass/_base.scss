@@ -3,18 +3,18 @@
 @use "_pagination";
 
 h1, h2, h3, h4 {
-    font-weight: 700;
-    color: var(--headings);
+    color: var(--brand);
+    font-family: var(--title-font), serif;
     text-wrap: balance;
     line-height: 1.25;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 h2 {
-    font-size: 1.85rem;
+    font-size: 1.75rem;
 }
 
 h3 {
@@ -34,7 +34,7 @@ ul {
 body {
     background: var(--body);
     color: var(--text);
-    font-family: system-ui, sans-serif;
+    font-family: var(--body-font), sans-serif;
     font-size: 1rem;
     line-height: 1.5;
     margin: 0;
@@ -79,20 +79,10 @@ input[type="checkbox"] {
 #navbar {
     background: var(--navbar);
     color: var(--text);
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-
-    & .logo {
-        font-family: var(--fancy-font), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: 1.5rem;
-        text-decoration: none;
-        text-transform: uppercase;
-        color: var(--logo);
-        margin: 0;
-    }
 
     & .tube {
         display: flex;
@@ -251,15 +241,15 @@ input[type="checkbox"] {
 .tile {
     background: white;
     color: black;
-    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
     padding: 0.5rem;
     margin: 0.5rem;
     display: grid;
     max-width: 90vw;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 
     a:hover {
-        color: var(--primary);
+        color: var(--brand);
     }
 
     &-alt {
@@ -312,7 +302,7 @@ input[type="checkbox"] {
     }
 
     & img, {
-        background: var(--primary);
+        background: var(--brand);
         width: 100%;
         height: auto;
         display: block;
@@ -337,16 +327,18 @@ input[type="checkbox"] {
 }
 
 .btn {
-    background: var(--dark);
+    background: var(--brand);
     color: #fff;
     transition: 0.3s all ease;
+    font-weight: 700;
+    border: 3px solid var(--brand);
     display: inline-block;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 1rem;
     text-decoration: none;
-    border-radius: 0.5rem;
 
     &:hover {
-        box-shadow: 0 0 7px var(--text) inset;
+        background: var(--body);
+        color: var(--brand);
         transition: 0.3s all ease;
     }
 
@@ -380,9 +372,15 @@ input[type="checkbox"] {
 }
 
 .site-footer {
+    background: var(--brand);
     padding: 1.5rem 0;
-    color: var(--text);
+    color: #fff;
     text-align: center;
+
+    a {
+        color: #fff;
+        font-weight: 500;
+    }
 }
 
 .footer-nav {
@@ -390,7 +388,7 @@ input[type="checkbox"] {
     justify-content: center;
 
     & > a {
-        color: var(--text-muted);
+        color: #fff;
         text-decoration: none;
         font-size: 0.9rem;
         margin: 0.5rem;

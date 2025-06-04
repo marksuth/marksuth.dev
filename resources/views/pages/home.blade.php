@@ -40,12 +40,10 @@
             <div>
                 <div class="box">
                     <h1 class="p-name">Mark Sutherland</h1>
-                    <p class="p-note box-mid"><span class="p-category">Developer</span> & Digital Creative</p>
-                    <p class="box-mid"><i class="fa-solid fa-location-dot"></i>
+                    <p class="p-note box-mid"><span class="p-category">Developer</span> & Digital Creative,
                         <span class="p-locality">Leicester</span>,
                         <span class="p-country-name">UK</span>
-                        <i class="fa-solid fa-user"></i>
-                        <span class="p-pronouns box-divider">He/Him</span></p></div>
+                        <span class="p-pronouns box-divider">(He/Him)</span></p></div>
                 <nav id="social-links" class="elsewhere" aria-label="Social links">
                     <a class="u-url u-uid" href="{{ config('app.url') }}" rel="me" aria-label="Website"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
                     <a class="u-email" href="mailto:mark@marksuth.dev" rel="me" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
@@ -75,8 +73,8 @@
                             @endif
                         </time>
                     </small><br>
-                    <h2 class="p-name"><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}">
-                            {{ $post->title }}</a></h2>
+                    <h3 class="p-name"><a href="/posts/{{ $post->published_at->format('Y/m') }}/{{ $post->slug }}">
+                            {{ $post->title }}</a></h3>
                     <div class="e-content">
                         {!! Str::markdown(Str::words("$post->content", 30, ' ...')) !!}
                     </div>
