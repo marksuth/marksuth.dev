@@ -8,7 +8,7 @@
         "phpstan": "vendor/bin/phpstan analyse --memory-limit=2G"
     },
     "devDependencies": {
-        "@erbelion/vite-plugin-laravel-purgecss": "^0.3.4",
+        "@erbelion/vite-plugin-laravel-purgecss": "^0.4.0",
         "axios": "^1.7.9",
         "laravel-vite-plugin": "^1.2",
         "lint-staged": "^16.0.0",
