@@ -99,7 +99,7 @@
     <div class="tube">
         <div class="split">
             <div>
-                <small>&copy; Mark Sutherland {{ date('Y') }}. 🌈</small>
+                <small>&copy; Mark Sutherland {{ date('Y') }}. 🏳️‍🌈</small>
             </div>
             <div>
                 <p>
