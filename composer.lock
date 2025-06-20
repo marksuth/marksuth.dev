@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1cd50fdd862c89b1f6d2b3b3b388f35c",
+    "content-hash": "80eb5268e57380aecda0b7050c7d5f23",
     "packages": [
         {
             "name": "brick/math",
@@ -6528,16 +6528,16 @@
         },
         {
             "name": "typesense/typesense-php",
-            "version": "v4.9.3",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/typesense/typesense-php.git",
-                "reference": "50fc2089ff4829c8e0e11d8c674e9da085b49998"
+                "reference": "0e8dee542c05b201becf4734319075e6c4d540b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/typesense/typesense-php/zipball/50fc2089ff4829c8e0e11d8c674e9da085b49998",
-                "reference": "50fc2089ff4829c8e0e11d8c674e9da085b49998",
+                "url": "https://api.github.com/repos/typesense/typesense-php/zipball/0e8dee542c05b201becf4734319075e6c4d540b3",
+                "reference": "0e8dee542c05b201becf4734319075e6c4d540b3",
                 "shasum": ""
             },
             "require": {
@@ -6553,6 +6553,8 @@
                 "psr/http-message": "^1.0 || ^2.0"
             },
             "require-dev": {
+                "mockery/mockery": "^1.6",
+                "phpunit/phpunit": "^11.2",
                 "squizlabs/php_codesniffer": "3.*",
                 "symfony/http-client": "^5.2"
             },
@@ -6593,7 +6595,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-29T15:34:34+00:00"
+            "time": "2025-05-05T17:35:26+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -10187,13 +10189,13 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2",
         "ext-pdo": "*"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
