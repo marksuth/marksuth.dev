@@ -15,9 +15,9 @@
                                       href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
                 <time datetime="{{ $post->published_at }}" class="dt-published timestamp">
                     @if($post->published_at->diffInWeeks(now()) < 6)
-                        {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                        {{ $post->published_at->tz(config('app.timezone'))->diffForHumans() }}
                     @else
-                        {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
+                        {{ $post->published_at->tz(config('app.timezone'))->format('d/m/y @ H:i') }}
                     @endif
                 </time>
             </small>
@@ -40,14 +40,14 @@
                         imported
                     @endif
                     <time class="dt-published"
-                          datetime="{{ $post->published_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->published_at)->format('d/m/Y @ H:i') }}</time>
-                    by <span class="h-card"><img src="https://marksuth.dev/images/avatar.jpg" alt="Mark Sutherland"
+                          datetime="{{ $post->published_at->tz(config('app.timezone'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->published_at)->format('d/m/Y @ H:i') }}</time>
+                    by <span class="h-card"><img src="https://marksuth.dev/avatar.jpg" alt="Mark Sutherland"
                                                  class="tiny-avatar u-photo" height="20" width="20" loading="lazy"/> <a
                             href="https://marksuth.dev" class="p-author" rel="author">Mark Sutherland</a></span>
                     @if($post->updated_at > $post->published_at)
                         <br><i>Last updated
                             <time class="dt-updated"
-                                  datetime="{{ $post->updated_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->updated_at)->format('d/m/Y @ H:i') }}</time>
+                                  datetime="{{ $post->updated_at->tz(config('app.timezone'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->updated_at)->format('d/m/Y @ H:i') }}</time>
                         </i>
                     @endif
 

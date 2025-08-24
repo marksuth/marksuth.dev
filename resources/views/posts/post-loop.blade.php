@@ -6,9 +6,9 @@
                                           href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
                     <time datetime="{{ $post->published_at }}" class="dt-published timestamp">
                         @if($post->published_at->diffInWeeks(now()) < 6)
-                            {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                            {{ $post->published_at->tz(config('app.timezone'))->diffForHumans() }}
                         @else
-                            {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
+                            {{ $post->published_at->tz(config('app.timezone'))->format('d/m/y @ H:i') }}
                         @endif
                     </time>
                 </small>

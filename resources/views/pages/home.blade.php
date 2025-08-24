@@ -8,14 +8,14 @@
             <div class="avatar-box">
                 @if ($latest_photo)
                     <button class="avatar-surround" popovertarget="latest-photo">
-                        <img src="{{ config('app.url') }}/images/avatar.jpg" alt="Mark Sutherland"
+                        <img src="{{ config('app.url') }}/avatar.jpg" alt="{{ config('app.name') }}"
                              class="avatar u-photo" height="416" width="416">
                     </button>
                     <div popover id="latest-photo">
                         <div id="latest-photo-header">
                             <small class="timestamp"><i class="fas fa-clock"></i>
                                 <time
-                                    datetime="{{ $latest_photo->published_at }}">{{ $latest_photo->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}</time>
+                                    datetime="{{ $latest_photo->published_at }}">{{ $latest_photo->published_at->tz(config('app.timezone'))->diffForHumans() }}</time>
                             </small>
                             <button type="button" popovertarget="latest-photo" popovertargetaction="hide"
                                     class="btn btn-close" title="close"><i class="fa-solid fa-times"></i></button>
@@ -33,7 +33,7 @@
                         </figure>
                     </div>
                 @else
-                    <img src="{{ config('app.url') }}/images/avatar.jpg" alt="Mark Sutherland" class="avatar u-photo"
+                    <img src="{{ config('app.url') }}/avatar.jpg" alt="{{ config('app.name') }}" class="avatar u-photo"
                          height="416" width="416">
                 @endif
             </div>
@@ -67,9 +67,9 @@
                               href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>
                         <time datetime="{{ $post->published_at }}" class="dt-published timestamp">
                             @if($post->published_at->diffInWeeks(now()) < 6)
-                                {{ $post->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                                {{ $post->published_at->tz(config('app.timezone'))->diffForHumans() }}
                             @else
-                                {{ $post->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
+                                {{ $post->published_at->tz(config('app.timezone'))->format('d/m/y @ H:i') }}
                             @endif
                         </time>
                     </small><br>
@@ -97,9 +97,9 @@
                             </a>
                             <time datetime="{{ $watch->published_at }}">
                                 @if($watch->published_at->diffInWeeks(now()) < 6)
-                                    {{ $watch->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                                    {{ $watch->published_at->tz(config('app.timezone'))->diffForHumans() }}
                                 @else
-                                    {{ $watch->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
+                                    {{ $watch->published_at->tz(config('app.timezone'))->format('d/m/y @ H:i') }}
                                 @endif
                             </time>
                         </li>
@@ -123,9 +123,9 @@
                         </a>
                         <time datetime="{{ $photo->published_at }}">
                             @if($photo->published_at->diffInWeeks(now()) < 6)
-                                {{ $photo->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                                {{ $photo->published_at->tz(config('app.timezone'))->diffForHumans() }}
                             @else
-                                {{ $photo->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
+                                {{ $photo->published_at->tz(config('app.timezone'))->format('d/m/y @ H:i') }}
                             @endif
                         </time>
                     </li>

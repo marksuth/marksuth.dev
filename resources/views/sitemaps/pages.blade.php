@@ -27,7 +27,7 @@
     @foreach ($pages as $page)
         <url>
             <loc>https://marksuth.dev/{{ $page->slug }}</loc>
-            <lastmod>{{ $page->updated_at->tz(env('APP_TIMEZONE'))->toAtomString() }}</lastmod>
+            <lastmod>{{ $page->updated_at->tz(config('app.timezone'))->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>

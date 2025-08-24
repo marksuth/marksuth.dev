@@ -6,9 +6,9 @@
             </a>
             <time datetime="{{ $photo->published_at }}">
                 @if($photo->published_at->diffInWeeks(now()) < 6)
-                    {{ $photo->published_at->tz(env('APP_TIMEZONE'))->diffForHumans() }}
+                    {{ $photo->published_at->tz(config('app.timezone'))->diffForHumans() }}
                 @else
-                    {{ $photo->published_at->tz(env('APP_TIMEZONE'))->format('d/m/y @ H:i') }}
+                    {{ $photo->published_at->tz(config('app.timezone'))->format('d/m/y @ H:i') }}
                 @endif
             </time>
         </li>

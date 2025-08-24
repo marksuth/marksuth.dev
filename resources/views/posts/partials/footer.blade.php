@@ -1,9 +1,9 @@
 <footer class="entry-meta">
     <p><a href="/posts/type/{{ strtolower($post->post_type->name) }}">{{ $post->post_type->name }}</a>@if($post->distant_past != '1') posted @else imported @endif
-        <time class="dt-published" datetime="{{ $post->published_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->published_at)->format('d/m/Y @ H:i') }}</time>
-        by <span class="h-card"><img src="https://marksuth.dev/images/avatar.jpg" alt="Mark Sutherland" class="tiny-avatar u-photo" height="20" width="20" loading="lazy" /> <a href="https://marksuth.dev" class="p-author" rel="author">Mark Sutherland</a></span>
+        <time class="dt-published" datetime="{{ $post->published_at->tz(config('app.timezone'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->published_at)->format('d/m/Y @ H:i') }}</time>
+        by <span class="h-card"><img src="https://marksuth.dev/avatar.jpg" alt="Mark Sutherland" class="tiny-avatar u-photo" height="20" width="20" loading="lazy" /> <a href="https://marksuth.dev" class="p-author" rel="author">Mark Sutherland</a></span>
         @if($post->updated_at > $post->published_at)
-        <br><i>Last updated <time class="dt-updated" datetime="{{ $post->updated_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->updated_at)->format('d/m/Y @ H:i') }}</time></i>
+        <br><i>Last updated <time class="dt-updated" datetime="{{ $post->updated_at->tz(config('app.timezone'))->toRfc2822String() }}">{{ Carbon\Carbon::parse($post->updated_at)->format('d/m/Y @ H:i') }}</time></i>
         @endif
     </p>
     <p>Posted to:

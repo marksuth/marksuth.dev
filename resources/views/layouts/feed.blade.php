@@ -8,13 +8,13 @@
         <title><![CDATA[Mark Sutherland]]></title>
         <link><![CDATA[{{ config('app.url') }}]]></link>
         <image>
-            <url><![CDATA[{{ config('app.url') }}/images/avatar.jpg]]></url>
+            <url><![CDATA[{{ config('app.url') }}/avatar.jpg]]></url>
             <title><![CDATA[Mark Sutherland]]></title>
             <link><![CDATA[{{ config('app.url') }}]]></link>
         </image>
         <description><![CDATA[Web Developer based in Leicester, UK]]></description>
         <language>en-gb</language>
-        <pubDate>{{ $latest->published_at->tz(env('APP_TIMEZONE'))->toRfc2822String() }}</pubDate>
+        <pubDate>{{ $latest->published_at->tz(config('app.timezone'))->toRfc2822String() }}</pubDate>
         @yield('feed')
     </channel>
 </rss>
