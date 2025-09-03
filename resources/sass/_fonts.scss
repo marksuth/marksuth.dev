@@ -1,13 +1,7 @@
-// Font Awesome 6
-@import "~@fortawesome/fontawesome-free/scss/functions";
-@import "~@fortawesome/fontawesome-free/scss/variables";
-@import "~@fortawesome/fontawesome-free/scss/mixins";
-@import "~@fortawesome/fontawesome-free/scss/core";
-@import "~@fortawesome/fontawesome-free/scss/sizing";
-@import "~@fortawesome/fontawesome-free/scss/fixed-width";
-@import "~@fortawesome/fontawesome-free/scss/list";
-@import "~@fortawesome/fontawesome-free/scss/icons";
-@import "~@fortawesome/fontawesome-free/scss/screen-reader";
+@import "~inter/inter-variable.css";
+@import "~font-awesome/css/fontawesome.css";
+@import "~font-awesome/css/solid.css";
+@import "~font-awesome/css/brands.css";
 
 @font-face {
     font-family: 'Instrument Serif';
@@ -15,28 +9,4 @@
     font-display: swap;
     font-weight: 400;
     src: url("~title-font/files/instrument-serif-latin-400-normal.woff2") format("woff2");
-}
-
-@font-face {
-    font-family: 'Font Awesome 6 Free';
-    font-style: normal;
-    font-weight: 900;
-    font-display: block;
-    src: url('~@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2') format('woff2');
-}
-
-.fas, .fa-solid {font-weight: 900;}
-
-@font-face {
-    font-family: 'Font Awesome 6 Brands';
-    font-style: normal;
-    font-weight: 400;
-    font-display: block;
-    src: url('~@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2') format('woff2');
-}
-
-.fa-brands {font-weight: 400;}
-
-@each $name, $icon in $fa-brand-icons {
-    .#{$fa-css-prefix}-#{$name}:before { content: unquote("\"#{ $icon }\""); }
 }

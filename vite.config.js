@@ -7,7 +7,7 @@ export default defineConfig({
         alias: {
             '~inter': '/node_modules/inter-ui',
             '~title-font': '/node_modules/@fontsource/instrument-serif',
-            '~@fortawesome': '/node_modules/@fortawesome',
+            '~font-awesome': '/node_modules/@fortawesome/fontawesome-free',
             '@': '/resources/assets',
         }
     },
