@@ -12,7 +12,7 @@
         "axios": "^1.11.0",
         "laravel-vite-plugin": "^2.0",
         "lint-staged": "^16.1.6",
-        "sass": "^1.91.0",
+        "sass": "^1.92.1",
         "vite": "^7.1"
     },
     "dependencies": {
