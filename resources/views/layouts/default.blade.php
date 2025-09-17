@@ -46,10 +46,10 @@
           title="{{ config('app.name') }} - Photos">
     <link rel="alternate" type="application/rss+xml" href="{{ route('feeds.stream') }}"
           title="{{ config('app.name') }} - Stream">
-    <link rel="icon" type="image/png" href="{{ config('app.url') }}/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="{{ config('app.url') }}/favicon.svg" />
-    <link rel="shortcut icon" href="{{ config('app.url') }}/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ config('app.url') }}/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="{{ config('app.url') }}/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/svg+xml" href="{{ config('app.url') }}/favicon.svg"/>
+    <link rel="shortcut icon" href="{{ config('app.url') }}/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ config('app.url') }}/apple-touch-icon.png"/>
     <link rel="manifest" href="{{ route('webmanifest') }}">
     <link rel="openid.delegate" href="{{ config('app.url') }}/">
     <link rel="openid.server" href="https://openid.indieauth.com/openid">
@@ -66,8 +66,10 @@
 <body>
 <div id="navbar">
     <div class="tube">
-        <a class="logo" href="{{ config('app.url') }}"><img src="{{ config('app.url') }}/images/logo.svg" alt="{{ config('app.name') }}" height="48" width="128"></a>
-        <section><label for="main-nav" class="btn-menu inline-toggle"><i class="fa-solid fa-bars"></i> <span class="sr-only">Menu</span></label><input
+        <a class="logo" href="{{ config('app.url') }}"><img src="{{ config('app.url') }}/images/logo.svg"
+                                                            alt="{{ config('app.name') }}" height="48" width="128"></a>
+        <section><label for="main-nav" class="btn-menu inline-toggle"><i class="fa-solid fa-bars"></i> <span
+                    class="sr-only">Menu</span></label><input
                 type="checkbox" id="main-nav" class="inline-toggle">
             <nav id="main-menu" aria-label="main navigation">
                 <a class="@if($current == config('app.url'))active @endif" href="/">Home</a>
@@ -116,6 +118,9 @@
                 </nav>
             </div>
         </div>
+    </div>
+    <div class="lara-cat">
+        <img src="/images/lara.webp" height="150" width="93" alt="Lara the cat"/>
     </div>
 </footer>
 @yield('extrascripts')

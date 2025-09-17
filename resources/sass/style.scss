@@ -463,12 +463,15 @@
     }
 }
 
-.error-cat {
-    position: absolute;
-    bottom: 2.3rem;
-    right: 5vw;
-    text-align: end;
+.lara-cat {
+position: absolute;
+    bottom: 0;
+    right: 3vw;
+    margin-bottom: 0;
+    overflow: hidden;
+    height: 150px;
 }
+
 
 #pride-stripe {
     width: 100%;

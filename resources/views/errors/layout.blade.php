@@ -17,9 +17,7 @@
         <p>If you believe you’ve reached this page in error, please drop me an email.</p>
         <br><a href="{{ config('app.url') }}" class="btn">Return Home <i class="fa-solid fa-house"></i></a>
     </section>
-    <div class="error-cat">
-        <img src="/images/lara.webp" height="120" width="88" alt="Lara the cat"/>
-    </div>
+
 @endsection
 
 @section('extrascripts')
