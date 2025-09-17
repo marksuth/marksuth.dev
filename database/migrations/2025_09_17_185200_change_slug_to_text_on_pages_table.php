@@ -23,7 +23,7 @@ return new class extends Migration
                 $table->text('slug_new')->nullable();
             });
 
-            DB::table('pages')->update([ 'slug_new' => DB::raw('slug') ]);
+            DB::table('pages')->update(['slug_new' => DB::raw('slug')]);
 
             // Drop the existing unique index if it exists (Laravel default naming convention)
             try {
@@ -67,7 +67,7 @@ return new class extends Migration
                 $table->string('slug_new')->nullable();
             });
 
-            DB::table('pages')->update([ 'slug_new' => DB::raw('slug') ]);
+            DB::table('pages')->update(['slug_new' => DB::raw('slug')]);
 
             try {
                 Schema::table('pages', function (Blueprint $table) {
