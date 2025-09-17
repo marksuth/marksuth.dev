@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -11,10 +12,30 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->index('post_type_id');
-            $table->index('collection_id');
-            $table->index('published_at');
+        $connection = DB::connection();
+        $driver = $connection->getDriverName();
+        $existingIndexes = [];
+
+        if ($driver === 'mysql') {
+            $database = $connection->getDatabaseName();
+            $rows = $connection->select(
+                "SELECT index_name FROM information_schema.statistics WHERE table_schema = ? AND table_name = 'posts'",
+                [$database]
+            );
+            $existingIndexes = collect($rows)->pluck('index_name')->all();
+        }
+
+        Schema::table('posts', function (Blueprint $table) use ($existingIndexes) {
+            // Use explicit names to avoid Laravel guessing and to check existence reliably
+            if (!in_array('posts_post_type_id_index', $existingIndexes, true)) {
+                $table->index('post_type_id', 'posts_post_type_id_index');
+            }
+            if (!in_array('posts_collection_id_index', $existingIndexes, true)) {
+                $table->index('collection_id', 'posts_collection_id_index');
+            }
+            if (!in_array('posts_published_at_index', $existingIndexes, true)) {
+                $table->index('published_at', 'posts_published_at_index');
+            }
         });
     }
 
@@ -23,10 +44,29 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropIndex(['post_type_id']);
-            $table->dropIndex(['collection_id']);
-            $table->dropIndex(['published_at']);
+        $connection = DB::connection();
+        $driver = $connection->getDriverName();
+        $existingIndexes = [];
+
+        if ($driver === 'mysql') {
+            $database = $connection->getDatabaseName();
+            $rows = $connection->select(
+                "SELECT index_name FROM information_schema.statistics WHERE table_schema = ? AND table_name = 'posts'",
+                [$database]
+            );
+            $existingIndexes = collect($rows)->pluck('index_name')->all();
+        }
+
+        Schema::table('posts', function (Blueprint $table) use ($existingIndexes) {
+            if (in_array('posts_post_type_id_index', $existingIndexes, true)) {
+                $table->dropIndex('posts_post_type_id_index');
+            }
+            if (in_array('posts_collection_id_index', $existingIndexes, true)) {
+                $table->dropIndex('posts_collection_id_index');
+            }
+            if (in_array('posts_published_at_index', $existingIndexes, true)) {
+                $table->dropIndex('posts_published_at_index');
+            }
         });
     }
 };
