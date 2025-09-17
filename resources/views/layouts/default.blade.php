@@ -98,12 +98,7 @@
 </div>
 <div id="pride-stripe"></div>
 <footer class="site-footer">
-    <div class="tube">
-        <div class="split">
-            <div>
                 <small>&copy; Mark Sutherland {{ date('Y') }}. 🏳️‍🌈</small>
-            </div>
-            <div>
                 <p>
                     <a href="https://xn--sr8hvo.ws/%F0%9F%93%BB%F0%9F%93%85%F0%9F%9A%BF/previous"
                        title="Webring Previous"
@@ -116,9 +111,6 @@
                     <a href="/privacy">Privacy Policy</a>
                     <a href="/contact">Contact Me</a>
                 </nav>
-            </div>
-        </div>
-    </div>
     <div class="lara-cat">
         <img src="/images/lara.webp" height="150" width="93" alt="Lara the cat"/>
     </div>
