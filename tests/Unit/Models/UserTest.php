@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\User;
 
-test('user model can be instantiated', function () {
+test('user model can be instantiated', function (): void {
     $user = new User;
     expect($user)->toBeInstanceOf(User::class);
 });
 
-test('user model has correct casts', function () {
+test('user model has correct casts', function (): void {
     $user = new User;
     $casts = $user->getCasts();
 
@@ -16,7 +18,7 @@ test('user model has correct casts', function () {
         ->toHaveKey('password', 'hashed');
 });
 
-test('user model has correct fillable attributes', function () {
+test('user model has correct fillable attributes', function (): void {
     $user = new User;
     expect($user->getFillable())
         ->toContain('name')
@@ -24,7 +26,7 @@ test('user model has correct fillable attributes', function () {
         ->toContain('password');
 });
 
-test('user model has correct hidden attributes', function () {
+test('user model has correct hidden attributes', function (): void {
     $user = new User;
     expect($user->getHidden())
         ->toContain('password')

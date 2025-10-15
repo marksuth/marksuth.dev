@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Page;
@@ -8,7 +10,7 @@ use App\Models\Post;
 use App\Models\PostType;
 use Illuminate\Http\Response;
 
-class SitemapController extends Controller
+final class SitemapController extends Controller
 {
     public function index(): Response
     {
@@ -20,25 +22,25 @@ class SitemapController extends Controller
     public function posts(): Response
     {
 
-        $latest = Post::where('meta->published', '1')
+        $latest = Post::query()->where('meta->published', '1')
             ->whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
-            ->orderBy('published_at', 'desc')
+            ->latest('published_at')
             ->first();
 
-        $posts = Post::where('meta->published', '1')
+        $posts = Post::query()->where('meta->published', '1')
             ->whereNowOrPast('published_at')
             ->whereNotIn('post_type_id', [28])
             ->whereNull('meta->distant_past')
             ->whereNull('meta->near_future')
-            ->orderBy('published_at', 'desc')->get();
+            ->latest('published_at')->get();
 
-        $types = PostType::whereNotIn('id', [28])->get();
+        $types = PostType::query()->whereNotIn('id', [28])->get();
 
         foreach ($types as $type) {
-            $type->count = Post::where('post_type_id', $type->id)
+            $type->count = Post::query()->where('post_type_id', $type->id)
                 ->where('meta->published', 1)
                 ->whereNotIn('post_type_id', [28])
                 ->whereNowOrPast('published_at')
@@ -48,29 +50,29 @@ class SitemapController extends Controller
         }
 
         return response()
-            ->view('sitemaps.posts', compact('posts', 'types', 'latest'))
+            ->view('sitemaps.posts', ['posts' => $posts, 'types' => $types, 'latest' => $latest])
             ->header('Content-Type', 'text/xml');
     }
 
     public function photos(): Response
     {
-        $photos = Photo::where('meta->published', '1')
+        $photos = Photo::query()->where('meta->published', '1')
             ->whereNowOrPast('published_at')
-            ->orderBy('published_at', 'desc')->get();
+            ->latest('published_at')->get();
 
         return response()
-            ->view('sitemaps.photos', compact('photos'))
+            ->view('sitemaps.photos', ['photos' => $photos])
             ->header('Content-Type', 'text/xml');
     }
 
     public function pages(): Response
     {
-        $pages = Page::where('meta->published', '1')
+        $pages = Page::query()->where('meta->published', '1')
             ->whereNowOrPast('published_at')
-            ->orderBy('updated_at', 'desc')->get();
+            ->latest('updated_at')->get();
 
         return response()
-            ->view('sitemaps.pages', compact('pages'))
+            ->view('sitemaps.pages', ['pages' => $pages])
             ->header('Content-Type', 'text/xml');
     }
 }

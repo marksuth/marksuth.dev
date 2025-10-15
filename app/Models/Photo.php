@@ -1,16 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
-class Photo extends Model
+final class Photo extends Model
 {
     use HasFactory;
     use Searchable;
+
+    /**
+     * Validation rules for the model.
+     *
+     * @var array<string, string>
+     */
+    public static $rules = [
+        'title' => 'required|string|max:255',
+        'slug' => 'required|string|max:255|unique:photos,slug',
+        'content' => 'nullable|string',
+        'meta' => 'nullable|array',
+        'published_at' => 'nullable|date',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -36,19 +52,6 @@ class Photo extends Model
     ];
 
     /**
-     * Validation rules for the model.
-     *
-     * @var array<string, string>
-     */
-    public static $rules = [
-        'title' => 'required|string|max:255',
-        'slug' => 'required|string|max:255|unique:photos,slug',
-        'content' => 'nullable|string',
-        'meta' => 'nullable|array',
-        'published_at' => 'nullable|date',
-    ];
-
-    /**
      * Get the searchable array for the model.
      *
      * @return array<string, mixed>
@@ -65,7 +68,8 @@ class Photo extends Model
     /**
      * Scope a query to only include published photos.
      */
-    public function scopePublished(Builder $query): Builder
+    #[Scope]
+    protected function published(Builder $query): Builder
     {
         return $query->whereNotNull('published_at')
             ->where('published_at', '<=', now());
@@ -74,9 +78,9 @@ class Photo extends Model
     /**
      * Scope a query to search photos by title or content.
      */
-    public function scopeSearch(Builder $query, string $search): Builder
+    protected function scopeSearch(Builder $query, string $search): Builder
     {
-        return $query->where(function ($query) use ($search) {
+        return $query->where(function ($query) use ($search): void {
             $query->where('title', 'like', "%{$search}%")
                 ->orWhere('content', 'like', "%{$search}%");
         });
@@ -85,7 +89,8 @@ class Photo extends Model
     /**
      * Scope a query to find a photo by its slug.
      */
-    public function scopeBySlug(Builder $query, string $slug): Builder
+    #[Scope]
+    protected function bySlug(Builder $query, string $slug): Builder
     {
         return $query->where('slug', $slug);
     }

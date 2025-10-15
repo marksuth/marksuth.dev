@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PhotoController;
@@ -10,7 +12,7 @@ use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 // Photo routes
-Route::controller(PhotoController::class)->group(function () {
+Route::controller(PhotoController::class)->group(function (): void {
     Route::get('/photos', 'index')->name('photos');
     Route::get('/photos/{year}', 'year')->name('photos.year');
     Route::get('/photos/{year}/{month}', 'month')->name('photos.month');
@@ -18,7 +20,7 @@ Route::controller(PhotoController::class)->group(function () {
 });
 
 // Post routes
-Route::controller(PostController::class)->group(function () {
+Route::controller(PostController::class)->group(function (): void {
     Route::get('/posts', 'index')->name('posts');
     Route::get('/stream', 'stream')->name('posts.stream');
     Route::post('/posts/comment', 'submit')->name('posts.comment');
@@ -30,17 +32,17 @@ Route::controller(PostController::class)->group(function () {
 });
 
 // Post search routes
-Route::controller(SearchController::class)->group(function () {
+Route::controller(SearchController::class)->group(function (): void {
     Route::get('/search', 'index')->name('search.search');
 });
 
-Route::controller(PostCollectionController::class)->group(function () {
+Route::controller(PostCollectionController::class)->group(function (): void {
     Route::get('/collections', 'index')->name('collections');
     Route::get('/collections/{collection}', 'show')->name('collections.collection');
 });
 
 // Feed routes
-Route::controller(FeedController::class)->group(function () {
+Route::controller(FeedController::class)->group(function (): void {
     Route::get('/feed/posts.xml', 'posts')->name('feeds.posts');
     Route::get('/feed/photos.xml', 'photos')->name('feeds.photos');
     Route::get('/feed/stream.xml', 'stream')->name('feeds.stream');
@@ -49,7 +51,7 @@ Route::controller(FeedController::class)->group(function () {
 Route::redirect('/feed', '/feed/posts.xml');
 
 // Sitemap routes
-Route::controller(SitemapController::class)->group(function () {
+Route::controller(SitemapController::class)->group(function (): void {
     Route::get('/sitemap.xml', 'index')->name('sitemap');
     Route::get('/sitemap_posts.xml', 'posts')->name('sitemap.posts');
     Route::get('/sitemap_photos.xml', 'photos')->name('sitemap.photos');
@@ -57,7 +59,7 @@ Route::controller(SitemapController::class)->group(function () {
 });
 
 // Page routes
-Route::controller(PageController::class)->group(function () {
+Route::controller(PageController::class)->group(function (): void {
     Route::get('/', 'home')->name('home');
     Route::get('/site.webmanifest', 'webmanifest')->name('webmanifest');
     Route::get('/robots.txt', 'robots')->name('robots');

@@ -387,18 +387,6 @@ input[type="checkbox"] {
     }
 }
 
-.footer-nav {
-    display: flex;
-    justify-content: center;
-
-    & > a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 0.9rem;
-        margin: 0.5rem;
-    }
-}
-
 #search-box {
     display: flex;
     justify-content: end;

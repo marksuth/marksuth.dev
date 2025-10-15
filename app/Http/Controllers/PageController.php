@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Page;
@@ -9,23 +11,19 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 
-class PageController extends Controller
+final class PageController extends Controller
 {
     /**
      * Standard fields to select for post listings
      */
-    protected $standardPostFields = ['id', 'title', 'slug', 'post_type_id', 'content', 'published_at'];
+    private array $standardPostFields = ['id', 'title', 'slug', 'post_type_id', 'content', 'published_at'];
 
     /**
      * Standard fields to select for photo listings
      */
-    protected $standardPhotoFields = ['id', 'title', 'slug', 'meta', 'published_at'];
-
-    /**
-     * Post type IDs to exclude from standard queries
-     */
-    protected $excludedPostTypeIds = [28];
+    private array $standardPhotoFields = ['id', 'title', 'slug', 'meta', 'published_at'];
 
     /**
      * Display the home page with various content sections.
@@ -33,10 +31,10 @@ class PageController extends Controller
     public function home(): View|Factory|Application
     {
         $data = [
-            'posts' => $this->getRecentArticlesAndNotes(3),
-            'activities' => $this->getRecentActivities(9),
-            'watched' => $this->getRecentWatchedContent(3),
-            'photos' => $this->getRecentPhotos(6),
+            'posts' => $this->getRecentArticlesAndNotes(),
+            'activities' => $this->getRecentActivities(),
+            'watched' => $this->getRecentWatchedContent(),
+            'photos' => $this->getRecentPhotos(),
             'latest_photo' => $this->getLatestPhoto(),
         ];
 
@@ -48,7 +46,7 @@ class PageController extends Controller
      */
     public function show($slug): View|Factory|Application
     {
-        $page = Page::where('slug', $slug)
+        $page = Page::query()->where('slug', $slug)
             ->select('title', 'slug', 'content')
             ->firstOrFail();
 
@@ -74,14 +72,14 @@ class PageController extends Controller
     /**
      * Get recent articles and notes.
      */
-    protected function getRecentArticlesAndNotes(int $limit = 3): object
+    private function getRecentArticlesAndNotes(): object
     {
-        $query = Post::whereIn('post_type_id', [1, 14])
+        $query = Post::query()->whereIn('post_type_id', [1, 14])
             ->select($this->standardPostFields);
 
         $this->applyPublishedConstraints($query);
         $this->applyPublishedDateOrdering($query);
-        $query->take($limit);
+        $query->take(3);
 
         // Eager load post type relationship
         return $this->getResultsOrFail($query, false, 10, ['postType'], true, 30);
@@ -90,14 +88,14 @@ class PageController extends Controller
     /**
      * Get recent activities.
      */
-    protected function getRecentActivities(int $limit = 9): object
+    private function getRecentActivities(): object
     {
-        $query = Post::whereNotIn('post_type_id', [1, 14, 28])
+        $query = Post::query()->whereNotIn('post_type_id', [1, 14, 28])
             ->select(['id', 'title', 'slug', 'post_type_id', 'published_at']);
 
         $this->applyPublishedConstraints($query);
         $this->applyPublishedDateOrdering($query);
-        $query->take($limit);
+        $query->take(9);
 
         // Eager load post type relationship
         return $this->getResultsOrFail($query, false, 10, ['postType'], true, 30);
@@ -106,14 +104,14 @@ class PageController extends Controller
     /**
      * Get recent watched content.
      */
-    protected function getRecentWatchedContent(int $limit = 3): object
+    private function getRecentWatchedContent(): object
     {
-        $query = Post::where('post_type_id', '23')
+        $query = Post::query()->where('post_type_id', '23')
             ->where('collection_id', '3');
 
         $this->applyPublishedConstraints($query);
         $this->applyPublishedDateOrdering($query);
-        $query->take($limit);
+        $query->take(3);
 
         // Eager load post type and collection relationships
         return $this->getResultsOrFail($query, false, 10, ['postType', 'postCollection'], true, 30);
@@ -122,12 +120,12 @@ class PageController extends Controller
     /**
      * Get recent photos.
      */
-    protected function getRecentPhotos(int $limit = 6): object
+    private function getRecentPhotos(): object
     {
-        $query = Photo::where('meta->published', '1')
+        $query = Photo::query()->where('meta->published', '1')
             ->select($this->standardPhotoFields)
             ->latest('published_at')
-            ->take($limit);
+            ->take(6);
 
         // Cache the query results
         return $this->getResultsOrFail($query, false, 10, [], true, 30);
@@ -136,9 +134,9 @@ class PageController extends Controller
     /**
      * Get the latest photo from the last day.
      */
-    protected function getLatestPhoto()
+    private function getLatestPhoto()
     {
-        $query = Photo::where('meta->published', '1')
+        $query = Photo::query()->where('meta->published', '1')
             ->where('published_at', '>=', now()->subDay())
             ->select($this->standardPhotoFields)
             ->latest('published_at');
@@ -147,8 +145,6 @@ class PageController extends Controller
         // Note: We need to handle the case where there's no photo differently than getResultsOrFail
         $cacheKey = $this->generateCacheKey($query, false, 1);
 
-        return \Cache::remember($cacheKey, now()->addMinutes(10), function () use ($query) {
-            return $query->first();
-        });
+        return Cache::remember($cacheKey, now()->addMinutes(10), fn () => $query->first());
     }
 }

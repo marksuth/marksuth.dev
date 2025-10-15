@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Traits;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 
 trait QueryBuilderTrait
 {
@@ -64,12 +67,10 @@ trait QueryBuilderTrait
      * Apply year-month-slug constraints for URL pattern matching.
      *
      * @param  Builder  $query
-     * @param  string  $year
-     * @param  string  $month
      * @param  string  $slug
      * @return Builder
      */
-    protected function applyYearMonthSlugConstraints($query, $year, $month, $slug)
+    protected function applyYearMonthSlugConstraints($query, string $year, string $month, $slug)
     {
         return $query->where('published_at', 'like', $year.'-'.$month.'%')
             ->where('slug', $slug);
@@ -129,16 +130,12 @@ trait QueryBuilderTrait
 
         // Use caching if enabled
         if ($useCache) {
-            $results = \Cache::remember($cacheKey, now()->addMinutes($cacheMinutes), function () use ($query, $paginate, $perPage) {
-                return $paginate ? $query->paginate($perPage) : $query->get();
-            });
+            $results = Cache::remember($cacheKey, now()->addMinutes($cacheMinutes), fn () => $paginate ? $query->paginate($perPage) : $query->get());
         } else {
             $results = $paginate ? $query->paginate($perPage) : $query->get();
         }
 
-        if ($results->isEmpty()) {
-            abort(404);
-        }
+        abort_if($results->isEmpty(), 404);
 
         return $results;
     }
@@ -149,13 +146,12 @@ trait QueryBuilderTrait
      * @param  Builder  $query
      * @param  bool  $paginate
      * @param  int  $perPage
-     * @return string
      */
-    protected function generateCacheKey($query, $paginate, $perPage)
+    protected function generateCacheKey($query, $paginate, $perPage): string
     {
         $sql = $query->toSql();
         $bindings = $query->getBindings();
-        $modelName = get_class($query->getModel());
+        $modelName = $query->getModel()::class;
 
         return 'query_'.md5($modelName.$sql.serialize($bindings).$paginate.$perPage);
     }

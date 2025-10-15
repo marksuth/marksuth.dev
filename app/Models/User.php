@@ -1,51 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+final class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 
     /**
      * Validation rules for the model.
@@ -70,31 +39,25 @@ class User extends Authenticatable
     ];
 
     /**
-     * Scope a query to only include verified users.
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
      */
-    public function scopeVerified(Builder $query): Builder
-    {
-        return $query->whereNotNull('email_verified_at');
-    }
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
     /**
-     * Scope a query to only include unverified users.
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
      */
-    public function scopeUnverified(Builder $query): Builder
-    {
-        return $query->whereNull('email_verified_at');
-    }
-
-    /**
-     * Scope a query to search users by name or email.
-     */
-    public function scopeSearch(Builder $query, string $search): Builder
-    {
-        return $query->where(function ($query) use ($search) {
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%");
-        });
-    }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     /**
      * Determine if the user has verified their email address.
@@ -102,5 +65,48 @@ class User extends Authenticatable
     public function isVerified(): bool
     {
         return $this->email_verified_at !== null;
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+
+    /**
+     * Scope a query to only include verified users.
+     */
+    #[Scope]
+    protected function verified(Builder $query): Builder
+    {
+        return $query->whereNotNull('email_verified_at');
+    }
+
+    /**
+     * Scope a query to only include unverified users.
+     */
+    #[Scope]
+    protected function unverified(Builder $query): Builder
+    {
+        return $query->whereNull('email_verified_at');
+    }
+
+    /**
+     * Scope a query to search users by name or email.
+     */
+    #[Scope]
+    protected function search(Builder $query, string $search): Builder
+    {
+        return $query->where(function ($query) use ($search): void {
+            $query->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%");
+        });
     }
 }

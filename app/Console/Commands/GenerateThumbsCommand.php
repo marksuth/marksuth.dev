@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Photo;
@@ -8,7 +10,7 @@ use Spatie\Image\Enums\Fit;
 use Spatie\Image\Exceptions\CouldNotLoadImage;
 use Spatie\Image\Image;
 
-class GenerateThumbsCommand extends Command
+final class GenerateThumbsCommand extends Command
 {
     /**
      * The name and signature of the console command.

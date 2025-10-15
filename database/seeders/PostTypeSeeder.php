@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\PostType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class PostTypeSeeder extends Seeder
+final class PostTypeSeeder extends Seeder
 {
     public array $postTypes = [
         'Watch',
@@ -45,7 +47,7 @@ class PostTypeSeeder extends Seeder
     public function run($postTypes): void
     {
         foreach ($postTypes as $postType) {
-            PostType::create([
+            PostType::query()->create([
                 'name' => $postType,
                 'slug' => Str::slug($postType),
             ]);

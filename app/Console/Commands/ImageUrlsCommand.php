@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Photo;
 use Illuminate\Console\Command;
 
-class ImageUrlsCommand extends Command
+final class ImageUrlsCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -44,16 +46,8 @@ class ImageUrlsCommand extends Command
 
             $meta = [];
             $meta['img_url'] = $image;
-            if (! isset($photo->meta['location'])) {
-                $meta['location'] = '';
-            } else {
-                $meta['location'] = $photo->meta['location'];
-            }
-            if (! isset($photo->meta['instagram_url'])) {
-                $meta['instagram_url'] = '';
-            } else {
-                $meta['instagram_url'] = $photo->meta['instagram_url'];
-            }
+            $meta['location'] = $photo->meta['location'] ?? '';
+            $meta['instagram_url'] = $photo->meta['instagram_url'] ?? '';
             $meta['published'] = $photo->meta['published'];
             $photo->meta = $meta;
             $photo->save();

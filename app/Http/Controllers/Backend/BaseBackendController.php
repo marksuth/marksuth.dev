@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
@@ -30,7 +32,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View|Factory|Application
+    final public function index(): View|Factory|Application
     {
         $items = $this->getModelQuery()->get();
         $viewData = $this->prepareViewData($items);
@@ -41,7 +43,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View|Factory|Application
+    final public function create(): View|Factory|Application
     {
         $viewData = $this->prepareCreateViewData();
 
@@ -51,7 +53,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(): Application|Redirector|RedirectResponse
+    final public function store(): RedirectResponse|Redirector
     {
         $model = $this->createModel();
 
@@ -66,7 +68,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id): View|Factory|Application
+    final public function edit($id): View|Factory|Application
     {
         $model = $this->findModel($id);
         $viewData = $this->prepareEditViewData($model);
@@ -77,7 +79,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($id): Application|Redirector|RedirectResponse
+    final public function update($id): RedirectResponse|Redirector
     {
         $model = $this->findModel($id);
 
@@ -92,7 +94,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id): Application|Redirector|RedirectResponse
+    final public function destroy($id): RedirectResponse|Redirector
     {
         $model = $this->findModel($id);
         $model->delete();
@@ -146,7 +148,7 @@ abstract class BaseBackendController extends Controller
     protected function prepareViewData($items): array
     {
         return [
-            strtolower(class_basename($this->modelClass)).'s' => $items,
+            mb_strtolower(class_basename($this->modelClass)).'s' => $items,
         ];
     }
 
@@ -164,7 +166,7 @@ abstract class BaseBackendController extends Controller
     protected function prepareEditViewData(Model $model): array
     {
         return [
-            strtolower(class_basename($this->modelClass)) => $model,
+            mb_strtolower(class_basename($this->modelClass)) => $model,
         ];
     }
 
@@ -181,6 +183,6 @@ abstract class BaseBackendController extends Controller
      */
     protected function getFormViewPath(): string
     {
-        return $this->viewPath.'.'.strtolower(class_basename($this->modelClass));
+        return $this->viewPath.'.'.mb_strtolower(class_basename($this->modelClass));
     }
 }
