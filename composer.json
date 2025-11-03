@@ -16,7 +16,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "spatie/image": "^3.5",
-        "typesense/typesense-php": "^4.9"
+        "typesense/typesense-php": "^5.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
