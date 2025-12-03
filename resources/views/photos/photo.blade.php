@@ -9,7 +9,7 @@
              alt="{{ $photo->title }}">
         <div class="details">
             <div class="split">
-                <h1 class="entry-title">{{ $photo->title }}</h1>
+                <h2 class="entry-title">{{ $photo->title }}</h2>
                 @if ($photo->meta['location'] != null)
                     <p><i class="fa-solid fa-location-dot"></i> {{ $photo->meta['location'] }}</p>
                 @endif
