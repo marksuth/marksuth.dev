@@ -1,5 +1,5 @@
 :root {
-    --brand: #214154;
+    --brand: #590D0D;
     --alt: #005EB8;
     --text: #282828;
     --body: #efefef;
@@ -8,8 +8,9 @@
     --text-inverse: #000000;
     --gradient: linear-gradient(45deg, var(--dark), var(--alt));
     --notify: linear-gradient(45deg, #D60270, #69D1CC);
-    --title-font: 'Instrument Serif';
+    --title-font: 'Snowtop Caps';
     --body-font: 'Inter Variable', sans-serif;
+    --xmas-gradient: linear-gradient(180deg,rgba(255, 255, 255, 1) 64%, rgba(125, 244, 255, 1) 100%);
 }
 
 @import "base";
@@ -44,6 +45,10 @@
         width: max-content;
         padding-bottom: 10vh;
         padding-top: 5vh;
+
+        .post-box {
+            margin-top: -12px;
+        }
 
         .third-split {
             gap: 3rem;
@@ -108,16 +113,6 @@
     100% {
         background-position: 0 50%;
     }
-}
-
-// Live streaming indicator
-.live-icon {
-    height: 50px;
-    left: 12.25rem;
-    margin-bottom: -4rem;
-    position: relative;
-    top: 1rem;
-    width: 150px;
 }
 
 // Latest photo component
@@ -210,10 +205,6 @@
         margin-right: 0.5rem;
         font-size: 1.5rem;
     }
-
-    .fa-user {
-        margin-left: 0.5rem;
-    }
 }
 
 // Responsive styles for box and avatar on smaller screens
@@ -245,7 +236,7 @@
         margin: 0.25rem;
 
         .fa-solid, .fa-brands {
-            font-size: 1.5rem;
+            font-size: 1rem;
             background: var(--notify);
             background-clip: text;
             transition: 0.3s all ease;
@@ -269,11 +260,11 @@
         justify-content: start;
 
         > a {
-            margin: 0.25rem 1rem;
+            margin: 0.25rem 0.5rem;
 
             .fa-brands, .fa-solid {
-                font-size: 2.5rem;
-                line-height: 3rem;
+                font-size: 1.25rem;
+                line-height: 1.5;
             }
         }
     }
@@ -371,6 +362,7 @@
 // Page header and title styles
 .page-header {
     padding: 2rem 0;
+    color: #fff;
 
     .page-title {
         display: flex;
@@ -420,7 +412,7 @@
         box-shadow: inset 0 0 5rem var(--dark);
         filter: saturate(2);
         transition: 0.3s all ease;
-        color: var(--text) !important;
+        color: #fff !important;
     }
 }
 
@@ -455,6 +447,7 @@
 
 // Error page styles
 #error-page {
+    color: #fff;
     padding-top: 15vh;
 
     & h1 {
@@ -470,6 +463,7 @@ position: absolute;
     margin-bottom: 0;
     overflow: hidden;
     height: 150px;
+    z-index: 500;
 }
 
 
@@ -519,4 +513,15 @@ position: absolute;
         display: inline-block;
         z-index: -100;
     }
+}
+
+.post-box {
+    background: #fff;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.link-right {
+    text-align: right;
 }

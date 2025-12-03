@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Photo;
@@ -9,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
-class SearchController extends Controller
+final class SearchController extends Controller
 {
     public function index(Request $request): View|Factory|Application
     {
@@ -17,6 +19,6 @@ class SearchController extends Controller
         $posts = Post::search($request->input('query'))->paginate(10);
         $photos = Photo::search($request->input('query'))->get();
 
-        return view('search.search', compact('posts', 'photos', 'search'));
+        return view('search.search', ['posts' => $posts, 'photos' => $photos, 'search' => $search]);
     }
 }

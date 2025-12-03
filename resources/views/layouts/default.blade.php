@@ -83,9 +83,10 @@
                 @if (Auth::check())
                     <a href="{{ route('backend.index') }}" aria-label="backend"><i class="fa-solid fa-gear"
                                                                                    aria-hidden="true"></i></a>
-                    <a href="{{ route('logout') }}" aria-label="Logout"><i class="fa-solid fa-arrow-right-from-bracket"
-                                                                           aria-hidden="true"></i></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">@csrf</form>
+                    <button type="submit" form="logout-form" aria-label="Logout" title="Logout" class="btn-logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
+                    </button>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">@csrf</form>
                 @endif
             </nav>
         </section>
@@ -96,7 +97,7 @@
         @yield('content')
     </main>
 </div>
-<div id="pride-stripe"></div>
+{{--<div id="pride-stripe"></div>--}}
 <footer class="site-footer">
                 <small>&copy; Mark Sutherland {{ date('Y') }}. 🏳️‍🌈</small>
                 <p>
@@ -112,12 +113,9 @@
                     <a href="/contact">Contact Me</a>
                 </nav>
     <div class="lara-cat">
-        <img src="/images/lara.webp" height="150" width="93" alt="Lara the cat"/>
+        <img src="/images/lara-xmas.webp" height="150" width="93" alt="Lara the cat"/>
     </div>
 </footer>
 @yield('extrascripts')
-@env('staging')
-    <script async defer src="https://scripts.withcabin.com/hello.js"></script>
-@endenv
 </body>
 </html>

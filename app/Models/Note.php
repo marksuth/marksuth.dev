@@ -1,19 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Note extends Model
+final class Note extends Model
 {
     use HasFactory;
 
     /**
+     * Validation rules for the model.
+     *
+     * @var array<string, string>
+     */
+    public static $rules = [
+        'title' => 'required|string|max:255',
+        'content' => 'required|string',
+        'meta' => 'nullable|array',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'title',
@@ -31,22 +45,12 @@ class Note extends Model
     ];
 
     /**
-     * Validation rules for the model.
-     *
-     * @var array<string, string>
-     */
-    public static $rules = [
-        'title' => 'required|string|max:255',
-        'content' => 'required|string',
-        'meta' => 'nullable|array',
-    ];
-
-    /**
      * Scope a query to search notes by title or content.
      */
-    public function scopeSearch(Builder $query, string $search): Builder
+    #[Scope]
+    protected function search(Builder $query, string $search): Builder
     {
-        return $query->where(function ($query) use ($search) {
+        return $query->where(function ($query) use ($search): void {
             $query->where('title', 'like', "%{$search}%")
                 ->orWhere('content', 'like', "%{$search}%");
         });
@@ -55,8 +59,9 @@ class Note extends Model
     /**
      * Scope a query to order notes by most recent.
      */
-    public function scopeRecent(Builder $query): Builder
+    #[Scope]
+    protected function recent(Builder $query): Builder
     {
-        return $query->orderBy('created_at', 'desc');
+        return $query->latest();
     }
 }

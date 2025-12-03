@@ -23,15 +23,4 @@ export default defineConfig({
             paths: ['resources/views/**/*.blade.php']
         })
     ],
-    css: {
-        preprocessorOptions: {
-            sass: {
-                silenceDeprecations: ['import', 'global-builtin', 'color-functions'],
-            },
-            scss: {
-                silenceDeprecations: ['import', 'global-builtin', 'color-functions'],
-                quietDeps: true,
-            },
-        },
-    },
 });

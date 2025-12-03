@@ -1,1 +1,1 @@
-import '@oddbird/popover-polyfill';
+// import '@oddbird/popover-polyfill';

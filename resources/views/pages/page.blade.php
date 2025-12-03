@@ -8,7 +8,7 @@
         <header class="page-header">
             <h1 class="p-name fancy-title">{{ $page->title }}</h1>
         </header>
-        <div class="post entry-content">
+        <div class="post entry-content post-box">
             {!! Str::markdown($page->content) !!}
         </div>
     </article>

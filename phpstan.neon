@@ -16,6 +16,9 @@ parameters:
         - '#PHPDoc tag @var#'
         - '#Access to an undefined property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+#'
         - '#Call to an undefined method [a-zA-Z0-9\\_]+::([a-zA-Z0-9_]+)\(\)#'
+        - '#Trait App\\\\Http\\\\Controllers\\\\Backend\\\\Traits\\\\HandlesImageProcessing is used zero times#'
+        - '#Trait App\\\\Http\\\\Controllers\\\\Backend\\\\Traits\\\\HandlesMetadata is used zero times#'
+        - '#Trait App\\\\Http\\\\Controllers\\\\Backend\\\\Traits\\\\HandlesSlugGeneration is used zero times#'
 
     excludePaths:
         analyseAndScan:

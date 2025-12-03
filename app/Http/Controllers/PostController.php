@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Post;
@@ -10,17 +12,17 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
 
-class PostController extends Controller
+final class PostController extends Controller
 {
     /**
      * Standard fields to select for post listings
      */
-    protected $standardPostFields = ['id', 'title', 'slug', 'post_type_id', 'content', 'published_at'];
+    private array $standardPostFields = ['id', 'title', 'slug', 'post_type_id', 'content', 'published_at'];
 
     /**
      * Post type IDs to exclude from standard queries
      */
-    protected $excludedPostTypeIds = [28];
+    private array $excludedPostTypeIds = [28];
 
     /**
      * Display a listing of articles and notes.
@@ -45,7 +47,7 @@ class PostController extends Controller
     /**
      * Display an individual post.
      */
-    public function show($year, $month, $slug): Factory|View|Application
+    public function show(string $year, string $month, $slug): Factory|View|Application
     {
         $post = Post::query()
             ->whereNotIn('post_type_id', $this->excludedPostTypeIds);
@@ -61,7 +63,7 @@ class PostController extends Controller
     /**
      * Display a listing of posts from a specific year.
      */
-    public function year(string $year): View|Response
+    public function year(int $year): View|Response
     {
         $query = Post::query()
             ->whereNotIn('post_type_id', $this->excludedPostTypeIds);
@@ -111,11 +113,11 @@ class PostController extends Controller
      */
     public function types(): Factory|View|Application
     {
-        $types = PostType::whereNotIn('id', $this->excludedPostTypeIds)->get();
+        $types = PostType::query()->whereNotIn('id', $this->excludedPostTypeIds)->get();
 
         // Get Post count for each type
         foreach ($types as $type) {
-            $query = Post::where('post_type_id', $type->id);
+            $query = Post::query()->where('post_type_id', $type->id);
             $this->applyPublishedConstraints($query);
             $type->count = $query->count();
         }
@@ -128,9 +130,9 @@ class PostController extends Controller
      */
     public function post_collection($collection): Factory|View|Application
     {
-        $collection = PostCollection::where('slug', $collection)->firstOrFail();
+        $collection = PostCollection::query()->where('slug', $collection)->firstOrFail();
 
-        $query = Post::where('collection_id', $collection->id);
+        $query = Post::query()->where('collection_id', $collection->id);
         $this->applyPublishedConstraints($query);
         $this->applyPublishedDateOrdering($query);
 
@@ -148,7 +150,7 @@ class PostController extends Controller
     {
         $type = $this->getPostTypeBySlug($type);
 
-        $query = Post::where('post_type_id', $type->id)
+        $query = Post::query()->where('post_type_id', $type->id)
             ->whereNowOrPast('published_at')
             ->where('meta->distant_past', 1);
 
@@ -166,9 +168,9 @@ class PostController extends Controller
      */
     public function near_future_type($type): Factory|View|Application
     {
-        $type = PostType::where('name', $type)->firstOrFail();
+        $type = PostType::query()->where('name', $type)->firstOrFail();
 
-        $query = Post::where('post_type_id', $type->id)
+        $query = Post::query()->where('post_type_id', $type->id)
             ->where('meta->published', '1')
             ->whereNowOrPast('published_at')
             ->whereNull('meta->distant_past')
@@ -186,9 +188,9 @@ class PostController extends Controller
     /**
      * Get a post type by slug.
      */
-    protected function getPostTypeBySlug(string $slug): PostType
+    private function getPostTypeBySlug(string $slug): PostType
     {
-        return PostType::where('slug', $slug)
+        return PostType::query()->where('slug', $slug)
             ->whereNotIn('id', $this->excludedPostTypeIds)
             ->firstOrFail();
     }
@@ -196,9 +198,9 @@ class PostController extends Controller
     /**
      * Get posts by type.
      */
-    protected function getPostsByType(PostType $type)
+    private function getPostsByType(PostType $type)
     {
-        $query = Post::where('post_type_id', $type->id);
+        $query = Post::query()->where('post_type_id', $type->id);
         $this->applyPublishedConstraints($query);
         $this->applyPublishedDateOrdering($query);
 
@@ -208,9 +210,9 @@ class PostController extends Controller
     /**
      * Get articles and notes posts.
      */
-    protected function getArticlesAndNotes()
+    private function getArticlesAndNotes()
     {
-        $query = Post::whereIn('post_type_id', [1, 14])
+        $query = Post::query()->whereIn('post_type_id', [1, 14])
             ->select($this->standardPostFields);
 
         $this->applyPublishedConstraints($query);
@@ -222,9 +224,9 @@ class PostController extends Controller
     /**
      * Get activity posts.
      */
-    protected function getActivityPosts()
+    private function getActivityPosts()
     {
-        $query = Post::whereNotIn('post_type_id', [1, 14, 28])
+        $query = Post::query()->whereNotIn('post_type_id', [1, 14, 28])
             ->select($this->standardPostFields);
 
         $this->applyPublishedConstraints($query);

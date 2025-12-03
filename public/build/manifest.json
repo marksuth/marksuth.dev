@@ -4,11 +4,11 @@
     "src": "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400-BdzBFuGj.woff2",
+    "file": "assets/fa-brands-400-BfBXV7Mm.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
-    "file": "assets/fa-solid-900-BLm1ImsD.woff2",
+    "file": "assets/fa-solid-900-8GirhLYJ.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
   "node_modules/inter-ui/variable/InterVariable-Italic.woff2": {
@@ -19,14 +19,30 @@
     "file": "assets/InterVariable-DiVDrmQJ.woff2",
     "src": "node_modules/inter-ui/variable/InterVariable.woff2"
   },
+  "resources/assets/fonts/snowtopcaps-webfont.woff2": {
+    "file": "assets/snowtopcaps-webfont-CHXTIm58.woff2",
+    "src": "resources/assets/fonts/snowtopcaps-webfont.woff2"
+  },
+  "resources/assets/images/jumper.gif": {
+    "file": "assets/jumper-BjfuwwtT.gif",
+    "src": "resources/assets/images/jumper.gif"
+  },
+  "resources/assets/images/snow-strip.png": {
+    "file": "assets/snow-strip-BQbkACJc.png",
+    "src": "resources/assets/images/snow-strip.png"
+  },
+  "resources/assets/images/stocking-fluff.png": {
+    "file": "assets/stocking-fluff-BpvnB9Dh.png",
+    "src": "resources/assets/images/stocking-fluff.png"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-DtqSrbDJ.js",
+    "file": "assets/app-l0sNRNKZ.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/sass/style.scss": {
-    "file": "assets/style-DZNhRW-k-c4a8eb62.css",
+    "file": "assets/style-B9pDNV65-643b8fa2.css",
     "src": "resources/sass/style.scss"
   }
 }

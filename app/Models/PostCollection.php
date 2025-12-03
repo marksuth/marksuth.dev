@@ -1,15 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PostCollection extends Model
+final class PostCollection extends Model
 {
     use HasFactory;
+
+    /**
+     * Validation rules for the model.
+     *
+     * @var array<string, string>
+     */
+    public static $rules = [
+        'name' => 'required|string|max:255',
+        'slug' => 'required|string|max:255|unique:post_collections,slug',
+        'description' => 'nullable|string',
+        'meta' => 'nullable|array',
+    ];
 
     /**
      * The table associated with the model.
@@ -21,7 +37,7 @@ class PostCollection extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'name',
@@ -40,22 +56,10 @@ class PostCollection extends Model
     ];
 
     /**
-     * Validation rules for the model.
-     *
-     * @var array<string, string>
-     */
-    public static $rules = [
-        'name' => 'required|string|max:255',
-        'slug' => 'required|string|max:255|unique:post_collections,slug',
-        'description' => 'nullable|string',
-        'meta' => 'nullable|array',
-    ];
-
-    /**
      * Get the posts for the collection.
      * Note: This is kept for backward compatibility with tests.
      */
-    public function posts(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function posts(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'collection_id');
     }
@@ -72,7 +76,8 @@ class PostCollection extends Model
     /**
      * Scope a query to find a collection by its slug.
      */
-    public function scopeBySlug(Builder $query, string $slug): Builder
+    #[Scope]
+    protected function bySlug(Builder $query, string $slug): Builder
     {
         return $query->where('slug', $slug);
     }
@@ -80,7 +85,8 @@ class PostCollection extends Model
     /**
      * Scope a query to find a collection by its name.
      */
-    public function scopeByName(Builder $query, string $name): Builder
+    #[Scope]
+    protected function byName(Builder $query, string $name): Builder
     {
         return $query->where('name', $name);
     }
@@ -88,9 +94,10 @@ class PostCollection extends Model
     /**
      * Scope a query to search collections by name or description.
      */
-    public function scopeSearch(Builder $query, string $search): Builder
+    #[Scope]
+    protected function search(Builder $query, string $search): Builder
     {
-        return $query->where(function ($query) use ($search) {
+        return $query->where(function ($query) use ($search): void {
             $query->where('name', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%");
         });

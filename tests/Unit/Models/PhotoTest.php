@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Photo;
 
-test('photo model can be instantiated', function () {
+test('photo model can be instantiated', function (): void {
     $photo = new Photo;
     expect($photo)->toBeInstanceOf(Photo::class);
 });
 
-test('photo model has correct casts', function () {
+test('photo model has correct casts', function (): void {
     $photo = new Photo;
     expect($photo->getCasts())
         ->toHaveKey('meta', 'array')
         ->toHaveKey('published_at', 'datetime');
 });
 
-test('photo model has searchable method', function () {
+test('photo model has searchable method', function (): void {
     $photo = new Photo;
     $photo->id = 1;
     $photo->title = 'Test Photo';
