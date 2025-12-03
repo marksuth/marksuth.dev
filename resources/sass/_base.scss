@@ -8,6 +8,9 @@ h1, h2, h3, h4 {
     text-wrap: balance;
     font-weight: 400;
     line-height: 1.25;
+    color: rgba(0, 0, 0, 0);
+    background: var(--xmas-gradient);
+    background-clip: text;
     //text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.25);
     //filter: saturate(200%);
 }
@@ -15,9 +18,7 @@ h1, h2, h3, h4 {
 h1 {
     font-size: 3rem;
     letter-spacing: -2px ;
-    color: rgba(0, 0, 0, 0);
-    background: var(--xmas-gradient);
-    background-clip: text;
+
 
 }
 
@@ -270,6 +271,10 @@ input[type="checkbox"] {
     margin: 0.5rem;
     display: grid;
     max-width: 90vw;
+
+    h2, h3, h4 {
+        color: var(--brand);
+    }
 
     a:hover {
         color: var(--brand);
