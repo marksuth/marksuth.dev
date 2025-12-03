@@ -40,10 +40,11 @@
             <div>
                 <div class="box">
                     <h1 class="p-name">Mark Sutherland</h1>
+                    <div class="post-box">
                     <p class="p-note box-mid"><span class="p-category">Developer</span> & Digital Creative,
                         <span class="p-locality">Leicester</span>,
                         <span class="p-country-name">UK</span>
-                        <span class="p-pronouns box-divider">(He/Him)</span></p></div>
+                        <span class="p-pronouns box-divider">(He/Him)</span></p>
                 <nav id="social-links" class="elsewhere" aria-label="Social links">
                     <a class="u-url u-uid" href="{{ config('app.url') }}" rel="me" aria-label="Website"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
                     <a class="u-email" href="mailto:mark@marksuth.dev" rel="me" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
@@ -57,10 +58,13 @@
                 </nav>
             </div>
         </div>
+        </div>
+        </div>
     </section>
     <section id="feed" class="third-split">
         <h2 class="fancy-title">Recent Posts</h2>
         <div class="h-feed">
+            <div class="post-box">
             @forelse($posts as $post)
                 <article class="post hentry h-entry">
                     <small class="lozenge"><a class="p-category category"
@@ -83,6 +87,7 @@
                 <p>No posts found</p>
             @endforelse
             <a href="{{ route('posts') }}" class="btn btn-right">View All Posts <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
         </div>
     </section>
     <div class="half-split">

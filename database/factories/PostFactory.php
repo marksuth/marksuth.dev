@@ -8,8 +8,10 @@ use App\Models\Post;
 use App\Models\PostCollection;
 use App\Models\PostType;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ */
 final class PostFactory extends Factory
 {
     protected $model = Post::class;
@@ -21,9 +23,9 @@ final class PostFactory extends Factory
             'slug' => $this->faker->slug(),
             'content' => $this->faker->word(),
             'meta' => $this->faker->words(),
-            'published_at' => Carbon::now(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'published_at' => \Illuminate\Support\Facades\Date::now(),
+            'created_at' => \Illuminate\Support\Facades\Date::now(),
+            'updated_at' => \Illuminate\Support\Facades\Date::now(),
 
             'post_type_id' => PostType::factory(),
             'collection_id' => PostCollection::factory(),

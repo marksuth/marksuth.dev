@@ -97,7 +97,7 @@
         @yield('content')
     </main>
 </div>
-<div id="pride-stripe"></div>
+{{--<div id="pride-stripe"></div>--}}
 <footer class="site-footer">
                 <small>&copy; Mark Sutherland {{ date('Y') }}. 🏳️‍🌈</small>
                 <p>
@@ -113,7 +113,7 @@
                     <a href="/contact">Contact Me</a>
                 </nav>
     <div class="lara-cat">
-        <img src="/images/lara.webp" height="150" width="93" alt="Lara the cat"/>
+        <img src="/images/lara-xmas.webp" height="150" width="93" alt="Lara the cat"/>
     </div>
 </footer>
 @yield('extrascripts')

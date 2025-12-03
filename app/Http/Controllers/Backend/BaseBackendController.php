@@ -10,7 +10,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 
 abstract class BaseBackendController extends Controller
 {
@@ -53,7 +52,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    final public function store(): RedirectResponse|Redirector
+    final public function store(): RedirectResponse
     {
         $model = $this->createModel();
 
@@ -79,7 +78,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    final public function update($id): RedirectResponse|Redirector
+    final public function update($id): RedirectResponse
     {
         $model = $this->findModel($id);
 
@@ -94,7 +93,7 @@ abstract class BaseBackendController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    final public function destroy($id): RedirectResponse|Redirector
+    final public function destroy($id): RedirectResponse
     {
         $model = $this->findModel($id);
         $model->delete();

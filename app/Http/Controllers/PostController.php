@@ -63,7 +63,7 @@ final class PostController extends Controller
     /**
      * Display a listing of posts from a specific year.
      */
-    public function year(string $year): View|Response
+    public function year(int $year): View|Response
     {
         $query = Post::query()
             ->whereNotIn('post_type_id', $this->excludedPostTypeIds);

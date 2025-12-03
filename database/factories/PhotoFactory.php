@@ -6,8 +6,10 @@ namespace Database\Factories;
 
 use App\Models\Photo;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Photo>
+ */
 final class PhotoFactory extends Factory
 {
     protected $model = Photo::class;
@@ -19,9 +21,9 @@ final class PhotoFactory extends Factory
             'slug' => $this->faker->slug(),
             'content' => $this->faker->word(),
             'meta' => $this->faker->words(),
-            'published_at' => Carbon::now(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'published_at' => \Illuminate\Support\Facades\Date::now(),
+            'created_at' => \Illuminate\Support\Facades\Date::now(),
+            'updated_at' => \Illuminate\Support\Facades\Date::now(),
         ];
     }
 }

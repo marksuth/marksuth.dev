@@ -6,8 +6,10 @@ namespace Database\Factories;
 
 use App\Models\Note;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Note>
+ */
 final class NoteFactory extends Factory
 {
     protected $model = Note::class;
@@ -17,8 +19,8 @@ final class NoteFactory extends Factory
         return [
             'title' => $this->faker->word(),
             'content' => $this->faker->word(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'created_at' => \Illuminate\Support\Facades\Date::now(),
+            'updated_at' => \Illuminate\Support\Facades\Date::now(),
         ];
     }
 }

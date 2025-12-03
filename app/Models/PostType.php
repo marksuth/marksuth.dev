@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class PostType extends Model
@@ -44,7 +43,7 @@ final class PostType extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'name',
@@ -66,9 +65,9 @@ final class PostType extends Model
      * Get the posts for the post type.
      * Note: This is kept for backward compatibility with tests.
      */
-    public function posts(): BelongsTo
+    public function posts(): HasMany
     {
-        return $this->belongsTo(Post::class, 'post_type_id', 'id');
+        return $this->hasMany(Post::class, 'post_type_id');
     }
 
     /**
@@ -78,15 +77,6 @@ final class PostType extends Model
     public function postsMany(): HasMany
     {
         return $this->hasMany(Post::class, 'post_type_id');
-    }
-
-    /**
-     * Backward compatibility method for tests.
-     * Note: this isn't the correct relationship type, but it's necessary for backward compatibility.
-     */
-    public function postsForTests(): BelongsTo
-    {
-        return Post::query()->belongsTo($this, 'post_type_id', 'id');
     }
 
     /**

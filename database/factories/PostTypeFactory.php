@@ -7,6 +7,9 @@ namespace Database\Factories;
 use App\Models\PostType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PostType>
+ */
 final class PostTypeFactory extends Factory
 {
     protected $model = PostType::class;

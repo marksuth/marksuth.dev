@@ -3,14 +3,20 @@
 @use "_pagination";
 
 h1, h2, h3, h4 {
-    color: var(--brand);
+    background: var(--xmas-gradient);
+    background-clip: text;
     font-family: var(--title-font), serif;
     text-wrap: balance;
+    color: rgba(0, 0, 0, 0);
+    font-weight: 400;
     line-height: 1.25;
+    //text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.25);
+    //filter: saturate(200%);
 }
 
 h1 {
     font-size: 3rem;
+    letter-spacing: -2px ;
 }
 
 h2 {
@@ -32,7 +38,8 @@ ul {
 }
 
 body {
-    background: var(--body);
+    background-color: #590D0D;
+    background-image: url("@/images/jumper.gif");
     color: var(--text);
     font-family: var(--body-font), sans-serif;
     font-size: 1rem;
@@ -77,12 +84,29 @@ input[type="checkbox"] {
 }
 
 #navbar {
-    background: var(--navbar);
+    background: #fff;
     color: var(--text);
     padding: 0.25rem 0;
+    margin-bottom: 20px; // reserve space for 10px gap + 10px strip below navbar
     position: sticky;
     top: 0;
     z-index: 1000;
+
+    &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100%); // place the strip 10px below the navbar
+        background-image: url("@/images/stocking-fluff.png");
+        background-repeat: repeat-x;
+        background-position: center bottom;
+        //background-size: auto 10px;
+        pointer-events: none;
+    }
 
     & .tube {
         display: flex;
@@ -203,12 +227,6 @@ input[type="checkbox"] {
     }
 }
 
-//@media (min-width: 992px) and (max-width: 1449px) {
-//    .third-split {
-//        grid-template-columns: 1fr;
-//    }
-//}
-
 .split {
     display: flex;
     justify-content: space-between;
@@ -264,9 +282,10 @@ input[type="checkbox"] {
     }
 
     &-inverse {
-        background: unset;
+        //background: unset;
         color: inherit;
         box-shadow: none;
+
     }
 
     &-strap {
@@ -322,6 +341,9 @@ input[type="checkbox"] {
         font-size: 1.5rem;
         font-weight: 700;
         align-self: start;
+        color: var(--brand);
+        text-shadow: unset;
+        letter-spacing: 0;
     }
 
     nav {
@@ -363,7 +385,9 @@ input[type="checkbox"] {
     }
 
     &-right {
-        float: right;
+        margin-right: 0;
+        margin-left: auto;
+        display: inline-block;
     }
 
 }
@@ -376,13 +400,30 @@ input[type="checkbox"] {
 
 .site-footer {
     position: relative;
-    background: var(--brand);
+    background: #fff;
     padding: 1.5rem 0;
-    color: #fff;
+    color: var(--brand);
     text-align: center;
 
+    &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 10px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -10px; // sit above the footer
+        background-image: url("@/images/snow-strip.png");
+        background-repeat: repeat-x;
+        background-position: center top;
+        background-size: auto 10px;
+        z-index: 1;
+        pointer-events: none;
+    }
+
     a {
-        color: #fff;
+        color: var(--brand);
         font-weight: 500;
     }
 }
