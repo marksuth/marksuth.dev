@@ -147,7 +147,7 @@
             <script>
                 const pattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
                 let current = 0;
-                const audio = new Audio('/images/Halvorsen-ctrl_z.mp3');
+                const audio = new Audio('/images/toy-singing-santa-claus-is-coming-to-town-26255.mp3');
 
                 const keyHandler = function (event) {
                     if (pattern.indexOf(event.key) < 0 || event.key !== pattern[current]) {
@@ -170,7 +170,7 @@
             </script>
             <style>
                 .spin {
-                    animation: spin 2s infinite linear;
+                    animation: spin 5s infinite linear;
                 }
 
                 @keyframes spin {
