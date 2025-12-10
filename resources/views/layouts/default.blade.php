@@ -72,22 +72,9 @@
                     class="sr-only">Menu</span></label><input
                 type="checkbox" id="main-nav" class="inline-toggle">
             <nav id="main-menu" aria-label="main navigation">
-                <a class="@if($current == config('app.url'))active @endif" href="/">Home</a>
-                <a class="@if(Request::segment(1) == 'now') active @endif" href="/now">Now</a>
                 <a class="@if(Request::segment(1) == 'posts') active @endif" href="{{ route('posts') }}">Posts</a>
                 <a class="@if(Request::segment(1) == 'photos') active @endif" href="{{ route('photos') }}">Photos</a>
                 <a class="@if(Request::segment(1) == 'collections') active @endif" href="{{ route('collections') }}">Collections</a>
-                <a class="@if (Request::segment(1) == 'stream') active @endif"
-                   href="{{ route('posts.stream') }}">Stream</a>
-                <a class="@if (Request::segment(1) == 'projects') active @endif" href="/projects">Projects</a>
-                @if (Auth::check())
-                    <a href="{{ route('backend.index') }}" aria-label="backend"><i class="fa-solid fa-gear"
-                                                                                   aria-hidden="true"></i></a>
-                    <button type="submit" form="logout-form" aria-label="Logout" title="Logout" class="btn-logout">
-                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
-                    </button>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none">@csrf</form>
-                @endif
             </nav>
         </section>
     </div>
@@ -97,23 +84,14 @@
         @yield('content')
     </main>
 </div>
-{{--<div id="pride-stripe"></div>--}}
 <footer class="site-footer">
                 <small>&copy; Mark Sutherland {{ date('Y') }}. 🏳️‍🌈</small>
-                <p>
-                    <a href="https://xn--sr8hvo.ws/%F0%9F%93%BB%F0%9F%93%85%F0%9F%9A%BF/previous"
-                       title="Webring Previous"
-                       aria-label="Webring Previous"><i class="fa-solid fa-chevron-left"></i></a>
-                    An IndieWeb Webring
-                    <a href="https://xn--sr8hvo.ws/%F0%9F%93%BB%F0%9F%93%85%F0%9F%9A%BF/next" title="Webring Next"
-                       aria-label="Webring Next"><i class="fa-solid fa-chevron-right"></i></a>
-                </p>
                 <nav id="footer-nav" aria-label="footer navigation">
                     <a href="/privacy">Privacy Policy</a>
                     <a href="/contact">Contact Me</a>
                 </nav>
     <div class="lara-cat">
-        <img src="/images/lara-xmas.webp" height="150" width="93" alt="Lara the cat"/>
+        <img src="/images/lara.webp" height="150" width="93" alt="Lara the cat"/>
     </div>
 </footer>
 @yield('extrascripts')

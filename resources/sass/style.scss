@@ -1,14 +1,14 @@
 :root {
-    --brand: #590D0D;
+    --brand: #214154;
     --alt: #005EB8;
-    --text: #282828;
-    --body: #efefef;
-    --navbar: rgba(239, 239, 239, 0.9);
+    --text: #ffffff;
+    --body: #1b1b1b;
+    --navbar: var(--body);
     --text-muted: #575757;
     --text-inverse: #000000;
     --gradient: linear-gradient(45deg, var(--dark), var(--alt));
     --notify: linear-gradient(45deg, #D60270, #69D1CC);
-    --title-font: 'Snowtop Caps';
+    --title-font: 'Inter Variable', sans-serif;
     --body-font: 'Inter Variable', sans-serif;
     --xmas-gradient: linear-gradient(180deg,rgba(255, 255, 255, 1) 64%, rgba(125, 244, 255, 1) 100%);
 }
@@ -25,39 +25,24 @@
 
 // Header and intro section
 #intro {
+    max-width: 80vw;
+    width: 80vw;
+    hyphens: auto;
+
     p {
-        font-size: 1.25rem;
-        font-weight: bold;
+        font-size: 2rem;
         line-height: 1.5;
         margin-bottom: 0;
+        max-width: 80vw;
     }
 
     h1 {
         font-family: var(--title-font), serif;
+        font-size: 15vw;
         line-height: 1;
+        hyphens: auto;
     }
-}
 
-@media (min-width: 992px) {
-    #intro {
-        margin-left: auto;
-        margin-right: auto;
-        width: max-content;
-        padding-bottom: 10vh;
-        padding-top: 5vh;
-
-        .post-box {
-            margin-top: -12px;
-        }
-
-        .third-split {
-            gap: 3rem;
-        }
-
-        h1 {
-            font-size: 6rem;
-        }
-    }
 }
 
 .avatar {
@@ -513,13 +498,6 @@ position: absolute;
         display: inline-block;
         z-index: -100;
     }
-}
-
-.post-box {
-    background: #fff;
-    border-radius: 0.25rem;
-    padding: 1rem;
-    box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 .link-right {

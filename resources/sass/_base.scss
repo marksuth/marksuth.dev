@@ -4,22 +4,15 @@
 
 h1, h2, h3, h4 {
     font-family: var(--title-font), serif;
-    color: #590d0d;
-    text-wrap: balance;
-    font-weight: 400;
+    color: #fff;
+    font-weight: 500;
     line-height: 1.25;
-    color: rgba(0, 0, 0, 0);
-    background: var(--xmas-gradient);
-    background-clip: text;
-    //text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.25);
-    //filter: saturate(200%);
+
 }
 
 h1 {
     font-size: 3rem;
     letter-spacing: -2px ;
-
-
 }
 
 h2 {
@@ -41,8 +34,7 @@ ul {
 }
 
 body {
-    background-color: #590D0D;
-    background-image: url("@/images/jumper.gif");
+    background-color: var(--body);
     color: var(--text);
     font-family: var(--body-font), sans-serif;
     font-size: 1rem;
@@ -87,29 +79,13 @@ input[type="checkbox"] {
 }
 
 #navbar {
-    background: #fff;
-    color: var(--text);
+    //background: #fff;
+    //color: var(--text);
     padding: 0.25rem 0;
     margin-bottom: 20px; // reserve space for 10px gap + 10px strip below navbar
     position: sticky;
     top: 0;
     z-index: 1000;
-
-    &:after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 3px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: calc(100%); // place the strip 10px below the navbar
-        background-image: url("@/images/stocking-fluff.png");
-        background-repeat: repeat-x;
-        background-position: center bottom;
-        //background-size: auto 10px;
-        pointer-events: none;
-    }
 
     & .tube {
         display: flex;
@@ -407,30 +383,13 @@ input[type="checkbox"] {
 
 .site-footer {
     position: relative;
-    background: #fff;
+    //background: #fff;
     padding: 1.5rem 0;
-    color: var(--brand);
+    //color: var(--brand);
     text-align: center;
 
-    &:before {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 10px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: -10px; // sit above the footer
-        background-image: url("@/images/snow-strip.png");
-        background-repeat: repeat-x;
-        background-position: center top;
-        background-size: auto 10px;
-        z-index: 1;
-        pointer-events: none;
-    }
-
     a {
-        color: var(--brand);
+        //color: var(--brand);
         font-weight: 500;
     }
 }
