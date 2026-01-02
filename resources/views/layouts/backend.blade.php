@@ -49,14 +49,9 @@
         @yield('content')
     </main>
 </div>
-<footer class="site-footer">
-                <small>&copy; Mark Sutherland {{ date('Y') }}. 🏳️‍🌈</small>
-                <nav id="footer-nav" aria-label="footer navigation">
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/contact">Contact Me</a>
-                </nav>
-    <div class="lara-cat">
-        <img src="/images/lara.webp" height="150" width="93" alt="Lara the cat"/>
+<footer class="site-footer tube">
+    <div class="footer-text">
+        <small>&copy; Mark Sutherland {{ date('Y') }}. 🏳️‍🌈</small>
     </div>
 </footer>
 @yield('extrascripts')
