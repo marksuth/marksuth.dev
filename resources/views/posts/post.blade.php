@@ -25,7 +25,7 @@
                 <h1 class="p-name">{{ $post->title }}</h1>
             </div>
         </header>
-        <div class="post">
+        <div class="post post-box">
             <div class="entry-content e-content">
                 {!! Str::markdown($post->content) !!}
             </div>

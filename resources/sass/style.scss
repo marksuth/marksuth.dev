@@ -48,6 +48,19 @@
 
 }
 
+hr {
+    background: repeating-linear-gradient(45deg,
+        #ffffff,
+        #ffffff 10px,
+        #ff0000 10px,
+        #ff0000 20px);
+    height: 10px;
+    opacity: 1;
+    border-radius: 5px;
+    border: 0;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+}
+
 .avatar {
     border-radius: 50%;
     border: 8px solid var(--brand);
