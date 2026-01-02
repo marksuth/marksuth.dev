@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 
 final class Post extends Model
@@ -77,7 +76,7 @@ final class Post extends Model
      */
     public function postType(): BelongsTo
     {
-        return $this->belongsTo(PostType::class);
+        return $this->belongsTo(PostType::class, 'post_type_id');
     }
 
     /**
@@ -90,30 +89,39 @@ final class Post extends Model
 
     /**
      * Backward compatibility method for post_type().
-     * Note: This returns HasOne for backward compatibility with tests.
      */
-    public function post_type(): HasOne
+    public function post_type(): BelongsTo
     {
-        return $this->hasOne(PostType::class, 'id', 'post_type_id');
+        return $this->belongsTo(PostType::class, 'post_type_id');
     }
 
     /**
      * Backward compatibility method for post_collection().
-     * Note: This returns HasOne for backward compatibility with tests.
      */
-    public function post_collection(): HasOne
+    public function post_collection(): BelongsTo
     {
-        return $this->hasOne(PostCollection::class, 'id', 'collection_id');
+        return $this->belongsTo(PostCollection::class, 'collection_id');
     }
 
     /**
      * Scope a query to only include published posts.
      */
     #[Scope]
-    protected function published(Builder $query): Builder
+    public function scopePublished(Builder $query): Builder
     {
-        return $query->whereNotNull('published_at')
+        return $query->where('meta->published', '1')
+            ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
+    }
+
+    /**
+     * Scope a query to exclude distant past or near future posts.
+     */
+    #[Scope]
+    public function scopeCurrent(Builder $query): Builder
+    {
+        return $query->whereNull('meta->distant_past')
+            ->whereNull('meta->near_future');
     }
 
     /**

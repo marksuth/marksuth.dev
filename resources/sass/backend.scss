@@ -1,0 +1,36 @@
+@use 'base';
+@use 'post-editor';
+@use 'photo-editor';
+
+:root {
+    --brand: #214154;
+    --alt: #005EB8;
+    --text: #1b1b1b;
+    --body: #f2f2f2;
+    --navbar: var(--inverse);
+    --text-muted: #575757;
+    --inverse: #1b1b1b;
+    --gradient: linear-gradient(45deg, var(--dark), var(--alt));
+    --notify: linear-gradient(45deg, #D60270, #69D1CC);
+    --title-font: 'Inter Variable', sans-serif;
+    --body-font: 'Inter Variable', sans-serif;
+    --logo: var(--text);
+    --white: #ffffff;
+    --black: #000000;
+    --grey: #ccc;
+    --red: red;
+    --orange-dark: #cc5208;
+}
+
+#navbar {
+    background-color: var(--navbar);
+    color: var(--white);
+
+    nav a {
+        color: var(--white);
+
+        &:hover {
+            color: calc(var(--white) - 0.1)
+        }
+    }
+}

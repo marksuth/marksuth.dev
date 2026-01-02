@@ -1,0 +1,106 @@
+.auth-container {
+    max-width: fit-content;
+    margin: 4rem auto;
+
+    .fancy-title {
+        text-align: left;
+        margin-bottom: 1rem;
+        margin-left: 0.25rem;
+    }
+}
+
+.auth-form {
+    padding: 2rem;
+    width: 100%; // Override tile's max-content if necessary, but tile has max-width 90vw
+    min-width: 20vw;
+    .form-group {
+        margin-bottom: 1.5rem;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        color: var(--brand);
+    }
+
+    input {
+        width: 100%;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            border-color: var(--alt);
+            box-shadow: 0 0 0 3px rgba(0, 94, 184, 0.1);
+        }
+
+        &.is-invalid {
+            border-color: var(--red);
+        }
+    }
+
+    .error-message {
+        color: var(--red);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .form-check {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .form-check-input {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin: 0;
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        width: 100%;
+        display: block;
+        margin-top: 1.5rem;
+    }
+
+    .alert {
+        padding: 1rem;
+        border-radius: 0.25rem;
+        margin-bottom: 1.5rem;
+        font-size: 0.875rem;
+
+        &-success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        &-danger {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+    }
+
+    .forgot-link {
+        color: var(--brand);
+        display: block;
+        text-decoration: none;
+        font-size: 0.875rem;
+
+        &:hover {
+            text-decoration: underline;
+            color: var(--alt);
+        }
+    }
+}

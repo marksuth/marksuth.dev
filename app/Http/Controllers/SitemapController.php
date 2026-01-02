@@ -21,58 +21,48 @@ final class SitemapController extends Controller
 
     public function posts(): Response
     {
-
-        $latest = Post::query()->where('meta->published', '1')
-            ->whereNowOrPast('published_at')
+        $postsQuery = Post::query()
+            ->published()
             ->whereNotIn('post_type_id', [28])
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->latest('published_at')
-            ->first();
+            ->current()
+            ->latest('published_at');
 
-        $posts = Post::query()->where('meta->published', '1')
-            ->whereNowOrPast('published_at')
-            ->whereNotIn('post_type_id', [28])
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
-            ->latest('published_at')->get();
+        $latest = (clone $postsQuery)->first();
+        $posts = $postsQuery->get();
 
-        $types = PostType::query()->whereNotIn('id', [28])->get();
-
-        foreach ($types as $type) {
-            $type->count = Post::query()->where('post_type_id', $type->id)
-                ->where('meta->published', 1)
-                ->whereNotIn('post_type_id', [28])
-                ->whereNowOrPast('published_at')
-                ->whereNull('meta->distant_past')
-                ->whereNull('meta->near_future')
-                ->count();
-        }
+        $types = PostType::query()
+            ->whereNotIn('id', [28])
+            ->withCount(['postsMany' => function ($query) {
+                $query->published()->whereNotIn('post_type_id', [28])->current();
+            }])
+            ->get();
 
         return response()
-            ->view('sitemaps.posts', ['posts' => $posts, 'types' => $types, 'latest' => $latest])
+            ->view('sitemaps.posts', compact('posts', 'types', 'latest'))
             ->header('Content-Type', 'text/xml');
     }
 
     public function photos(): Response
     {
-        $photos = Photo::query()->where('meta->published', '1')
-            ->whereNowOrPast('published_at')
-            ->latest('published_at')->get();
+        $photos = Photo::query()
+            ->published()
+            ->latest('published_at')
+            ->get();
 
         return response()
-            ->view('sitemaps.photos', ['photos' => $photos])
+            ->view('sitemaps.photos', compact('photos'))
             ->header('Content-Type', 'text/xml');
     }
 
     public function pages(): Response
     {
-        $pages = Page::query()->where('meta->published', '1')
-            ->whereNowOrPast('published_at')
-            ->latest('updated_at')->get();
+        $pages = Page::query()
+            ->published()
+            ->latest('updated_at')
+            ->get();
 
         return response()
-            ->view('sitemaps.pages', ['pages' => $pages])
+            ->view('sitemaps.pages', compact('pages'))
             ->header('Content-Type', 'text/xml');
     }
 }

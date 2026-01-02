@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\PageController as BackendPageController;
+use App\Http\Controllers\Backend\PhotoController as BackendPhotoController;
+use App\Http\Controllers\Backend\PostCollectionController as BackendPostCollectionController;
+use App\Http\Controllers\Backend\PostController as BackendPostController;
+use App\Http\Controllers\Backend\PostTypeController as BackendPostTypeController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PhotoController;
@@ -56,6 +62,28 @@ Route::controller(SitemapController::class)->group(function (): void {
     Route::get('/sitemap_posts.xml', 'posts')->name('sitemap.posts');
     Route::get('/sitemap_photos.xml', 'photos')->name('sitemap.photos');
     Route::get('/sitemap_pages.xml', 'pages')->name('sitemap.pages');
+});
+
+// Backend routes
+Route::middleware(['auth', 'verified'])->prefix('backend')->name('backend.')->group(function (): void {
+    Route::get('/', [BackendController::class, 'index'])->name('index');
+    Route::get('/backend.webmanifest', [BackendController::class, 'webmanifest'])->name('webmanifest');
+
+    Route::controller(BackendController::class)->group(function (): void {
+        Route::get('/users', 'users')->name('users.index');
+        Route::get('/users/create', 'createUser')->name('users.create');
+        Route::post('/users', 'storeUser')->name('users.store');
+        Route::get('/users/{user}', 'showUser')->name('users.show');
+        Route::get('/users/{user}/edit', 'editUser')->name('users.edit');
+        Route::put('/users/{user}', 'updateUser')->name('users.update');
+        Route::delete('/users/{user}', 'destroyUser')->name('users.destroy');
+    });
+
+    Route::apiResource('pages', BackendPageController::class);
+    Route::resource('photos', BackendPhotoController::class);
+    Route::resource('posts', BackendPostController::class);
+    Route::apiResource('collections', BackendPostCollectionController::class);
+    Route::apiResource('types', BackendPostTypeController::class);
 });
 
 // Page routes

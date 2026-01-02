@@ -12,11 +12,10 @@ final class FeedController extends Controller
 {
     public function posts(): Response
     {
-        $posts = Post::query()->where('meta->published', '1')
-            ->whereNowOrPast('published_at')
+        $posts = Post::query()
+            ->published()
+            ->current()
             ->whereIn('post_type_id', [1, 14])
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
             ->latest('published_at')
             ->take(10)
             ->get();
@@ -24,17 +23,16 @@ final class FeedController extends Controller
         $latest = $posts->first();
 
         return response()
-            ->view('feeds.posts', ['posts' => $posts, 'latest' => $latest])
+            ->view('feeds.posts', compact('posts', 'latest'))
             ->header('Content-Type', 'text/xml');
     }
 
     public function stream(): Response
     {
-        $posts = Post::query()->where('meta->published', '1')
-            ->whereNowOrPast('published_at')
+        $posts = Post::query()
+            ->published()
+            ->current()
             ->whereNotIn('post_type_id', [1, 14, 28])
-            ->whereNull('meta->distant_past')
-            ->whereNull('meta->near_future')
             ->latest('published_at')
             ->take(10)
             ->get();
@@ -42,14 +40,14 @@ final class FeedController extends Controller
         $latest = $posts->first();
 
         return response()
-            ->view('feeds.posts', ['posts' => $posts, 'latest' => $latest])
+            ->view('feeds.posts', compact('posts', 'latest'))
             ->header('Content-Type', 'text/xml');
     }
 
     public function photos(): Response
     {
-        $photos = Photo::query()->where('meta->published', '1')
-            ->whereNowOrPast('published_at')
+        $photos = Photo::query()
+            ->published()
             ->latest('published_at')
             ->take(10)
             ->get();
@@ -57,7 +55,7 @@ final class FeedController extends Controller
         $latest = $photos->first();
 
         return response()
-            ->view('feeds.photos', ['photos' => $photos, 'latest' => $latest])
+            ->view('feeds.photos', compact('photos', 'latest'))
             ->header('Content-Type', 'text/xml');
     }
 }

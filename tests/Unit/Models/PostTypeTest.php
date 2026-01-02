@@ -25,8 +25,8 @@ test('post type model has posts relationship', function (): void {
     $postType = new PostType;
     $relation = $postType->posts();
 
-    expect($relation)->toBeInstanceOf(Illuminate\Database\Eloquent\Relations\BelongsTo::class);
+    expect($relation)->toBeInstanceOf(Illuminate\Database\Eloquent\Relations\HasMany::class);
     expect($relation->getRelated())->toBeInstanceOf(Post::class);
     expect($relation->getForeignKeyName())->toBe('post_type_id');
-    expect($relation->getOwnerKeyName())->toBe('id');
+    expect($relation->getLocalKeyName())->toBe('id');
 });

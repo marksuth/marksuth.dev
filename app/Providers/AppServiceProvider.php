@@ -15,7 +15,18 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->extend(\Faker\Generator::class, function ($faker) {
+            $faker->addProvider(new \App\Faker\PostProvider($faker));
+
+            return $faker;
+        });
+
+        $locale = config('app.faker_locale', 'en_US');
+        $this->app->extend(\Faker\Generator::class.':'.$locale, function ($faker) {
+            $faker->addProvider(new \App\Faker\PostProvider($faker));
+
+            return $faker;
+        });
     }
 
     /**
