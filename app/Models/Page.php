@@ -53,9 +53,10 @@ final class Page extends Model
      * Scope a query to only include published pages.
      */
     #[Scope]
-    protected function published(Builder $query): Builder
+    public function scopePublished(Builder $query): Builder
     {
-        return $query->whereNotNull('published_at')
+        return $query->where('meta->published', '1')
+            ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
     }
 

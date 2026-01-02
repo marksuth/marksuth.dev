@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Scout\Searchable;
 
 final class Photo extends Model
@@ -24,6 +25,7 @@ final class Photo extends Model
         'title' => 'required|string|max:255',
         'slug' => 'required|string|max:255|unique:photos,slug',
         'content' => 'nullable|string',
+        'album_id' => 'nullable|exists:albums,id',
         'meta' => 'nullable|array',
         'published_at' => 'nullable|date',
     ];
@@ -37,6 +39,7 @@ final class Photo extends Model
         'title',
         'slug',
         'content',
+        'album_id',
         'meta',
         'published_at',
     ];
@@ -66,12 +69,21 @@ final class Photo extends Model
     }
 
     /**
+     * Get the album that owns the photo.
+     */
+    public function album(): BelongsTo
+    {
+        return $this->belongsTo(Album::class);
+    }
+
+    /**
      * Scope a query to only include published photos.
      */
     #[Scope]
-    protected function published(Builder $query): Builder
+    public function scopePublished(Builder $query): Builder
     {
-        return $query->whereNotNull('published_at')
+        return $query->where('meta->published', '1')
+            ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
     }
 

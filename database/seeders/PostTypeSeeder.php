@@ -44,13 +44,13 @@ final class PostTypeSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run($postTypes): void
+    public function run(): void
     {
-        foreach ($postTypes as $postType) {
-            PostType::query()->create([
-                'name' => $postType,
-                'slug' => Str::slug($postType),
-            ]);
+        foreach ($this->postTypes as $postType) {
+            PostType::query()->firstOrCreate(
+                ['slug' => Str::slug($postType)],
+                ['name' => $postType]
+            );
         }
     }
 }

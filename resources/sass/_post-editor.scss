@@ -1,0 +1,63 @@
+#post-editor {
+    max-width: 1200px;
+    margin: 2rem auto;
+
+    .editor-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+
+        @media (max-width: 1024px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .field {
+        margin-bottom: 1.5rem;
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        textarea {
+            min-height: 40vh;
+            resize: vertical;
+        }
+
+        .error {
+            color: var(--red);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+    }
+
+    .checkbox-field {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+
+        input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin: 0;
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--text);
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+
+        @media (max-width: 640px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}

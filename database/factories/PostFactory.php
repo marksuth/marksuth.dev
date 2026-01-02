@@ -18,11 +18,15 @@ final class PostFactory extends Factory
 
     public function definition(): array
     {
+        $title = $this->faker->sentence();
+
         return [
-            'title' => $this->faker->word(),
-            'slug' => $this->faker->slug(),
-            'content' => $this->faker->word(),
-            'meta' => $this->faker->words(),
+            'title' => $title,
+            'slug' => \Illuminate\Support\Str::slug($title),
+            'content' => $this->faker->paragraphs(3, true),
+            'meta' => [
+                'published' => '1',
+            ],
             'published_at' => \Illuminate\Support\Facades\Date::now(),
             'created_at' => \Illuminate\Support\Facades\Date::now(),
             'updated_at' => \Illuminate\Support\Facades\Date::now(),
@@ -30,5 +34,48 @@ final class PostFactory extends Factory
             'post_type_id' => PostType::factory(),
             'collection_id' => PostCollection::factory(),
         ];
+    }
+
+    /**
+     * Indicate that the post is published.
+     */
+    public function published(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'meta' => array_merge($attributes['meta'] ?? [], ['published' => '1']),
+            'published_at' => \Illuminate\Support\Facades\Date::now(),
+        ]);
+    }
+
+    /**
+     * Indicate that the post is a draft.
+     */
+    public function draft(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'meta' => array_merge($attributes['meta'] ?? [], ['published' => '0']),
+            'published_at' => null,
+        ]);
+    }
+
+    /**
+     * Indicate that the post is from the distant past.
+     */
+    public function distantPast(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'meta' => array_merge($attributes['meta'] ?? [], ['distant_past' => true]),
+        ]);
+    }
+
+    /**
+     * Indicate that the post is in the near future.
+     */
+    public function nearFuture(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'meta' => array_merge($attributes['meta'] ?? [], ['near_future' => true]),
+            'published_at' => \Illuminate\Support\Facades\Date::now()->addDays(7),
+        ]);
     }
 }
