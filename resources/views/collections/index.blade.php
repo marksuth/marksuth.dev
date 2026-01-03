@@ -10,7 +10,7 @@
     <ul class="tile-grid tile-grid-lg">
         @forelse($collections as $collection)
             <li class="tile">
-                <a class="collection-cover" style="background-image: url('/storage/photos/{{ $collection->meta['img_url'] }}');" href="/collections/{{ strtolower($collection->slug) }}">{{ $collection->name }}</a>
+                <a class="collection-cover" style="background-image: url('{{ Storage::url('photos/' . $collection->meta['img_url']) }}');" href="/collections/{{ strtolower($collection->slug) }}">{{ $collection->name }}</a>
             </li>
         @empty
             <li>No collections found.</li>

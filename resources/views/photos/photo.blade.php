@@ -5,7 +5,7 @@
 ])
 @section('content')
     <article class="h-entry hentry photo tile">
-        <img class="u-photo" src="/storage/photos/{{ $photo->meta['img_url'] }}"
+        <img class="u-photo" src="{{ Storage::url('photos/' . $photo->meta['img_url']) }}"
              alt="{{ $photo->title }}">
         <div class="details">
             <div class="split">

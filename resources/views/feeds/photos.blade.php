@@ -8,7 +8,7 @@
             <pubDate>{{ $photo->published_at->tz(config('app.timezone'))->toRfc2822String() }}</pubDate>
             <description><![CDATA[
                 <a href="{{ config('app.url') }}/photos/{{ $photo->published_at->format('Y/m') }}/{{ $photo->slug }}">
-                    <img src="{{ config('app.url') }}/storage/photos/{{ $photo->meta['img_url'] }}" alt="{{ $photo->title }}">
+                    <img src="{{ Storage::url('photos/' . $photo->meta['img_url']) }}" alt="{{ $photo->title }}">
                 </a>
                 @if(isset($photo->meta['description']))
                 <p>{{ $photo->meta['description'] }}</p>

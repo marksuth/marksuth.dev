@@ -11,7 +11,7 @@
         @forelse($photos as $photo)
             <li class="tile tile-sm ">
                 <a href="/photos/{{ $photo->published_at->format('Y/m') }}/{{ $photo->slug }}">
-                    <img loading="lazy" src="/storage/thumbs/{{ $photo->meta['img_url'] }}"
+                    <img loading="lazy" src="{{ Storage::url('thumbs/' . $photo->meta['img_url']) }}"
                          alt="{{ $photo->title }}" height="500" width="500">
                 </a>
                 <time datetime="{{ $photo->published_at }}">
