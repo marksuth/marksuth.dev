@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.2",
         "ext-pdo": "*",
+        "algolia/algoliasearch-client-php": "^4.37",
         "guzzlehttp/guzzle": "^7.10",
         "laravel/fortify": "^1.33",
         "laravel/framework": "^12.0",
