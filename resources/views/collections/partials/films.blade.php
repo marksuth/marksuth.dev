@@ -1,7 +1,7 @@
 <ul class="tile-grid">
     @forelse($posts as $post)
                 <li class="tile tile-media">
-                    <img src="{{ $post->meta['img_url'] }}" alt="{{$post->title}}">
+                    <img src="{{ Storage::url('films/' . $post->meta['img_url']) }}" alt="{{$post->title}}">
                     <div class="details">
                     <h2 class="tile-title">{{$post->title}}</h2>
                 <p>Released: {{$post->meta['released']}}<br>
