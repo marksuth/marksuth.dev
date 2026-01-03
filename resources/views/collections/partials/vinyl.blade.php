@@ -2,7 +2,7 @@
             @forelse($posts as $post)
                 <li class="tile">
                         @if(isset($post->meta['img_url']))
-                                <img loading="lazy" src="/storage/{{ $post->meta['img_url'] }}" alt="{{ $post->title }}"
+                                <img loading="lazy" src="/storage/photos/{{ $post->meta['img_url'] }}" alt="{{ $post->title }}"
                                      height="700" width="700">
                         @else
                             <div class="text-center py-5">

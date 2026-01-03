@@ -56,9 +56,9 @@
                             <div class="mt-2">
                                 <img src="{{ $image->temporaryUrl() }}" alt="Preview" style="max-width: 100%; border-radius: 6px;">
                             </div>
-                        @elseif ($post && isset($post->meta['image']))
+                        @elseif ($post && isset($post->meta['img_url']))
                             <div class="mt-2">
-                                <img src="{{ Storage::url($post->meta['image']) }}" alt="Current Image"
+                                <img src="{{ Storage::url('photos/' . $post->meta['img_url']) }}" alt="Current Image"
                                     style="max-width: 100%; border-radius: 6px;">
                             </div>
                         @endif

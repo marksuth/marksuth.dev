@@ -69,9 +69,9 @@
             <div class="tile tile-sm">
                 <div class="media-container">
                     @if(Str::startsWith($photo->meta['mime_type'] ?? '', 'video'))
-                        <video src="{{ Storage::url($photo->meta['img_url'] ?? '') }}" class="media" controls></video>
+                        <video src="{{ Storage::url('photos/' . ($photo->meta['img_url'] ?? '')) }}" class="media" controls></video>
                     @else
-                        <img src="{{ Storage::url($photo->meta['img_url'] ?? '') }}" alt="{{ $photo->title }}" class="media">
+                        <img src="{{ Storage::url('photos/' . ($photo->meta['img_url'] ?? '')) }}" alt="{{ $photo->title }}" class="media">
                     @endif
 
                     <div class="overlay">
@@ -106,9 +106,9 @@
                     <div class="modal-sidebar">
                         @if($editingPhoto)
                             @if(Str::startsWith($editingPhoto->meta['mime_type'] ?? '', 'video'))
-                                <video src="{{ Storage::url($editingPhoto->meta['img_url'] ?? '') }}" class="media-preview" controls></video>
+                                <video src="{{ Storage::url('photos/' . ($editingPhoto->meta['img_url'] ?? '')) }}" class="media-preview" controls></video>
                             @else
-                                <img src="{{ Storage::url($editingPhoto->meta['img_url'] ?? '') }}" alt="{{ $editingPhoto->title }}" class="media-preview">
+                                <img src="{{ Storage::url('photos/' . ($editingPhoto->meta['img_url'] ?? '')) }}" alt="{{ $editingPhoto->title }}" class="media-preview">
                             @endif
                         @endif
                     </div>

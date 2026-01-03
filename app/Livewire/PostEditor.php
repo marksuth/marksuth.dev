@@ -64,8 +64,8 @@ final class PostEditor extends Component
         $meta = $this->post ? $this->post->meta : [];
 
         if ($this->image) {
-            $path = $this->image->store('posts', 'public');
-            $meta['image'] = $path;
+            $path = $this->image->store('photos', 'public');
+            $meta['img_url'] = basename($path);
         }
 
         $data = [

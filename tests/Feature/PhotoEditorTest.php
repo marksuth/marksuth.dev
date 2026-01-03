@@ -37,6 +37,8 @@ it('can upload a photo with title, location, published_at and new album', functi
     $photo = Photo::where('title', 'Custom Title')->first();
     expect($photo)->not->toBeNull();
     expect($photo->meta['location'])->toBe('London, UK');
+    expect($photo->meta['img_url'])->not->toBeNull();
+    expect($photo->meta['img_url'])->not->toContain('photos/');
     expect($photo->published_at->format('Y-m-d H:i'))->toBe($publishedAt->format('Y-m-d H:i'));
     expect($photo->album)->not->toBeNull();
     expect($photo->album->title)->toBe('Holiday 2025');
@@ -46,7 +48,7 @@ it('can edit a photo and assign to existing album', function () {
     $album = Album::factory()->create(['title' => 'Existing Album']);
     $photo = Photo::factory()->create([
         'title' => 'Original Title',
-        'meta' => ['location' => 'Old Location', 'path' => 'photos/test.jpg'],
+        'meta' => ['location' => 'Old Location', 'img_url' => 'test.jpg'],
     ]);
 
     Livewire::test(PhotoEditor::class)

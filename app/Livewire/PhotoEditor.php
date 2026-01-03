@@ -75,6 +75,7 @@ final class PhotoEditor extends Component
         foreach ($this->uploads as $index => $upload) {
             $data = $this->uploadData[$index];
             $path = $upload->store('photos', 'public');
+            $filename = basename($path);
             $mime = $upload->getMimeType();
 
             $albumId = $data['album_id'] ?: null;
@@ -92,7 +93,7 @@ final class PhotoEditor extends Component
                 'slug' => Str::slug($data['title']).'-'.Str::random(6),
                 'album_id' => $albumId,
                 'meta' => [
-                    'path' => $path,
+                    'img_url' => $filename,
                     'mime_type' => $mime,
                     'size' => $upload->getSize(),
                     'location' => $data['location'],
