@@ -20,18 +20,6 @@
             <div class="split">
                 <time class="dt-published created"
                       datetime="{{ $photo->published_at }}">{{ $photo->published_at->format('d/m/Y @ H:i') }}</time>
-                <p class="links">Posted to:
-                    &nbsp;<a href="/photos/{{ $photo->published_at->format('Y/m') }}/{{ $photo->slug }}"
-                             class="u-url">
-                        <i class="fa-solid fa-globe"></i>
-                    </a>
-                    @if ($photo->meta['instagram_url'] != null)
-                        <a href="{{ $photo->meta['instagram_url'] }}" class="u-syndication"
-                           rel="syndication">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                    @endif
-                </p>
             </div>
         </div>
     </article>
