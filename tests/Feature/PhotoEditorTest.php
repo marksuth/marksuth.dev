@@ -30,6 +30,7 @@ it('can upload a photo with title, location, published_at and new album', functi
         ->set('uploadData.0.title', 'Custom Title')
         ->set('uploadData.0.location', 'London, UK')
         ->set('uploadData.0.published_at', $publishedAt->format('Y-m-d\TH:i'))
+        ->set('uploadData.0.is_published', true)
         ->set('uploadData.0.new_album_name', 'Holiday 2025')
         ->call('saveUploads')
         ->assertDispatched('notify');
@@ -37,6 +38,7 @@ it('can upload a photo with title, location, published_at and new album', functi
     $photo = Photo::where('title', 'Custom Title')->first();
     expect($photo)->not->toBeNull();
     expect($photo->meta['location'])->toBe('London, UK');
+    expect($photo->meta['published'])->toBe('1');
     expect($photo->meta['img_url'])->not->toBeNull();
     expect($photo->meta['img_url'])->not->toContain('photos/');
     expect($photo->published_at->format('Y-m-d H:i'))->toBe($publishedAt->format('Y-m-d H:i'));
@@ -87,6 +89,28 @@ it('can edit a photo published_at date', function () {
     expect($photo->published_at->format('Y-m-d H:i'))->toBe($newDate->format('Y-m-d H:i'));
 });
 
+it('can toggle published status in edit modal', function () {
+    $photo = Photo::factory()->create(['meta' => ['published' => '1']]);
+
+    Livewire::test(PhotoEditor::class)
+        ->call('edit', $photo->id)
+        ->assertSet('is_published', true)
+        ->set('is_published', false)
+        ->call('update');
+
+    $photo->refresh();
+    expect($photo->meta['published'])->toBe('0');
+
+    Livewire::test(PhotoEditor::class)
+        ->call('edit', $photo->id)
+        ->assertSet('is_published', false)
+        ->set('is_published', true)
+        ->call('update');
+
+    $photo->refresh();
+    expect($photo->meta['published'])->toBe('1');
+});
+
 it('can delete a photo', function () {
     $photo = Photo::factory()->create();
 
@@ -94,4 +118,28 @@ it('can delete a photo', function () {
         ->call('delete', $photo->id);
 
     expect(Photo::find($photo->id))->toBeNull();
+});
+
+it('shows thumbnail previews for pending uploads', function () {
+    Storage::fake('public');
+
+    $image = UploadedFile::fake()->image('test.jpg');
+    $video = UploadedFile::fake()->create('test.mp4', 500, 'video/mp4');
+
+    Livewire::test(PhotoEditor::class)
+        ->set('uploads', [$image, $video])
+        ->assertSeeHtml('thumbnail-preview')
+        ->assertSeeHtml('video-placeholder');
+});
+
+it('shows an error message when an upload is too large', function () {
+    Storage::fake('public');
+
+    // 11MB file (exceeds 10MB limit)
+    $largeFile = UploadedFile::fake()->create('large-video.mp4', 11264);
+
+    Livewire::test(PhotoEditor::class)
+        ->set('uploads', [$largeFile])
+        ->assertHasErrors(['uploads.0' => 'max'])
+        ->assertSee('One or more files are too large. Maximum size is 10MB.');
 });

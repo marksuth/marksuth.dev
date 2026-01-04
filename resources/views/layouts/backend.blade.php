@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="{{ config('app.url') }}/favicon.ico"/>
     <link rel="apple-touch-icon" sizes="180x180" href="{{ config('app.url') }}/apple-touch-icon.png"/>
     <link rel="manifest" href="{{ route('backend.webmanifest') }}">
-    @vite(['resources/sass/backend.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/backend.scss', 'resources/js/backend.js'])
     <meta name="author" content="{{ config('app.name') }}">
     <meta name="copyright" content="{{ config('app.name') }}">
     <meta name="theme-color" content="#214154">
@@ -32,11 +32,11 @@
                     class="sr-only">Menu</span></label><input
                 type="checkbox" id="main-nav" class="inline-toggle">
             <nav id="main-menu" aria-label="main navigation">
-                <a class="@if(Request::segment(1) == 'posts') active @endif" href="{{ route('backend.posts.index') }}">Posts</a>
-                <a class="@if(Request::segment(1) == 'photos') active @endif" href="{{ route('backend.photos.index') }}">Photos</a>
-                <a class="@if(Request::segment(1) == 'photos') active @endif" href="{{ route('backend.pages.index') }}">Photos</a>
-                <a class="@if(Request::segment(1) == 'collections') active @endif" href="{{ route('backend.collections.index') }}">Collections</a>
-                <a class="@if(Request::segment(1) == 'users') active @endif" href="{{ route('backend.users.index') }}">Users</a>
+                <a class="@if(Request::segment(2) == 'posts') active @endif" href="{{ route('backend.posts.index') }}">Posts</a>
+                <a class="@if(Request::segment(2) == 'photos') active @endif" href="{{ route('backend.photos.index') }}">Photos</a>
+                <a class="@if(Request::segment(2) == 'pages') active @endif" href="{{ route('backend.pages.index') }}">Pages</a>
+                <a class="@if(Request::segment(2) == 'collections') active @endif" href="{{ route('backend.collections.index') }}">Collections</a>
+                <a class="@if(Request::segment(2) == 'users') active @endif" href="{{ route('backend.users.index') }}">Users</a>
                 <a href="{{ config('app.url') }}"><i class="fa-solid fa-globe"></i></a>
                 <a href="{{ route('logout') }}"><i class="fa-solid fa-sign-out"></i></a>
 

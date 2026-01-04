@@ -18,6 +18,7 @@
                 </div>
             </div>
         </div>
+        @error('uploads') <span class="error">{{ $message }}</span> @enderror
         @error('uploads.*') <span class="error">{{ $message }}</span> @enderror
 
         @if($uploads)
@@ -25,6 +26,18 @@
                 <h3>Pending Uploads</h3>
                 @foreach($uploads as $index => $upload)
                     <div class="field-group" wire:key="pending-{{ $index }}">
+                        <div class="thumbnail-preview">
+                            @if (Str::startsWith($upload->getMimeType(), 'image'))
+                                <img src="{{ $upload->temporaryUrl() }}" alt="Preview">
+                            @elseif (Str::startsWith($upload->getMimeType(), 'video'))
+                                <div class="video-placeholder">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                    </svg>
+                                    <span>Video</span>
+                                </div>
+                            @endif
+                        </div>
                         <div class="field">
                             <label>Name (for {{ $upload->getClientOriginalName() }})</label>
                             <input type="text" wire:model="uploadData.{{ $index }}.title">
@@ -39,6 +52,10 @@
                             <label>Published At</label>
                             <input type="datetime-local" wire:model="uploadData.{{ $index }}.published_at">
                             @error('uploadData.'.$index.'.published_at') <span class="error">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="checkbox-field">
+                            <input type="checkbox" id="published-{{ $index }}" wire:model="uploadData.{{ $index }}.is_published">
+                            <label for="published-{{ $index }}">Published</label>
                         </div>
                         <div class="field">
                             <label>Album</label>
@@ -118,14 +135,14 @@
 
                         <div class="space-y-4">
                             <div class="field">
-                                <label>Title</label>
-                                <input type="text" wire:model="editTitle">
+                                <label for="title">Title</label>
+                                <input id="title" type="text" wire:model="editTitle">
                                 @error('editTitle') <span class="error">{{ $message }}</span> @enderror
                             </div>
 
                             <div class="field">
                                 <label>Caption / Content</label>
-                                <textarea wire:model="editContent" rows="3"></textarea>
+                                <textarea id="content" wire:model="editContent" rows="3"></textarea>
                                 @error('editContent') <span class="error">{{ $message }}</span> @enderror
                             </div>
 
@@ -136,9 +153,14 @@
                             </div>
 
                             <div class="field">
-                                <label>Published At</label>
+                                <label>Publish at: </label>
                                 <input type="datetime-local" wire:model="editPublishedAt">
                                 @error('editPublishedAt') <span class="error">{{ $message }}</span> @enderror
+                            </div>
+
+                            <div class="checkbox-field">
+                                <input type="checkbox" id="is_published" wire:model="is_published">
+                                <label for="is_published">Published</label>
                             </div>
 
                             <div class="field">
@@ -168,4 +190,5 @@
             </div>
         </div>
     @endif
+    @vite('resources/sass/easymde.scss')
 </div>

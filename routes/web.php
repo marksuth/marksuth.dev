@@ -80,7 +80,7 @@ Route::middleware(['auth', 'verified'])->prefix('backend')->name('backend.')->gr
         Route::delete('/users/{user}', 'destroyUser')->name('users.destroy');
     });
 
-    Route::apiResource('pages', BackendPageController::class);
+    Route::resource('pages', BackendPageController::class);
     Route::resource('photos', BackendPhotoController::class);
     Route::resource('posts', BackendPostController::class);
     Route::apiResource('collections', BackendPostCollectionController::class);

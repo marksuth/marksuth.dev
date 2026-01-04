@@ -34,6 +34,8 @@ final class PhotoEditor extends Component
 
     public $editNewAlbumName = '';
 
+    public $is_published = false;
+
     public $uploadData = [];
 
     public function mount(?Photo $photo = null)
@@ -47,6 +49,8 @@ final class PhotoEditor extends Component
     {
         $this->validate([
             'uploads.*' => 'file|max:10240|mimes:jpeg,png,jpg,gif,webp,mp4,mov,qt', // 10MB Max, images and videos
+        ], [
+            'uploads.*.max' => 'One or more files are too large. Maximum size is 10MB.',
         ]);
 
         foreach ($this->uploads as $index => $upload) {
@@ -55,6 +59,7 @@ final class PhotoEditor extends Component
                     'title' => pathinfo($upload->getClientOriginalName(), PATHINFO_FILENAME),
                     'location' => '',
                     'published_at' => now()->format('Y-m-d\TH:i'),
+                    'is_published' => true,
                     'album_id' => '',
                     'new_album_name' => '',
                 ];
@@ -68,6 +73,7 @@ final class PhotoEditor extends Component
             'uploadData.*.title' => 'required|min:3',
             'uploadData.*.location' => 'nullable|string',
             'uploadData.*.published_at' => 'required|date',
+            'uploadData.*.is_published' => 'boolean',
             'uploadData.*.album_id' => 'nullable',
             'uploadData.*.new_album_name' => 'nullable|string|max:255',
         ]);
@@ -97,6 +103,7 @@ final class PhotoEditor extends Component
                     'mime_type' => $mime,
                     'size' => $upload->getSize(),
                     'location' => $data['location'],
+                    'published' => $data['is_published'] ? '1' : '0',
                 ],
                 'published_at' => Carbon::parse($data['published_at']),
             ]);
@@ -113,6 +120,7 @@ final class PhotoEditor extends Component
         $this->editTitle = $photo->title;
         $this->editContent = $photo->content;
         $this->editLocation = $photo->meta['location'] ?? '';
+        $this->is_published = ($photo->meta['published'] ?? '0') === '1';
         $this->editPublishedAt = $photo->published_at ? $photo->published_at->format('Y-m-d\TH:i') : '';
         $this->editAlbumId = $photo->album_id ?? '';
         $this->editNewAlbumName = '';
@@ -126,12 +134,14 @@ final class PhotoEditor extends Component
             'editContent' => 'nullable',
             'editLocation' => 'nullable|string',
             'editPublishedAt' => 'nullable|date',
+            'is_published' => 'boolean',
             'editAlbumId' => 'nullable',
             'editNewAlbumName' => 'nullable|string|max:255',
         ]);
 
         $meta = $this->editingPhoto->meta;
         $meta['location'] = $this->editLocation;
+        $meta['published'] = $this->is_published ? '1' : '0';
 
         $albumId = $this->editAlbumId ?: null;
 
