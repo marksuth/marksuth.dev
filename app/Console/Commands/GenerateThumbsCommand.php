@@ -36,17 +36,31 @@ final class GenerateThumbsCommand extends Command
         $photos = Photo::all();
 
         foreach ($photos as $photo) {
+            $photoPath = storage_path('app/public/photos/'.$photo->meta['img_url']);
+            $thumbPath = storage_path('app/public/thumbs/'.$photo->meta['img_url']);
 
-            Image::load('storage/app/public/photos/'.$photo->meta['img_url'])
+            if (! file_exists($photoPath)) {
+                $this->error("Original photo not found: {$photoPath}");
+
+                continue;
+            }
+
+            $thumbDirectory = dirname($thumbPath);
+            if (! file_exists($thumbDirectory)) {
+                mkdir($thumbDirectory, 0755, true);
+            }
+
+            Image::load($photoPath)
                 ->quality(85)
                 ->fit(Fit::Max, 2000, 2000)
                 ->save();
 
-            Image::load('storage/app/public/thumbs/'.$photo->meta['img_url'])
+            Image::load($photoPath)
                 ->fit(Fit::Crop, 500, 500)
                 ->quality(85)
-                ->save();
+                ->save($thumbPath);
 
+            $this->info("Generated thumbnail for: {$photo->title}");
         }
     }
 }

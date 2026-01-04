@@ -7,9 +7,13 @@ namespace App\Livewire;
 use App\Models\Album;
 use App\Models\Photo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Spatie\Image\Enums\Fit;
+use Spatie\Image\Image;
 
 final class PhotoEditor extends Component
 {
@@ -82,6 +86,24 @@ final class PhotoEditor extends Component
             $data = $this->uploadData[$index];
             $path = $upload->store('photos', 'public');
             $filename = basename($path);
+
+            // Generate thumbnail
+            if (Str::startsWith($upload->getMimeType(), 'image/')) {
+                $photoPath = Storage::disk('public')->path($path);
+                $thumbDirectory = Storage::disk('public')->path('thumbs');
+
+                if (! File::exists($thumbDirectory)) {
+                    File::makeDirectory($thumbDirectory, 0755, true);
+                }
+
+                $thumbPath = $thumbDirectory.'/'.$filename;
+
+                Image::load($photoPath)
+                    ->fit(Fit::Crop, 500, 500)
+                    ->quality(85)
+                    ->save($thumbPath);
+            }
+
             $mime = $upload->getMimeType();
 
             $albumId = $data['album_id'] ?: null;
