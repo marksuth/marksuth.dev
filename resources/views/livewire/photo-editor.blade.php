@@ -112,7 +112,7 @@
         @endforelse
     </div>
 
-    <div class="pagination">
+    <div class="pagination-wrapper">
         {{ $photos->links() }}
     </div>
 

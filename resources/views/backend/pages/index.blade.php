@@ -43,5 +43,7 @@
         </table>
     </div>
 
-    {{ $pages->links() }}
+    <div class="pagination-wrapper">
+        {{ $pages->links() }}
+    </div>
 @endsection

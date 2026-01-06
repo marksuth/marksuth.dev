@@ -29,6 +29,8 @@
             @empty
                 <p>No posts found</p>
             @endforelse
-            {{ $posts->links() }}
+            <div class="pagination-wrapper">
+                {{ $posts->links() }}
+            </div>
         </div>
     </div>

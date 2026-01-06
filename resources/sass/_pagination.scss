@@ -1,18 +1,60 @@
 .pagination {
     display: flex;
     padding-left: 0;
-    list-style: none
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 0;
+}
+
+.pagination-wrapper {
+    margin: 1rem 0;
+}
+
+.pagination-container {
+    align-items: center;
+
+    @media (max-width: 991px) {
+        gap: 0.5rem;
+    }
+}
+
+.pagination-info {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.d-none-mobile {
+    @media (max-width: 600px) {
+        display: none;
+    }
+}
+
+.d-block-mobile {
+    display: none;
+    @media (max-width: 600px) {
+        display: inline;
+    }
 }
 
 .page-link {
     position: relative;
     display: block;
-    padding: 0.25rem 0.75rem;
+    padding: 0.5rem 0.75rem;
     color: #fff;
     text-decoration: none;
     background-color: var(--brand);
     border: 0 solid var(--brand);
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    min-width: 2.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+
+    @media (max-width: 600px) {
+        padding: 0.4rem 0.6rem;
+        min-width: 2rem;
+        font-size: 0.8rem;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

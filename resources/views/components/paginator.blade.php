@@ -1,12 +1,13 @@
 @if ($paginator->hasPages())
-        <div class="split">
-            <div>
+        <div class="split pagination-container">
+            <div class="pagination-info">
                 <small>
-                    {!! __('Showing') !!}
+                    <span class="d-none-mobile">{!! __('Showing') !!}</span>
                     {{ $paginator->firstItem() }}
                     {!! __('to') !!}
                     {{ $paginator->lastItem() }}
-                    {!! __('of') !!}
+                    <span class="d-none-mobile">{!! __('of') !!}</span>
+                    <span class="d-block-mobile">{!! __('/') !!}</span>
                     {{ $paginator->total() }}
                 </small>
             </div>

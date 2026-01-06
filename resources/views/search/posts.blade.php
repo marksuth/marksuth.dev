@@ -34,8 +34,9 @@
             <p>No posts were found for "{{ $search }}"</p>
         @endforelse
 
-        {{ $posts->links() }}
-
+        <div class="pagination-wrapper">
+            {{ $posts->links() }}
+        </div>
     </div>
 
 @endsection
