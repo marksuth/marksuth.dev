@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Models\Page;
 
 test('page model can be instantiated', function (): void {

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -96,17 +94,5 @@ final class User extends Authenticatable
     protected function unverified(Builder $query): Builder
     {
         return $query->whereNull('email_verified_at');
-    }
-
-    /**
-     * Scope a query to search users by name or email.
-     */
-    #[Scope]
-    protected function search(Builder $query, string $search): Builder
-    {
-        return $query->where(function ($query) use ($search): void {
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%");
-        });
     }
 }

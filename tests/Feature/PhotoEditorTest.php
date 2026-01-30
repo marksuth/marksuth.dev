@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Livewire\PhotoEditor;
 use App\Models\Album;
 use App\Models\Photo;

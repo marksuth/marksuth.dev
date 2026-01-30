@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -9,12 +7,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Laravel\Scout\Searchable;
 
 final class Post extends Model
 {
     use HasFactory;
-    use Searchable;
 
     /**
      * Validation rules for the model.
@@ -55,21 +51,6 @@ final class Post extends Model
         'meta' => 'array',
         'published_at' => 'datetime',
     ];
-
-    /**
-     * Get the searchable array for the model.
-     *
-     * @return array<string, mixed>
-     */
-    public function toSearchableArray(): array
-    {
-        return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'content' => $this->content,
-            'meta' => $this->meta,
-        ];
-    }
 
     /**
      * Get the post type that owns the post.
@@ -155,17 +136,6 @@ final class Post extends Model
 
         return $query->whereHas('postCollection', function ($query) use ($collection): void {
             $query->where('name', $collection);
-        });
-    }
-
-    /**
-     * Scope a query to search posts by title or content.
-     */
-    protected function scopeSearch(Builder $query, string $search): Builder
-    {
-        return $query->where(function ($query) use ($search): void {
-            $query->where('title', 'like', "%{$search}%")
-                ->orWhere('content', 'like', "%{$search}%");
         });
     }
 }

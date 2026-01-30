@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -58,18 +56,6 @@ final class Page extends Model
         return $query->where('meta->published', '1')
             ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
-    }
-
-    /**
-     * Scope a query to search pages by title or content.
-     */
-    #[Scope]
-    protected function search(Builder $query, string $search): Builder
-    {
-        return $query->where(function ($query) use ($search): void {
-            $query->where('title', 'like', "%{$search}%")
-                ->orWhere('content', 'like', "%{$search}%");
-        });
     }
 
     /**

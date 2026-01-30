@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Livewire\PostEditor;
 use App\Models\PostType;
 use Illuminate\Foundation\Testing\RefreshDatabase;

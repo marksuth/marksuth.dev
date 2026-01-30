@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -43,18 +41,6 @@ final class Note extends Model
     protected $casts = [
         'meta' => 'array',
     ];
-
-    /**
-     * Scope a query to search notes by title or content.
-     */
-    #[Scope]
-    protected function search(Builder $query, string $search): Builder
-    {
-        return $query->where(function ($query) use ($search): void {
-            $query->where('title', 'like', "%{$search}%")
-                ->orWhere('content', 'like', "%{$search}%");
-        });
-    }
 
     /**
      * Scope a query to order notes by most recent.

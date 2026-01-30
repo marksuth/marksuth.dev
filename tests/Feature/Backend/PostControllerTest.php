@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Models\Post;
 use App\Models\PostType;
 use App\Models\User;

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 it('can access backend webmanifest without authentication', function () {
     $response = $this->get('/backend/backend.webmanifest');
 

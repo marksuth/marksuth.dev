@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -9,12 +7,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Laravel\Scout\Searchable;
 
 final class Photo extends Model
 {
     use HasFactory;
-    use Searchable;
 
     /**
      * Validation rules for the model.
@@ -55,20 +51,6 @@ final class Photo extends Model
     ];
 
     /**
-     * Get the searchable array for the model.
-     *
-     * @return array<string, mixed>
-     */
-    public function toSearchableArray(): array
-    {
-        return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'content' => $this->content,
-        ];
-    }
-
-    /**
      * Get the album that owns the photo.
      */
     public function album(): BelongsTo
@@ -85,17 +67,6 @@ final class Photo extends Model
         return $query->where('meta->published', '1')
             ->whereNotNull('published_at')
             ->where('published_at', '<=', now());
-    }
-
-    /**
-     * Scope a query to search photos by title or content.
-     */
-    protected function scopeSearch(Builder $query, string $search): Builder
-    {
-        return $query->where(function ($query) use ($search): void {
-            $query->where('title', 'like', "%{$search}%")
-                ->orWhere('content', 'like', "%{$search}%");
-        });
     }
 
     /**

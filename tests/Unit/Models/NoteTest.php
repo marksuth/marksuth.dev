@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Models\Note;
 
 test('note model can be instantiated', function (): void {

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -95,17 +93,5 @@ final class PostType extends Model
     protected function byName(Builder $query, string $name): Builder
     {
         return $query->where('name', $name);
-    }
-
-    /**
-     * Scope a query to search post types by name or description.
-     */
-    #[Scope]
-    protected function search(Builder $query, string $search): Builder
-    {
-        return $query->where(function ($query) use ($search): void {
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%");
-        });
     }
 }

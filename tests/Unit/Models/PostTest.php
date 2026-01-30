@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Models\Post;
 use App\Models\PostCollection;
 use App\Models\PostType;
@@ -36,20 +34,4 @@ test('post model has post_collection relationship', function (): void {
     expect($relation->getRelated())->toBeInstanceOf(PostCollection::class);
     expect($relation->getForeignKeyName())->toBe('collection_id');
     expect($relation->getOwnerKeyName())->toBe('id');
-});
-
-test('post model has searchable method', function (): void {
-    $post = new Post;
-    $post->id = 1;
-    $post->title = 'Test Post';
-    $post->content = 'Test Content';
-    $post->meta = ['key' => 'value'];
-
-    $searchableArray = $post->toSearchableArray();
-
-    expect($searchableArray)
-        ->toHaveKey('id', 1)
-        ->toHaveKey('title', 'Test Post')
-        ->toHaveKey('content', 'Test Content')
-        ->toHaveKey('meta', ['key' => 'value']);
 });

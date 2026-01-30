@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Livewire\PageEditor;
 use App\Models\Page;
 use Livewire\Livewire;

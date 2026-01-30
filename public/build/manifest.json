@@ -1,8 +1,4 @@
 {
-  "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2": {
-    "file": "assets/instrument-serif-latin-400-normal-DnYpCC2O.woff2",
-    "src": "node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2"
-  },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400-BfBXV7Mm.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
@@ -19,10 +15,6 @@
     "file": "assets/InterVariable-DiVDrmQJ.woff2",
     "src": "node_modules/inter-ui/variable/InterVariable.woff2"
   },
-  "resources/assets/fonts/snowtopcaps-webfont.woff2": {
-    "file": "assets/snowtopcaps-webfont-CHXTIm58.woff2",
-    "src": "resources/assets/fonts/snowtopcaps-webfont.woff2"
-  },
   "resources/js/app.js": {
     "file": "assets/app-l0sNRNKZ.js",
     "name": "app",
@@ -36,7 +28,7 @@
     "isEntry": true
   },
   "resources/sass/backend.scss": {
-    "file": "assets/backend-DI5kXO57-93ad0356.css",
+    "file": "assets/backend-B8dXryc8-d9005a08.css",
     "src": "resources/sass/backend.scss"
   },
   "resources/sass/easymde.scss": {
@@ -44,7 +36,7 @@
     "src": "resources/sass/easymde.scss"
   },
   "resources/sass/style.scss": {
-    "file": "assets/style-OLZY0n1y-882287dc.css",
+    "file": "assets/style-CGryFvXM-8f59cf83.css",
     "src": "resources/sass/style.scss"
   }
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\PageController as BackendPageController;
 use App\Http\Controllers\Backend\PhotoController as BackendPhotoController;
@@ -13,7 +11,6 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostCollectionController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,11 +32,6 @@ Route::controller(PostController::class)->group(function (): void {
     Route::get('/posts/{year}', 'year')->name('posts.year');
     Route::get('/posts/{year}/{month}', 'month')->name('posts.month');
     Route::get('/posts/{year}/{month}/{slug}', 'show')->name('posts.show');
-});
-
-// Post search routes
-Route::controller(SearchController::class)->group(function (): void {
-    Route::get('/search', 'index')->name('search.search');
 });
 
 Route::controller(PostCollectionController::class)->group(function (): void {

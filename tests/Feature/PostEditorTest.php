@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Livewire\PostEditor;
 use App\Models\Post;
 use App\Models\PostType;
